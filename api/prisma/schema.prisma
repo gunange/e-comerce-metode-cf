@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  id         BigInt    @id @default(autoincrement())
+  label      String    @db.VarChar(150)
+  role       String?   @db.VarChar(150)
+  created_at DateTime? @default(now())
+  User       User[]
+
+  @@map("__roles")
+}
+
+model User {
+  id             BigInt    @id @default(autoincrement())
+  role_id        BigInt
+  username       String
+  password       String
+  remember_token String?
+  created_at     DateTime? @default(now())
+  updated_at     DateTime? @default(now())
+
+  sessions           Sessions[]
+  role               Role                 @relation(fields: [role_id], references: [id])
+  PersonalAksesToken PersonalAksesToken[]
+
+  @@map("__users")
+}
+
+model Sessions {
+  id         BigInt    @id @default(autoincrement())
+  user_id    BigInt
+  ip_address String    @db.VarChar(50)
+  user_agent String?   @db.LongText()
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("__sessions")
+}
+
+model PersonalAksesToken {
+  id           BigInt    @id @default(autoincrement())
+  user_id      BigInt
+  tokenable    String
+  name         String
+  ip_address   String    @db.VarChar(50)
+  user_agent   String?   @db.LongText()
+  token        String    @db.VarChar(100)
+  last_used_at DateTime  @default(now())
+  expires_at   DateTime?
+  created_at   DateTime? @default(now())
+  updated_at   DateTime? @default(now())
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("__personal_access_tokens")
+}
