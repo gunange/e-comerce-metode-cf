@@ -1,26 +1,28 @@
-import { RegisterRequest , RegisterModel} from "@/controllers/model/pelanggan"
+import { RegisterRequest } from "@/controllers/model/pelanggan";
 import { PrismaClient } from "@prisma/client";
+import { UserService } from "../user/user-service";
+import {
+   PelangganResource,
+   pelangganResponse,
+} from "@/controllers/interfaces/resource";
 
 const prismaClient = new PrismaClient();
 
 export class RegisterService {
-    
-    static async register(request : RegisterModel) : Promise<any>{
-        request  = await RegisterRequest.VALIDATE(request);
+   static async register(request: any): Promise<PelangganResource> {
+      const user = await UserService.Register(request);
 
-        request.password = await Bun.password.hash(`${request.password}`, {
-            algorithm: "bcrypt",
-            cost: 10,
-        });
+      const db = await RegisterRequest.VALIDATE(request);
 
-        prismaClient.user.create({
-            data : {
-                role_id : 4,
-                username : request.username,
-                nama : request.nama,
-                password : request.password,
-            }
-        });
-        
-    }
+      db.user_id = user.id;
+
+      return pelangganResponse(
+         await prismaClient.pelanggan.create({
+            data: db,
+            include: {
+               user: true,
+            },
+         })
+      );
+   }
 }

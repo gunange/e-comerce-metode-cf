@@ -1,6 +1,5 @@
-import { RegisterRequest , RegisterModel} from "./register";
+import { RegisterRequest } from "./register";
 
 export {
     RegisterRequest,
-    RegisterModel
 }
