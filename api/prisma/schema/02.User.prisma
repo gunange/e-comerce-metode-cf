@@ -11,6 +11,7 @@ model User {
   sessions           Sessions[]
   role               Role                 @relation(fields: [role_id], references: [id])
   PersonalAksesToken PersonalAksesToken[]
+  Pelanggan          Pelanggan[]
 
   @@map("__users")
 }
