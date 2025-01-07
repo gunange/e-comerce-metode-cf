@@ -14,6 +14,7 @@
     "prisma": "6.1.0"
   },
   "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seeder"
+    "seed": "bun prisma/seeder/index.ts",
+    "schema": "prisma/schema"
   }
 }
