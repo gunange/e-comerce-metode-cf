@@ -1,0 +1,17 @@
+model PersonalAksesToken {
+  id           BigInt    @id @default(autoincrement())
+  user_id      BigInt
+  tokenable    String
+  name         String
+  ip_address   String    @db.VarChar(50)
+  user_agent   String?   @db.LongText()
+  token        String    @db.VarChar(100)
+  last_used_at DateTime  @default(now())
+  expires_at   DateTime?
+  created_at   DateTime? @default(now())
+  updated_at   DateTime? @default(now())
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("__personal_access_tokens")
+}

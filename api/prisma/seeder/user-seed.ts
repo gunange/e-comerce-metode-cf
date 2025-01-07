@@ -10,6 +10,7 @@ export async function userSeed() {
            id: 1,
            role_id : 99,
            username : "admin",
+           nama : "Super Administrator",
            password : await Bun.password.hash("admin", {
             algorithm : "bcrypt",
             cost : 10

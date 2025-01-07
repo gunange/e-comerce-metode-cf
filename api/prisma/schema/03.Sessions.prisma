@@ -1,0 +1,12 @@
+model Sessions {
+  id         BigInt    @id @default(autoincrement())
+  user_id    BigInt
+  ip_address String    @db.VarChar(50)
+  user_agent String?   @db.LongText()
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("__sessions")
+}
