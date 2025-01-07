@@ -1,12 +1,12 @@
 model User {
-  id             BigInt    @id @default(autoincrement())
+  id             BigInt   @id @default(autoincrement())
   role_id        BigInt
   username       String
   password       String
   nama           String
   remember_token String?
-  created_at     DateTime? @default(now())
-  updated_at     DateTime? @default(now())
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
 
   sessions           Sessions[]
   role               Role                 @relation(fields: [role_id], references: [id])
