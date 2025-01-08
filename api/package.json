@@ -11,7 +11,10 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "prisma": "6.1.0"
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0",
+    "prisma": "6.1.0",
+    "typescript-eslint": "^8.19.1"
   },
   "prisma": {
     "seed": "bun prisma/seeder/index.ts",
