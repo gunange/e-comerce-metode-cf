@@ -1,8 +1,7 @@
 import type { UserRagisterRequest } from "@/controllers/interfaces/request";
 import { UserRequest } from "@/controllers/model/user/user";
 
-import { PrismaClient } from "@prisma/client";
-import type {  User } from "@prisma/client";
+import { PrismaClient, type User } from "@prisma/client";
 
 const prismaClient = new PrismaClient();
 

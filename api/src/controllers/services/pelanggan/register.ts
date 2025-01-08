@@ -2,8 +2,8 @@ import { RegisterRequest } from "@/controllers/model/pelanggan";
 import { PrismaClient } from "@prisma/client";
 import { UserService } from "../user/user-service";
 import {
-   PelangganResource,
    pelangganResponse,
+   type PelangganResource,
 } from "@/controllers/interfaces/resource";
 
 const prismaClient = new PrismaClient();
