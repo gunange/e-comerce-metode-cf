@@ -1,14 +1,9 @@
-import { RoleResource } from "./role";
-import { PelangganResource, pelangganResponse } from "./pelanggan";
-import { UserResource, userRegisterResponse } from "./user";
 
-import * as Pelanggan from "./pelanggan";
-console.log("test Kontol", Pelanggan); 
+import {  pelangganResponse } from "./pelanggan";
+import {  userRegisterResponse } from "./user";
+
 
 export {
-    RoleResource,
-    UserResource,
     userRegisterResponse,
-    PelangganResource,
     pelangganResponse,
 }
