@@ -1,7 +1,7 @@
 import { z, ZodType } from "zod";
 import { HTTPException } from "hono/http-exception";
 import { PrismaClient } from "@prisma/client";
-import { UserRagisterRequest } from "@/controllers/interfaces/request";
+import type { UserRagisterRequest } from "@/controllers/interfaces/request";
 
 const prisma = new PrismaClient();
 

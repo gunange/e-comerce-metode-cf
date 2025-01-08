@@ -1,5 +1,5 @@
-import { Pelanggan } from "@prisma/client";
-import { UserResource } from "./user";
+import type { Pelanggan } from "@prisma/client";
+import type { UserResource } from "./user";
 
 
 export type PelangganResource = {

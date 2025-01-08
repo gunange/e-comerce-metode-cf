@@ -1,7 +1,7 @@
-import { PelangganRegisterRequest } from "./pelanggan";
-import { UserRagisterRequest } from "./user";
+import type { PelangganRegisterRequest } from "./pelanggan";
+import type { UserRagisterRequest } from "./user";
 
-export {
+export type {
     PelangganRegisterRequest,
     UserRagisterRequest
 }

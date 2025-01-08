@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { userController } from "./router/main";
-import { ErrorHeandler } from "./middleware/errorHeandler";
+
 import { HTTPException } from "hono/http-exception";
 import { ZodError } from "zod";
 
@@ -12,24 +12,21 @@ app.get("/", (c) => {
 
 app.route("/", userController);
 
-app.onError((err, c) => {
-   // return ErrorHeandler(err, c);
+app.onError(async (err, c) => {
+   const test = err instanceof ZodError;
+   console.error("Error instanse:", test);
+
    if (err instanceof HTTPException) {
       c.status(err.status);
-      return c.json({
-         errors: err.message,
-      });
-   } else if (err instanceof ZodError) {
+   }
+   if (err instanceof ZodError) {
       c.status(400);
-      return c.json({
-         errors: err.message,
-      });
    } else {
       c.status(500);
-      return c.json({
-         errors: err.message,
-      });
    }
+   return c.json({
+      errors: err.message || "Internal Server Error",
+   });
 });
 
 export default app;

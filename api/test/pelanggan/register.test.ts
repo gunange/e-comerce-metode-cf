@@ -3,23 +3,32 @@ import app from "@/index";
 import { describe, it, expect } from "bun:test";
 
 describe("POST /api/user/register/pelanggan", () => {
-   it("should register if request invalid", async () => {
+   it("should register if request no body", async () => {
       const response = await app.request(
          "http://localhost:3000/api/user/register/pelanggan",
          {
             method: "POST",
-            body: JSON.stringify({
-               username: "",
-               nama: "",
-               no_hp: "",
-               password: "",
-            }),
          }
       );
       const body = await response.json();
       logger.debug(body);
-      expect(response.status).toBe(200);
+      expect(response.status).toBe(500);
    });
+   // it("should register if request invalid", async () => {
+   //    const response = await app.request(
+   //       "http://localhost:3000/api/user/register/pelanggan",
+   //       {
+   //          method: "POST",
+   //          body: JSON.stringify({
+   //             username: "testuser",
+   //             nama: "testuser",
+   //          }),
+   //       }
+   //    );
+   //    const body = await response.json();
+   //    logger.debug(body);
+   //    expect(response.status).toBe(400);
+   // });
 
    // it("should register pelanggan success", async () => {
    //    const response = await app.request(

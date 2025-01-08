@@ -1,5 +1,4 @@
-import {  User } from "@prisma/client";
-import { RoleResource } from "./role";
+import type {  User } from "@prisma/client";
 
 export type UserResource = {
    username: string;
