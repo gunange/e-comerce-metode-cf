@@ -1,7 +1,14 @@
-import type { PelangganRegisterRequest } from "./pelanggan";
+import type {
+   PelangganRegisterRequest,
+   PelangganRegisterInsertModel,
+} from "./pelanggan";
+import { PelangganValidateRequest } from "./pelanggan";
 import type { UserRagisterRequest } from "./user";
 
 export type {
-    PelangganRegisterRequest,
-    UserRagisterRequest
-}
+   UserRagisterRequest,
+   PelangganRegisterRequest,
+   PelangganRegisterInsertModel,
+};
+
+export { PelangganValidateRequest };

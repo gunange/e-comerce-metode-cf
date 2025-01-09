@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    /*Bun config*/
+    /*
+    ---------------
+    Bun config
+    ---------------
+    */
     // Enable latest features
     "lib": [
       "ESNext"

@@ -1,26 +1,22 @@
 import { Hono } from "hono";
-import { userController } from "./router/main";
+import { mainController } from "./router/main";
 
 import { HTTPException } from "hono/http-exception";
 import { ZodError } from "zod";
 
-const app = new Hono();
+const app = new Hono().basePath("/api");
 
-app.get("/", (c) => {
-   return c.text("Hello Hono!");
-});
-
-app.route("/", userController);
+app.route("/", mainController);
 
 app.onError(async (err, c) => {
-   const test = err instanceof ZodError;
-   console.error("Error instanse:", test);
-
+   console.log("test_error : ", err.name)
    if (err instanceof HTTPException) {
       c.status(err.status);
-   }
-   if (err instanceof ZodError) {
+   } else if (err instanceof ZodError) {
       c.status(400);
+      return c.json({
+         errors: err.issues,
+      });
    } else {
       c.status(500);
    }

@@ -1,13 +1,19 @@
 import { RegisterService } from "@/controllers/services/pelanggan";
 import { Hono } from "hono";
 
+export const mainController = new Hono().basePath("/main/register");
+import { zValidator } from "@hono/zod-validator";
+import { PelangganValidateRequest } from "@/controllers/interfaces/request";
 
-export const userController = new Hono();
-userController.post("/api/user/register/pelanggan", async (e) => {
-   return e.json({
-      data: RegisterService.register(await e.req.json()),
-      status: 201,
-   })
-}
-   
+import { ErrorHeandler } from "@/middleware/ErrorHeandler";
+
+mainController.post(
+   "/pelanggan",
+   zValidator("form", PelangganValidateRequest, ErrorHeandler.zodErrorHandler),
+   async (e) => {
+      return e.json({
+         data: RegisterService.register(await e.req.valid("form")),
+         status: 201,
+      });
+   }
 );

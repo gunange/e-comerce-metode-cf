@@ -6,19 +6,11 @@ import type { UserRagisterRequest } from "@/controllers/interfaces/request";
 const prisma = new PrismaClient();
 
 export class UserRequest {
-   private static readonly REGISTER: ZodType = z.object({
-      nama: z.string().min(1).max(50),
-      username: z.string().min(1).max(100),
-      password: z.string().min(1).max(50),
-   });
-
    static async VALIDATE(
-      data: UserRagisterRequest
+      data: any
    ): Promise<UserRagisterRequest> {
-      const parsed = this.REGISTER.parse(data);
-
       const existingUser = await prisma.user.findFirst({
-         where: { username: parsed.username },
+         where: { username: data.username },
       });
 
       if (existingUser) {
@@ -28,6 +20,6 @@ export class UserRequest {
          });
       }
 
-      return parsed;
+      return data;
    }
 }
