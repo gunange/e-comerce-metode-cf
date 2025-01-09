@@ -16,7 +16,6 @@ export class UserService{
         });
         
         user.role_id = BigInt(4) ;
-        console.log("log : ", user)
         return await prismaClient.user.create({
             data : user
         });

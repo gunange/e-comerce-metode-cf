@@ -7,8 +7,9 @@ const prisma = new PrismaClient();
 
 export class UserRequest {
    static async VALIDATE(
-      data: any
+      data: UserRagisterRequest
    ): Promise<UserRagisterRequest> {
+      
       const existingUser = await prisma.user.findFirst({
          where: { username: data.username },
       });

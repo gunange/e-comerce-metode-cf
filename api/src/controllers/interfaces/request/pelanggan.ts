@@ -17,3 +17,8 @@ export const PelangganValidateRequest: ZodType = z.object({
    password: z.string().min(1).max(50),
    no_hp: z.string().min(1).max(20),
 });
+
+export const PelangganValidateRegisterRequest: ZodType = z.object({
+   user_id: z.bigint(),
+   no_hp: z.string().min(1).max(20),
+});
