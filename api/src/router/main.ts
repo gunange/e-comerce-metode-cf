@@ -3,9 +3,7 @@ import { Hono } from "hono";
 
 export const mainController = new Hono().basePath("/main/register");
 import { zValidator } from "@hono/zod-validator";
-import {
-   PelangganValidateRequest,
-} from "@/controllers/interfaces/request";
+import { PelangganValidateRequest } from "@/controllers/interfaces/request";
 
 import { ErrorHeandler } from "@/middleware/ErrorHeandler";
 

@@ -1,4 +1,3 @@
-import { z, ZodType } from "zod";
 import { HTTPException } from "hono/http-exception";
 import { PrismaClient } from "@prisma/client";
 import type { UserRagisterRequest } from "@/controllers/interfaces/request";
@@ -9,7 +8,6 @@ export class UserRequest {
    static async VALIDATE(
       data: UserRagisterRequest
    ): Promise<UserRagisterRequest> {
-      
       const existingUser = await prisma.user.findFirst({
          where: { username: data.username },
       });
