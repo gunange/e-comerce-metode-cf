@@ -13,7 +13,7 @@ export class UserRequest {
       });
 
       if (existingUser) {
-         throw new HTTPException(400, {
+         throw new HTTPException(401, {
             message:
                "Username sudah digunakan, mohon gunakan username yang lain",
          });
