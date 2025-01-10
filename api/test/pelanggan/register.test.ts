@@ -1,53 +1,44 @@
-import app from "@/index"
+import app from "@/index";
 import { describe, it, expect } from "bun:test";
 
 const debug = true;
 
 describe("POST /api/main/register/pelanggan", () => {
-   // it("should register if request no body", async () => {
-   //    const req = new Request(
-   //       "http://localhost:3000/api/main/register/pelanggan",
-   //       {
-   //          method: "POST",
-   //       }
-   //    );
+   it("should register if request no body", async () => {
+      const response = await app.request(
+         "http://localhost:3000/api/main/register/pelanggan",
+         {
+            method: "POST",
+         }
+      );
+      const body = await response.json();
+      if (debug) console.log(body);
 
-   //    const response = await app.request(req);
-   //    const body = await response.json();
-   //    if (debug) console.log(body);
+      expect(response.status).toBe(400);
+   });
+   it("should register if request invalid", async () => {
+      const response = await app.request(
+         "http://localhost:3000/api/main/register/pelanggan",
+         {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+               username: "testuser",
+               nama: "testuser",
+            }),
+         }
+      );
+      const body = await response.json();
+      if (debug) console.log(body);
 
-   //    expect(response.status).toBe(400);
-   // });
-   // it("should register if request invalid", async () => {
-   //    const req = new Request(
-   //       "http://localhost:3000/api/main/register/pelanggan",
-   //       {
-   //          method: "POST",
-   //          headers: {
-   //             "Content-Type": "application/json",
-   //          },
-   //          body: JSON.stringify({
-   //             username: "testuser",
-   //             nama: "testuser",
-   //          }),
-   //       }
-   //    );
-   
-   //    const response = await app.request(req);
-   //    const body = await response.json();
-   //    if (debug) console.log(body);
-   
-   //    expect(response.status).toBe(400);
-   // });
+      expect(response.status).toBe(400);
+   });
 
    it("should register pelanggan success", async () => {
-
-      const formData = new FormData();
-      formData.append("username", "testuser");
-      formData.append("nama", "testuser");
-      formData.append("no_hp", "1234567890");
-      formData.append("password", "testpassword");
-      const response = await app.request("http://localhost:3000/api/main/register/pelanggan",
+      const response = await app.request(
+         "http://localhost:3000/api/main/register/pelanggan",
          {
             method: "POST",
             body: JSON.stringify({
@@ -56,11 +47,8 @@ describe("POST /api/main/register/pelanggan", () => {
                no_hp: "1234567890",
                password: "testpassword",
             }),
-            headers : {
-               'Content-Type': 'application/json',
-               'Accept' : 'application/json',
-            }
-         });
+         }
+      );
 
       const body = await response.json();
       if (debug) console.log(body);
