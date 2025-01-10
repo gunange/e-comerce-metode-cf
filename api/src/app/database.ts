@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { logger } from "./logging";
+import { Env } from "./env";
 
 const prismaClient = new PrismaClient({
    log: [
@@ -23,19 +24,19 @@ const prismaClient = new PrismaClient({
 });
 
 prismaClient.$on("query", (e) => {
-   if (Bun.env["DEBUG"] == "true") logger.info(e);
+   if (Env.debug) logger.info(e);
 });
 
 prismaClient.$on("error", (e) => {
-   if (Bun.env["DEBUG"] == "true") logger.error(e);
+   if (Env.debug) logger.error(e);
 });
 
 prismaClient.$on("info", (e) => {
-   if (Bun.env["DEBUG"] == "true") logger.info(e);
+   if (Env.debug) logger.info(e);
 });
 
 prismaClient.$on("warn", (e) => {
-   if (Bun.env["DEBUG"] == "true") logger.warn(e);
+   if (Env.debug) logger.warn(e);
 });
 
 export default prismaClient;

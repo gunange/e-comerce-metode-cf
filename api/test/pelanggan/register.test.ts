@@ -1,8 +1,9 @@
 import app from "@/index";
 import { describe, it, expect } from "bun:test";
 import { PelangganRegisterTest } from "./util.test";
+import { Env } from "@/app/env";
 
-const debug = false;
+const debug = Env.debug;
 
 describe("POST /api/main/register/pelanggan", () => {
    it("should register if request no body", async () => {
