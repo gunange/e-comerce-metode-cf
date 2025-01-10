@@ -19,6 +19,6 @@ export const PelangganValidateRequest: ZodType = z.object({
 });
 
 export const PelangganValidateRegisterRequest: ZodType = z.object({
-   user_id: z.bigint(),
+   user_id: z.number(),
    no_hp: z.string().min(1).max(20),
 });

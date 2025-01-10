@@ -17,7 +17,5 @@ app.notFound((c) => {
    );
 });
 
-app.onError((err, e) => errorHeandler(err, e));
-
-
+app.onError(errorHeandler);
 export default app;

@@ -1,6 +1,6 @@
 model Sessions {
-  id         BigInt   @id @default(autoincrement())
-  user_id    BigInt
+  id         Int   @id @default(autoincrement())
+  user_id    Int
   ip_address String   @db.VarChar(50)
   user_agent String?  @db.LongText()
   created_at DateTime @default(now())

@@ -41,8 +41,13 @@ describe("POST /api/main/register/pelanggan", () => {
    // });
 
    it("should register pelanggan success", async () => {
-      const req = new Request(
-         "http://localhost:3000/api/main/register/pelanggan",
+
+      const formData = new FormData();
+      formData.append("username", "testuser");
+      formData.append("nama", "testuser");
+      formData.append("no_hp", "1234567890");
+      formData.append("password", "testpassword");
+      const response = await app.request("http://localhost:3000/api/main/register/pelanggan",
          {
             method: "POST",
             body: JSON.stringify({
@@ -51,11 +56,11 @@ describe("POST /api/main/register/pelanggan", () => {
                no_hp: "1234567890",
                password: "testpassword",
             }),
-         }
-      );
-      
-
-      const response = await app.request(req);
+            headers : {
+               'Content-Type': 'application/json',
+               'Accept' : 'application/json',
+            }
+         });
 
       const body = await response.json();
       if (debug) console.log(body);
