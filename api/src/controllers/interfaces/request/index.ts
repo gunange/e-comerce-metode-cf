@@ -14,8 +14,11 @@ import {
    AdminTokoValidateRequest,
    AdminTokoValidateRegisterRequest,
 } from "./admin-toko";
-import type { UserRagisterRequest } from "./user";
-import { UserValidateRequestRegistrasi } from "./user";
+import type { UserRagisterRequest, UserLoginInterface} from "./user";
+import {
+   UserValidateRequestRegistrasi,
+   UserValidateLogin,
+} from "./user";
 
 export type {
    UserRagisterRequest,
@@ -23,6 +26,7 @@ export type {
    PelangganRegisterInsertModel,
    AdminTokoRegisterRequest,
    AdminTokoRegisterInsertModel,
+   UserLoginInterface,
 };
 
 export {
@@ -31,4 +35,5 @@ export {
    PelangganValidateRequest,
    AdminTokoValidateRequest,
    AdminTokoValidateRegisterRequest,
+   UserValidateLogin,
 };

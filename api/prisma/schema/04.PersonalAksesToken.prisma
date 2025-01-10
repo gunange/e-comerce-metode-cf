@@ -1,7 +1,6 @@
 model PersonalAksesToken {
   id           Int    @id @default(autoincrement())
   user_id      Int
-  tokenable    String
   name         String
   ip_address   String    @db.VarChar(50)
   user_agent   String?   @db.LongText()

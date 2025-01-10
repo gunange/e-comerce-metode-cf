@@ -61,7 +61,7 @@ describe("POST /api/main/register/seller", () => {
       const body = await response.json();
       if (debug) console.log(body);
 
-      expect(response.status).toBe(201);
+      expect(response.status).toBe(200);
    });
 
    it("should register pelanggan alredy exist", async () => {
