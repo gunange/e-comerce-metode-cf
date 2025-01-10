@@ -1,5 +1,6 @@
 import app from "@/index";
 import { describe, it, expect } from "bun:test";
+import { PelangganRegisterTest } from "./util.test";
 
 const debug = false;
 
@@ -80,5 +81,7 @@ describe("POST /api/main/register/pelanggan", () => {
       if (debug) console.log(body);
 
       expect(response.status).toBe(401);
+
+      await PelangganRegisterTest.delete();
    });
 });
