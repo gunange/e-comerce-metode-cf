@@ -13,6 +13,7 @@ const prismaClient = new PrismaClient();
 
 export class RegisterService {
    static async register(request: any): Promise<PelangganResource> {
+      
       const user = await UserService.Register(
          UserValidateRequestRegistrasi.parse(request)
       );
