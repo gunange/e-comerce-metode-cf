@@ -7,7 +7,8 @@ model Seller {
     created_at  DateTime @default(now())
     updated_at  DateTime @updatedAt
 
-    user User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    user           User            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    pegawai_seller PegawaiSeller[]
 
     @@map("__seller")
 }

@@ -11,6 +11,7 @@ model User {
   role               Role?                @relation(fields: [role_id], references: [id])
   pelanggan          Pelanggan?
   seller             Seller?
+  pegawai_seller     PegawaiSeller?
   sessions           Sessions[]
   PersonalAksesToken PersonalAksesToken[]
 
