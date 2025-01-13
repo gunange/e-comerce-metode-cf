@@ -12,10 +12,6 @@ import {
 import { ErrorHeandler } from "@/middleware/ErrorHeandler";
 import { UserService } from "@/controllers/services/user/user-service";
 
-import { getConnInfo } from 'hono/bun'
-
-
-
 export const mainController = new Hono();
 mainController.post(
    "/register/pelanggan",
@@ -45,7 +41,6 @@ mainController.post(
    "login",
    zValidator("json", UserValidateLogin, ErrorHeandler.zodErrorHandler),
    async (e) => {
-      
       return e.json(
          {
             data: await UserService.Login(e.req.valid("json"), e),

@@ -58,7 +58,7 @@ export class UserService {
             "bcrypt"
          ))
       ) {
-         throw new HTTPException(404, {
+         throw new HTTPException(401, {
             message: "Username or Password Wrong!!",
          });
       }

@@ -24,7 +24,7 @@ const prismaClient = new PrismaClient({
 });
 
 prismaClient.$on("query", (e) => {
-   if (Env.debug) logger.info(e);
+   if (Env.debug_sql) logger.info(e);
 });
 
 prismaClient.$on("error", (e) => {
@@ -32,7 +32,7 @@ prismaClient.$on("error", (e) => {
 });
 
 prismaClient.$on("info", (e) => {
-   if (Env.debug) logger.info(e);
+   if (Env.debug_sql) logger.info(e);
 });
 
 prismaClient.$on("warn", (e) => {
