@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { UserService } from "../user/user-service";
+import { UserService } from "../user-service";
 import {
    adminTokoResponse,
    type AdminTokoResource,
@@ -11,7 +11,7 @@ import {
 
 const prismaClient = new PrismaClient();
 
-export class RegisterService {
+export class SellerRegisterService {
    static async register(request: any): Promise<AdminTokoResource> {
       const user = await UserService.Register(
          UserValidateRequestRegistrasi.parse(request)

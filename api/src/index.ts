@@ -1,11 +1,13 @@
 import { Hono } from "hono";
-import { mainController } from "./router/main";
+import { mainRoute } from "./router/main";
 import { errorHeandler } from "./middleware/ErrorHeandler";
+import { adminTokoRoute } from "./router/admin-toko";
 
 
 const app = new Hono().basePath("/api");
 
-app.route("/main", mainController);
+app.route("/main", mainRoute);
+app.route("/admin-toko", adminTokoRoute);
 
 app.notFound((c) => {
    return c.json(
