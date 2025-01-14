@@ -7,19 +7,17 @@ import type { ResponseBody } from "@/controllers/interfaces/others/test";
 
 const debug = Env.debug;
 
-describe("POST /api/main/login", async () => {
+describe("POST /api/user/login", async () => {
    beforeAll(async () => {
       await PelangganRegisterTest.create();
-      console.log("Pelanggan created successfully");
    });
    afterAll(async () => {
       await PelangganRegisterTest.delete();
-      console.log("Pelanggan delete successfully");
    });
 
    it("should login if username wrong", async () => {
       const response = await app.request(
-         "http://localhost:3000/api/main/login",
+         "http://localhost:3000/api/user/login",
          {
             method: "POST",
             headers: {
@@ -37,7 +35,7 @@ describe("POST /api/main/login", async () => {
    });
    it("should login if password wrong", async () => {
       const response = await app.request(
-         "http://localhost:3000/api/main/login",
+         "http://localhost:3000/api/user/login",
          {
             method: "POST",
             headers: {
@@ -55,7 +53,7 @@ describe("POST /api/main/login", async () => {
    });
    it("should register if request succses", async () => {
       const response = await app.request(
-         "http://localhost:3000/api/main/login",
+         "http://localhost:3000/api/user/login",
          {
             method: "POST",
             headers: {

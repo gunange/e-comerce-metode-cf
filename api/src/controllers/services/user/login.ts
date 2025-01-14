@@ -9,13 +9,13 @@ export const UserLoginValidate: ZodType = z.object({
    password: z.string().min(1).max(50),
 });
 
-export interface UserLoginResponseInterface {
+export interface UserLoginResponse {
    nama: string;
-   role: string;
-   role_label: string;
+   role?: string ;
+   role_label?: string 
    token: string;
 }
 
-export function UserLoginResponse(data: any): UserLoginResponseInterface {
+export function UserLoginResponse(data: UserLoginResponse): UserLoginResponse {
    return data;
 }
