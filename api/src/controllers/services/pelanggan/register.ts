@@ -1,4 +1,3 @@
-import type { User } from "@prisma/client";
 import * as util from "@/controllers/services/util";
 import { ErrorHeandler } from "@/middleware/ErrorHeandler";
 
@@ -6,18 +5,6 @@ export interface PelangganRagisterInterface {
    user_id: number;
    no_hp: string;
 }
-
-export interface PelangganRagisterResponseInterface {
-   nama: string;
-   role: string;
-   role_label: string;
-   token: string;
-}
-
-export type PelangganResourceInterface = {
-   no_hp: string;
-   user: User;
-};
 
 export async function PelangganRagisterRequest(
    c: util.Context

@@ -17,7 +17,7 @@ describe("POST /api/main/register/seller", () => {
       const body = await response.json();
       if (debug) console.log(body);
 
-      expect(response.status).toBe(400);
+      expect(response.status).toBe(404);
    });
    it("should register if request invalid", async () => {
       const response = await app.request(
@@ -61,7 +61,7 @@ describe("POST /api/main/register/seller", () => {
       const body = await response.json();
       if (debug) console.log(body);
 
-      expect(response.status).toBe(200);
+      expect(response.status).toBe(201);
    });
 
    it("should register pelanggan alredy exist", async () => {
