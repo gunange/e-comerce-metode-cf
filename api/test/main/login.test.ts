@@ -2,7 +2,7 @@ import app from "@/index";
 import { describe, it, expect, beforeAll, afterAll } from "bun:test";
 
 import { Env } from "@/app/env";
-import { PelangganRegisterTest } from "test/pelanggan/util.test";
+import { PelangganRegisterTest } from "test/utils/util.test";
 import type { ResponseBody } from "@/controllers/interfaces/others/test";
 
 const debug = Env.debug;

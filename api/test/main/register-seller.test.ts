@@ -1,14 +1,15 @@
 import app from "@/index";
 import { describe, it, expect } from "bun:test";
-import { PelangganRegisterTest } from "./util.test";
+import { AdminTokoRegisterTest } from "../admin-toko/util.test";
 import { Env } from "@/app/env";
+
 
 const debug = Env.debug;
 
-describe("POST /api/main/register/pelanggan", () => {
+describe("POST /api/main/register/seller", () => {
    it("should register if request no body", async () => {
       const response = await app.request(
-         "http://localhost:3000/api/main/register/pelanggan",
+         "http://localhost:3000/api/main/register/seller",
          {
             method: "POST",
          }
@@ -20,7 +21,7 @@ describe("POST /api/main/register/pelanggan", () => {
    });
    it("should register if request invalid", async () => {
       const response = await app.request(
-         "http://localhost:3000/api/main/register/pelanggan",
+         "http://localhost:3000/api/main/register/seller",
          {
             method: "POST",
             headers: {
@@ -40,7 +41,7 @@ describe("POST /api/main/register/pelanggan", () => {
 
    it("should register pelanggan success", async () => {
       const response = await app.request(
-         "http://localhost:3000/api/main/register/pelanggan",
+         "http://localhost:3000/api/main/register/seller",
          {
             method: "POST",
             headers: {
@@ -49,8 +50,10 @@ describe("POST /api/main/register/pelanggan", () => {
             body: JSON.stringify({
                username: "testuser",
                nama: "testuser",
-               no_hp: "1234567890",
-               password: "testpassword",
+               password: "testuser",
+               no_hp: "082212341234",
+               alamat_toko: "test",
+               nama_toko: "test",
             }),
          }
       );
@@ -63,7 +66,7 @@ describe("POST /api/main/register/pelanggan", () => {
 
    it("should register pelanggan alredy exist", async () => {
       const response = await app.request(
-         "http://localhost:3000/api/main/register/pelanggan",
+         "http://localhost:3000/api/main/register/seller",
          {
             method: "POST",
             headers: {
@@ -72,8 +75,10 @@ describe("POST /api/main/register/pelanggan", () => {
             body: JSON.stringify({
                username: "testuser",
                nama: "testuser",
-               no_hp: "1234567890",
-               password: "testpassword",
+               password: "testuser",
+               no_hp: "082212341234",
+               alamat_toko: "test",
+               nama_toko: "test",
             }),
          }
       );
@@ -83,6 +88,6 @@ describe("POST /api/main/register/pelanggan", () => {
 
       expect(response.status).toBe(401);
 
-      await PelangganRegisterTest.delete();
+      await AdminTokoRegisterTest.delete();
    });
 });
