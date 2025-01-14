@@ -1,9 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { UsersController } from "../users-controller";
 import * as service from "@/controllers/services/pelanggan/register";
 import * as util from "@/controllers/services/util";
-
-const prismaClient = new PrismaClient();
 
 export class PelangganController {
    static async register(c: util.Context): Promise<any> {
@@ -15,7 +12,7 @@ export class PelangganController {
       return c.json(
          {
             data: service.PelangganRagisterResponse(
-               await prismaClient.pelanggan.create({
+               await util.dbClient.pelanggan.create({
                   data: db,
                   include: {
                      user: true,
