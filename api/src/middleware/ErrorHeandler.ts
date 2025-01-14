@@ -5,6 +5,8 @@ import type { BlankEnv, HTTPResponseError } from "hono/types";
 import { ZodError } from "zod";
 import { Env } from "@/app/env";
 
+import * as util from "@/controllers/services/util";
+
 const debug = Env.debug;
 
 export class ErrorHeandler {
@@ -12,6 +14,11 @@ export class ErrorHeandler {
       if (!err.success) {
          throw new ZodError(err.error.errors);
       }
+   }
+   static jsonCatch(){
+      throw new util.HTTPException(404, {
+         message: "Body tidak ditemukan",
+      });
    }
 }
 
@@ -38,6 +45,7 @@ export async function errorHeandler(
    }
    return c.json({
       errors: err.message || "Internal Server Error",
-      stack : err.stack
+      stack : err.stack,
+      name : err.name
    });
 }

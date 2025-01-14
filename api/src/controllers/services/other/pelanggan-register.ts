@@ -2,7 +2,6 @@ import { PrismaClient } from "@prisma/client";
 import { UserService } from "../user-service";
 import {
    pelangganResponse,
-   type PelangganResource,
 } from "@/controllers/interfaces/resource";
 import {
    PelangganValidateRegisterRequest,
