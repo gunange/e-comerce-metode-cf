@@ -2,7 +2,7 @@ import * as util from "@/controllers/services/util";
 import { ErrorHeandler } from "@/middleware/ErrorHeandler";
 
 export interface UserRagisterRequest {
-   role_id?: number;
+   role_id: number;
    nama: string;
    username: string;
    password: string;

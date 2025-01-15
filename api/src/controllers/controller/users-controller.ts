@@ -3,7 +3,10 @@ import type { User } from "@prisma/client";
 import * as util from "@/controllers/services/util";
 
 import { UserRagisterRequest } from "../services/models/user/register";
-import { UserLoginResponse, UserLoginValidate } from "../services/models/user/login";
+import {
+   UserLoginResponse,
+   UserLoginValidate,
+} from "../services/models/user/login";
 import { ErrorHeandler } from "@/middleware/ErrorHeandler";
 
 export class UsersController {
@@ -46,13 +49,16 @@ export class UsersController {
          });
       }
 
-      return c.json({
-         data: UserLoginResponse({
-            nama: existingUser.nama,
-            role: existingUser.role?.role ?? "",
-            role_label: existingUser.role?.label,
-            token: await util.Token.generate(existingUser, c),
-         }),
-      }, 201);
+      return c.json(
+         {
+            data: UserLoginResponse({
+               nama: existingUser.nama,
+               role: existingUser.role?.role ?? "",
+               role_label: existingUser.role?.label,
+               token: await util.Token.generate(existingUser, c),
+            }),
+         },
+         201
+      );
    }
 }
