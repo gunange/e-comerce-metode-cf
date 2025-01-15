@@ -1,6 +1,5 @@
 import * as util from "@/controllers/services/util";
 import { ErrorHeandler } from "@/middleware/ErrorHeandler";
-import type { PegawaiSeller } from "@prisma/client";
 
 export interface SellerRagisterInterface {
    user_id: number;

@@ -1,5 +1,5 @@
 import { UsersController } from "../users-controller";
-import * as service from "@/controllers/services/pelanggan/register";
+import * as service from "@/controllers/services/models/pelanggan/register";
 import * as util from "@/controllers/services/util";
 
 export class PelangganController {

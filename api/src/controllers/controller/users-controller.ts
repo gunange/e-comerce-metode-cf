@@ -2,8 +2,8 @@ import type { User } from "@prisma/client";
 
 import * as util from "@/controllers/services/util";
 
-import { UserRagisterRequest } from "../services/user/register";
-import { UserLoginResponse, UserLoginValidate } from "../services/user/login";
+import { UserRagisterRequest } from "../services/models/user/register";
+import { UserLoginResponse, UserLoginValidate } from "../services/models/user/login";
 import { ErrorHeandler } from "@/middleware/ErrorHeandler";
 
 export class UsersController {
