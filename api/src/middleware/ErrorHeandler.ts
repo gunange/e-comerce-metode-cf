@@ -46,6 +46,6 @@ export async function errorHeandler(
    return c.json({
       errors: err.message || "Internal Server Error",
       stack : err.stack,
-      name : err.name
+      name : err.name,
    });
 }

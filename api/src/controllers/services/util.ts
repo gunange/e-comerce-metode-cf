@@ -1,9 +1,10 @@
 
 import { PrismaClient } from "@prisma/client";
-import type { Context } from "hono";
+import type { Context, Next } from "hono";
 import { HTTPException } from "hono/http-exception";
 import { Token } from "@/app/token";
 import { z, type ZodType } from "zod";
+
 
 const dbClient = new PrismaClient();
 
@@ -17,5 +18,6 @@ export {
 
 export type {
     Context,
+    Next,
     ZodType
 }
