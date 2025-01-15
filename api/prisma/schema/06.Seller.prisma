@@ -1,14 +1,13 @@
 model Seller {
-    id          Int      @id @default(autoincrement())
-    user_id     Int      @unique
-    no_hp       String   @db.VarChar(20)
-    nama_toko   String   @db.VarChar(100)
-    alamat_toko String   @db.VarChar(255)
-    created_at  DateTime @default(now())
-    updated_at  DateTime @updatedAt
+  id             Int            @id @default(autoincrement())
+  user_id        Int            @unique
+  no_hp          String         @db.VarChar(20)
+  nama_toko      String         @db.VarChar(100)
+  alamat_toko    String         @db.VarChar(255)
+  created_at     DateTime       @default(now())
+  updated_at     DateTime       @updatedAt
+  pegawai_seller PegawaiSeller?
+  user           User           @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
-    user           User            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-    pegawai_seller PegawaiSeller[]
-
-    @@map("__seller")
+  @@map("__seller")
 }

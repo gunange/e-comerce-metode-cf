@@ -1,12 +1,12 @@
 model Sessions {
-  id         Int   @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   user_id    Int
   ip_address String   @db.VarChar(50)
-  user_agent String?  @db.LongText()
+  user_agent String?  @db.LongText
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
-  user User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
+  @@index([user_id], map: "__sessions_user_id_fkey")
   @@map("__sessions")
 }

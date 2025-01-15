@@ -1,19 +1,18 @@
 model User {
-  id             Int      @id @default(autoincrement())
-  role_id        Int      @unique
-  username       String
-  password       String
-  nama           String
-  remember_token String?
-  created_at     DateTime @default(now())
-  updated_at     DateTime @updatedAt
-
-  role               Role?                @relation(fields: [role_id], references: [id])
-  pelanggan          Pelanggan?
-  seller             Seller?
+  id                 Int                  @id @default(autoincrement())
+  role_id            Int                  @unique
+  username           String
+  password           String
+  nama               String
+  remember_token     String?
+  created_at         DateTime             @default(now())
+  updated_at         DateTime             @updatedAt
   pegawai_seller     PegawaiSeller?
-  sessions           Sessions[]
+  pelanggan          Pelanggan?
   PersonalAksesToken PersonalAksesToken[]
+  seller             Seller?
+  sessions           Sessions[]
+  role               Role                 @relation(fields: [role_id], references: [id])
 
   @@map("__users")
 }

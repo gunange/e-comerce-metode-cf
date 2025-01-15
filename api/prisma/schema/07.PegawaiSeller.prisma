@@ -1,14 +1,12 @@
 model PegawaiSeller {
-    id         Int      @id @default(autoincrement())
-    user_id    Int      @unique
-    seller_id  Int      @unique
-    nama       String   @db.VarChar(100)
-    no_hp      String   @db.VarChar(20)
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+  id         Int      @id @default(autoincrement())
+  user_id    Int      @unique
+  seller_id  Int      @unique
+  no_hp      String   @db.VarChar(20)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  toko       Seller   @relation(fields: [seller_id], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
-    user User   @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-    toko Seller @relation(fields: [seller_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
-    @@map("__pegawai_seller")
+  @@map("__pegawai_seller")
 }

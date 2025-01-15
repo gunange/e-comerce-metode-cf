@@ -1,16 +1,16 @@
 model PersonalAksesToken {
-  id           Int    @id @default(autoincrement())
+  id           Int       @id @default(autoincrement())
   user_id      Int
   name         String
   ip_address   String    @db.VarChar(50)
-  user_agent   String?   @db.LongText()
+  user_agent   String?   @db.LongText
   token        String    @db.VarChar(100)
   last_used_at DateTime  @default(now())
   expires_at   DateTime?
   created_at   DateTime  @default(now())
   updated_at   DateTime  @updatedAt
+  user         User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
-  user User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
+  @@index([user_id], map: "__personal_access_tokens_user_id_fkey")
   @@map("__personal_access_tokens")
 }
