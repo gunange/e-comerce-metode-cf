@@ -1,11 +1,18 @@
 import app from "@/index";
-import { describe, it, expect } from "bun:test";
-import { PelangganRegisterTest } from "../utils/util.test";
+import { describe, it, expect, afterAll, beforeAll } from "bun:test";
+import * as util from "../utils";
 import { Env } from "@/app/env";
 
 const debug = Env.debug;
 
 describe("POST /api/main/register/pelanggan", () => {
+   beforeAll(async()=>{
+      await util.PelangganRegisterTest.delete();
+   })
+   afterAll(async () => {
+      await util.PelangganRegisterTest.delete();
+   });
+
    it("should register if request no body", async () => {
       const response = await app.request(
          "http://localhost:3000/api/main/register/pelanggan",
@@ -82,7 +89,5 @@ describe("POST /api/main/register/pelanggan", () => {
       if (debug) console.log(body);
 
       expect(response.status).toBe(401);
-
-      await PelangganRegisterTest.delete();
    });
 });

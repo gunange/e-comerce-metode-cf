@@ -1,8 +1,7 @@
 import app from "@/index";
 import { describe, it, expect } from "bun:test";
-import { AdminTokoRegisterTest } from "../admin-toko/util.test";
+import * as util from "../utils";
 import { Env } from "@/app/env";
-
 
 const debug = Env.debug;
 
@@ -88,6 +87,6 @@ describe("POST /api/main/register/seller", () => {
 
       expect(response.status).toBe(401);
 
-      await AdminTokoRegisterTest.delete();
+      await util.SellerRegisterTest.delete();
    });
 });

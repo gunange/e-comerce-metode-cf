@@ -2,17 +2,17 @@ import app from "@/index";
 import { describe, it, expect, beforeAll, afterAll } from "bun:test";
 
 import { Env } from "@/app/env";
-import { PelangganRegisterTest } from "test/utils/util.test";
+import * as util from "../utils";
 import type { ResponseBody } from "@/controllers/interfaces/others/test";
 
 const debug = Env.debug;
 
 describe("POST /api/user/login", async () => {
    beforeAll(async () => {
-      await PelangganRegisterTest.create();
+      await util.PelangganRegisterTest.create();
    });
    afterAll(async () => {
-      await PelangganRegisterTest.delete();
+      await util.PelangganRegisterTest.delete();
    });
 
    it("should login if username wrong", async () => {
