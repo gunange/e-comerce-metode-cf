@@ -1,6 +1,8 @@
 import type { Context } from "hono";
 import { PrismaClient } from "@prisma/client";
-import { type UserRagisterRequest } from "@/controllers/interfaces/request";
+import { PegawaiSellerRagisterRequest } from "@/controllers/services/models/pegawai_seller/register";
+import { ErrorHeandler } from "@/middleware/ErrorHeandler";
+import { UsersController } from "../users-controller";
 
 const prismaClient = new PrismaClient();
 
@@ -9,19 +11,22 @@ export class PegawaiTokoController {
       return c.json(
          {
             data: await prismaClient.pegawaiSeller.findMany(),
-         },
-         200
+         }
       );
    }
 
    static async insert(c: Context): Promise<any> {
-      // const userReq = UserRagisterRequest(await c.req.json() ) ;
-      // const db;
+      // const db = await PegawaiSellerRagisterRequest(
+      //    await c.req.json().catch(ErrorHeandler.jsonCatch)
+      // );
+      // const user = await UsersController.Register(c, 3);
+      
+      // db.user_id = user.id;
+
       return c.json(
          {
             data: await prismaClient.pegawaiSeller.findMany(),
-         },
-         200
+         }
       );
    }
 }
