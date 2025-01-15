@@ -1,18 +1,15 @@
 import { PrismaClient, type User } from "@prisma/client";
-import type { Context } from "hono";
+import * as util from "@/controllers/services/util";
 import { getConnInfo } from "hono/bun";
 
 const prismaClient = new PrismaClient();
 
 export class Token {
-   static async generate(user: User, context: Context) {
+   static async generate(user: User, context: util.Context) {
       const time = new Date().getTime();
       const random = crypto.randomUUID();
       const token =
-         time
-            .toString()
-            .replace(/(.{4})/g, "$1-")
-            .slice(0, -1) + random.toString();
+         time.toString().slice(0, -1) + random.toString().replace(/\-/g, "");
 
       let ip;
 
@@ -33,9 +30,24 @@ export class Token {
          },
       });
 
-      return Bun.password.hash(token, {
-         algorithm: "bcrypt",
-         cost: 5,
-      });
+      return token;
+   }
+
+   static async verify(token: string, context: util.Context): Promise<boolean> {
+      try {
+         const tokenAkses = await prismaClient.personalAksesToken.findFirst({
+            where: { token: token },
+            include: {
+               user: true,
+            },
+         });
+
+         if (!tokenAkses || tokenAkses.token !== token.replace(/\+\|\+/g, "/"))
+            return false;
+
+         return true;
+      } catch {
+         return false;
+      }
    }
 }

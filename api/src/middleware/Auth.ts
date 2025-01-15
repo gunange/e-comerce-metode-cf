@@ -5,14 +5,11 @@ export class Auth {
    static async bearer(c: util.Context, next: util.Next) {
       const auth = await bearerAuth({
          verifyToken: async (token, c) => {
-            if (token === "VALID_TOKEN") {
-               return true;
-            }
-
-            return false;
+            console.log("IS AUTH : ", token);
+            return await util.Token.verify(token, c);
          },
          invalidTokenMessage: () => {
-            throw new util.HTTPException(401, { message: "Invalid Token" });
+            throw new util.HTTPException(401, { message: "Unauthorized" });
          },
          noAuthenticationHeaderMessage: () => {
             throw new util.HTTPException(401, {

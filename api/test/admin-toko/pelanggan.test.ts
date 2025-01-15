@@ -5,14 +5,17 @@ import { Env } from "@/app/env";
 let debug = Env.debug;
 debug = true;
 
-describe("POST api/admin-toko/pelanggan", () => {
+describe("POST api/admin-toko/pelanggan", async () => {
+   
    it("should pelanggan get", async () => {
+      // const token = 'VALID_TOKEN';
+      const token = "173697436918a74edd26440d44b6964bd58bb9f20edc";
       const response = await app.request(
          "http://localhost:3000/api/admin-toko/pelanggan",
          {
             method: "GET",
             headers :{
-               'Authorization': 'Bearer VALID_TOKEN'
+               'Authorization': `Bearer ${token}`
             }
          }
       );
