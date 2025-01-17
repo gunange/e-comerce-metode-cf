@@ -13,13 +13,27 @@ export class PegawaiTokoController {
       const db = await PegawaiSellerRagisterRequest(c);
       const user = await UsersController.Register(c, 3);
 
-
       db.user_id = user.id;
-      db.seller_id = c.get('seller').id;
+      db.seller_id = c.get("seller").id;
 
       return c.json({
          data: await util.dbClient.pegawaiSeller.create({
             data: db,
+         }),
+      });
+   }
+
+   static async update(c: util.Context): Promise<any> {
+      const db = await PegawaiSellerRagisterRequest(c);
+
+      return c.json({
+         data: await util.dbClient.pegawaiSeller.update({
+            data: {
+               no_hp: db.no_hp,
+            },
+            where: {
+               id: Number(c.req.param("id")),
+            },
          }),
       });
    }

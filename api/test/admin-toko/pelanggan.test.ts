@@ -45,4 +45,26 @@ describe("POST api/admin-toko/pelanggan", async () => {
 
       expect(response.status).toBe(200);
    });
+
+   it("should pelanggan up", async () => {
+      const response = await app.request(
+         "http://localhost:3000/api/admin-toko/pelanggan/5",
+         {
+            method: "PATCH",
+            headers :{
+               'Authorization': `Bearer ${token}`
+            },
+            body : JSON.stringify({
+               no_hp : "082212341235",
+               username: "testuser",
+               nama: "testuser",
+               password: "testuser",
+            })
+         }
+      );
+      const body = await response.json();
+      if (debug) console.log(body);
+
+      expect(response.status).toBe(200);
+   });
 });
