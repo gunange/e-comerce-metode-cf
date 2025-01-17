@@ -14,3 +14,4 @@ adminTokoRoute.use(async(c, next) =>{
 adminTokoRoute.get('/pelanggan',Controller.PegawaiTokoController.index);
 adminTokoRoute.post('/pelanggan', Controller.PegawaiTokoController.insert);
 adminTokoRoute.patch('/pelanggan/:id', Controller.PegawaiTokoController.update);
+adminTokoRoute.delete('/pelanggan/:id', Controller.PegawaiTokoController.del);

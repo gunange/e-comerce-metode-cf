@@ -37,4 +37,18 @@ export class PegawaiTokoController {
          }),
       });
    }
+   static async del(c: util.Context): Promise<any> {
+      const db = await util.dbClient.pegawaiSeller.findFirstOrThrow({
+         where:{
+            id : Number(c.req.param("id")),
+         }
+      })
+      return c.json({
+         data: await util.dbClient.user.delete({
+            where: {
+               id: db?.user_id,
+            },
+         }),
+      });
+   }
 }
