@@ -45,6 +45,8 @@ export class Token {
          if (!tokenAkses || tokenAkses.token !== token.replace(/\+\|\+/g, "/"))
             return false;
 
+         context.set("user", tokenAkses.user);
+
          return true;
       } catch {
          return false;

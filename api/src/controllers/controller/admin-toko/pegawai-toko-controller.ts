@@ -1,32 +1,26 @@
-import type { Context } from "hono";
-import { PrismaClient } from "@prisma/client";
+import * as util from "@/controllers/services/util";
 import { PegawaiSellerRagisterRequest } from "@/controllers/services/models/pegawai_seller/register";
-import { ErrorHeandler } from "@/middleware/ErrorHeandler";
 import { UsersController } from "../users-controller";
 
-const prismaClient = new PrismaClient();
-
 export class PegawaiTokoController {
-   static async index(c: Context): Promise<any> {
-      return c.json(
-         {
-            data: await prismaClient.pegawaiSeller.findMany(),
-         }
-      );
+   static async index(c: util.Context): Promise<any> {
+      return c.json({
+         data: await util.dbClient.pegawaiSeller.findMany(),
+      });
    }
 
-   static async insert(c: Context): Promise<any> {
-      // const db = await PegawaiSellerRagisterRequest(
-      //    await c.req.json().catch(ErrorHeandler.jsonCatch)
-      // );
-      // const user = await UsersController.Register(c, 3);
-      
-      // db.user_id = user.id;
+   static async insert(c: util.Context): Promise<any> {
+      const db = await PegawaiSellerRagisterRequest(c);
+      const user = await UsersController.Register(c, 3);
 
-      return c.json(
-         {
-            data: await prismaClient.pegawaiSeller.findMany(),
-         }
-      );
+
+      db.user_id = user.id;
+      db.seller_id = c.get('seller').id;
+
+      return c.json({
+         data: await util.dbClient.pegawaiSeller.create({
+            data: db,
+         }),
+      });
    }
 }

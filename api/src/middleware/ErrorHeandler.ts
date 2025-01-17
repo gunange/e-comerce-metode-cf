@@ -8,6 +8,7 @@ import { Env } from "@/app/env";
 import * as util from "@/controllers/services/util";
 
 const debug = Env.debug;
+const debug_stack = Env.debug_stack;
 
 export class ErrorHeandler {
    static zodErrorHandler(err: any) {
@@ -15,7 +16,7 @@ export class ErrorHeandler {
          throw new ZodError(err.error.errors);
       }
    }
-   static jsonCatch(){
+   static jsonCatch() {
       throw new util.HTTPException(404, {
          message: "Body tidak ditemukan",
       });
@@ -39,13 +40,13 @@ export async function errorHeandler(
          errors: debug
             ? err.meta ?? "Data tidak ditemukan"
             : "Data tidak ditemukan",
+         stack: debug_stack ? err.stack : null,
       });
    } else {
       c.status(500);
    }
    return c.json({
       errors: err.message || "Internal Server Error",
-      stack : err.stack,
-      name : err.name,
+      stack: debug_stack ? err.stack : null,
    });
 }

@@ -5,7 +5,6 @@ export class Auth {
    static async bearer(c: util.Context, next: util.Next) {
       const auth = await bearerAuth({
          verifyToken: async (token, c) => {
-            console.log("IS AUTH : ", token);
             return await util.Token.verify(token, c);
          },
          invalidTokenMessage: () => {

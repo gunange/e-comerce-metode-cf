@@ -2,15 +2,16 @@ import * as util from "@/controllers/services/util";
 import { ErrorHeandler } from "@/middleware/ErrorHeandler";
 import type { PegawaiSeller } from ".";
 
-export interface PegawaiSellerRagisterInterface {
-   user_id?: number;
-   seller_id?: number;
+
+interface PegawaiSellerRagister {
+   user_id: number;
+   seller_id: number;
    no_hp: string;
 }
 
 export async function PegawaiSellerRagisterRequest(
    c: util.Context
-): Promise<PegawaiSellerRagisterInterface> {
+): Promise<PegawaiSellerRagister> {
    const validate: util.ZodType = util.zod.object({
       no_hp: util.zod.string().min(1).max(20),
    });
