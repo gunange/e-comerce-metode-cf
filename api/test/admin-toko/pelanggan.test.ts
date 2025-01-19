@@ -5,7 +5,7 @@ import { Env } from "@/app/env";
 let debug = Env.debug;
 debug = true;
 const token = "173697436918a74edd26440d44b6964bd58bb9f20edc";
-const id = 6;
+let id = 1;
 
 describe("POST api/admin-toko/pelanggan", async () => {
    
@@ -42,9 +42,10 @@ describe("POST api/admin-toko/pelanggan", async () => {
             })
          }
       );
-      const body = await response.json();
+      const body = await response.json() as any;
       if (debug) console.log(body);
 
+      id = Number(body?.data.id);
       
 
       expect(response.status).toBe(200);
