@@ -3,7 +3,7 @@ import { describe, it, expect } from "bun:test";
 import { Env } from "@/app/env";
 
 let debug = Env.debug;
-debug = true;
+debug = false;
 const token = "173697436918a74edd26440d44b6964bd58bb9f20edc";
 let id = 1;
 

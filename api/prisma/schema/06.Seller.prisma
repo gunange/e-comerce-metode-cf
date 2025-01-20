@@ -8,6 +8,7 @@ model Seller {
   updated_at     DateTime       @updatedAt
   pegawai_seller PegawaiSeller?
   user           User           @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  Product        Product?
 
   @@map("__seller")
 }
