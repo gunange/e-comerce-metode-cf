@@ -1,6 +1,6 @@
 import * as util from "@/controllers/services/util";
 import * as Controller from "@/controllers/interfaces/request/storage";
-import { basename, extname } from "path";
+import { extname } from "path";
 
 export class StorageController {
    static async upload(c: util.Context): Promise<any> {
@@ -19,9 +19,9 @@ export class StorageController {
 
       const dirPath = "public/storage";
       const cleanedPath =
-  req.path.endsWith("/") && req.path.lastIndexOf("/") > 0
-    ? req.path.slice(0, req.path.lastIndexOf("/"))
-    : req.path;
+         req.path.endsWith("/") && req.path.lastIndexOf("/") > 0
+            ? req.path.slice(0, req.path.lastIndexOf("/"))
+            : req.path;
       const filePath = `${dirPath}/${cleanedPath}/${fileName}`;
       await Bun.write(filePath, new Uint8Array(fileBuffer), {
          createPath: true,
