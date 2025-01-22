@@ -1,9 +1,9 @@
-model File {
+model Storage {
   id         Int      @id @default(autoincrement())
   uid        Int      @unique
   path       String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  @@map("__file")
+  @@map("__storage")
 }
