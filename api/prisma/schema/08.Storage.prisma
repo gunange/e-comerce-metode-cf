@@ -1,6 +1,6 @@
 model Storage {
   id         Int      @id @default(autoincrement())
-  uid        Int      @unique
+  uid        String   @unique
   path       String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt

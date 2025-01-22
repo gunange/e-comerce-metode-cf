@@ -3,7 +3,7 @@ import * as Controller from "@/controllers/interfaces/request/storage";
 import { extname } from "path";
 
 export class StorageController {
-   static async upload(c: util.Context): Promise<any> {
+   static async create(c: util.Context): Promise<any> {
       const file = ((await c.req.parseBody()) as File | any)["file"] as File;
       await Controller.IMAGE_SCHEMA.parse(file);
 
@@ -27,11 +27,16 @@ export class StorageController {
          createPath: true,
       });
 
+      await util.dbClient.storage.create({
+         data: {
+             uid: uid,
+             path: filePath,
+          }
+      })
+
       return c.json({
          data: {
             uid: uid,
-            message: "File uploaded successfully",
-            file_name: fileName,
             file_tipe: fileType,
             file_size: fileSize,
          },

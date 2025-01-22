@@ -1,8 +1,7 @@
 import { Hono } from "hono";
 
-import {StorageController} from "@/controllers/controller/main/storage-controller";
-
+import { StorageController } from "@/controllers/controller/main/storage-controller";
 
 export const storageRoute = new Hono();
 
-storageRoute.post(StorageController.upload );
+storageRoute.post(StorageController.create);
