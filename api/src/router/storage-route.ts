@@ -5,3 +5,4 @@ import { StorageController } from "@/controllers/controller/main/storage-control
 export const storageRoute = new Hono();
 
 storageRoute.post(StorageController.create);
+storageRoute.post(':uid',StorageController.up);

@@ -18,7 +18,7 @@ export const IMAGE_SCHEMA : util.ZodType = util.zod
    );
 
 
-   export const RequestSchema : util.ZodType = util.zod.object({
+   export const RequestInsertSchema : util.ZodType = util.zod.object({
     label : util.zod.string().min(1).max(255),
     path : util.zod.string().min(1).max(255),
    });
