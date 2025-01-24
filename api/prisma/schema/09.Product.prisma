@@ -1,10 +1,10 @@
 model Product {
   id         Int      @id @default(autoincrement())
-  seller_id  Int      @unique
+  seller_id  Int
   label      String   @db.VarChar(255)
   deskripsi  String   @db.VarChar(255)
-  stock      Int
-  harga      Int
+  stock      Decimal  @db.Decimal(8, 0)
+  harga      Decimal  @db.Decimal(10, 0)
   foto       String   @db.VarChar(255)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt

@@ -3,7 +3,7 @@ model Role {
   label      String   @db.VarChar(150)
   role       String?  @db.VarChar(150)
   created_at DateTime @default(now())
-  User       User?
+  User       User[]
 
   @@map("__roles")
 }

@@ -27,7 +27,7 @@ describe("POST /api/main/register/seller", () => {
                "Content-Type": "application/json",
             },
             body: JSON.stringify({
-               username: "testuser",
+               username: "test-seller",
                nama: "testuser",
             }),
          }
@@ -47,7 +47,7 @@ describe("POST /api/main/register/seller", () => {
                "Content-Type": "application/json",
             },
             body: JSON.stringify({
-               username: "testuser",
+               username: "test-seller",
                nama: "testuser",
                password: "testuser",
                no_hp: "082212341234",

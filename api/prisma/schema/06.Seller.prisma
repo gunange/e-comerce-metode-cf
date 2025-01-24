@@ -6,9 +6,9 @@ model Seller {
   alamat_toko    String         @db.VarChar(255)
   created_at     DateTime       @default(now())
   updated_at     DateTime       @updatedAt
-  pegawai_seller PegawaiSeller?
   user           User           @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  Product        Product?
+  pegawai_seller PegawaiSeller[]
+  Product        Product[]
 
   @@map("__seller")
 }

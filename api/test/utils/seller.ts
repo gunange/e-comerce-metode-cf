@@ -6,7 +6,7 @@ export class SellerRegisterTest {
       const user = await prismaClient.user.create({
          data: {
             role_id: 2,
-            username: "test",
+            username: "test-seller",
             nama: "test",
             password: await Bun.password.hash(password, {
                algorithm: "bcrypt",

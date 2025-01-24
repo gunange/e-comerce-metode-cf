@@ -24,7 +24,7 @@ describe("POST /api/user/login", async () => {
                "Content-Type": "application/json",
             },
             body: JSON.stringify({
-               username: "test",
+               username: "test-seller",
                password: "test",
             }),
          }

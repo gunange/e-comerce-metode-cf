@@ -1,6 +1,6 @@
 model User {
   id                 Int                  @id @default(autoincrement())
-  role_id            Int                  @unique
+  role_id            Int                  
   username           String
   password           String
   nama               String
