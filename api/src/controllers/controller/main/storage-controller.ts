@@ -1,7 +1,6 @@
 import * as util from "@/controllers/services/util";
 import * as Controller from "@/controllers/interfaces/request/storage";
 import { basename, extname } from "path";
-import { exists, existsSync, unlinkSync } from "fs";
 
 const dirPath = "public/storage";
 
@@ -65,17 +64,17 @@ export class StorageController {
          },
       });
 
-      // Akses informasi file
       const fileType = file.type;
       const fileSize = file.size;
 
-      const newExtname = extname(file.name); // Ekstensi baru dari file
-      const oldBasename = basename(db.name, extname(db.name)); // Nama file tanpa ekstensi lama
-      const fileName = `${oldBasename}${newExtname}`; // Perbarui nama file dengan ekstensi baru
+      const newExtname = extname(file.name);
+      const oldBasename = basename(db.name, extname(db.name));
+      const fileName = `${oldBasename}${newExtname}`;
 
       const oldFile = `${db.path}/${db.name}`;
 
-      if (db.mime_type !== fileType) await (await Bun.file(oldFile) as any ).delete()
+      if (db.mime_type !== fileType)
+         await ((await Bun.file(oldFile)) as any).delete();
 
       const filePath = `${db.path}/${fileName}`;
       await Bun.write(filePath, new Uint8Array(await file.arrayBuffer()), {
@@ -95,10 +94,34 @@ export class StorageController {
       return c.json({
          data: {
             uid: uid,
-            path: filePath,
             name: fileName,
             mime_type: fileType,
             size: fileSize,
+         },
+      });
+   }
+
+   static async del(c: util.Context): Promise<any> {
+      const uid = c.req.param("uid");
+
+      const db = await util.dbClient.storage.findFirstOrThrow({
+         where: {
+            uid: uid,
+         },
+      });
+
+      const oldFile = `${db.path}/${db.name}`;
+
+      await ((await Bun.file(oldFile)) as any).delete();
+      await util.dbClient.storage.delete({
+         where: {
+            uid: uid,
+         },
+      });
+
+      return c.json({
+         data: {
+            uid: uid,
          },
       });
    }
