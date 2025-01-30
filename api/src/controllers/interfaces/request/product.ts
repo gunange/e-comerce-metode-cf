@@ -45,7 +45,7 @@ export async function ProductUpRequest(
       deskripsi: util.zod.string().min(1).max(255),
       stock: util.zod.number().min(1),
       harga: util.zod.number().min(1),
-      foto: util.zod.string().min(1).max(255),
+      foto: util.zod.string().min(1).max(255).optional(),
    });
 
    let data = await validate.parse(

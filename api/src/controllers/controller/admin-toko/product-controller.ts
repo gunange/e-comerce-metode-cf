@@ -1,5 +1,6 @@
 import { ProductCreateRequest, ProductUpRequest } from "@/controllers/interfaces/request/product";
 import * as util from "@/controllers/services/util";
+import { StorageController } from "../main/storage-controller";
 
 export class ProductController{
     static async index(c: util.Context): Promise<any> {
@@ -27,12 +28,17 @@ export class ProductController{
          });
       }
     static async del(c: util.Context): Promise<any> {
+      const db = await util.dbClient.product.delete({
+         where: {
+          id : Number(c.req.param("id")),
+         },
+      });
+
+      await StorageController.del(c, db.foto)
+      
+      StorageController.del(c)
         return c.json({
-            data: await util.dbClient.product.delete({
-               where: {
-                id : Number(c.req.param("id")),
-               },
-            }),
+            data: db ,
          });
     }
 }

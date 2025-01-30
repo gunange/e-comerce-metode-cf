@@ -101,8 +101,8 @@ export class StorageController {
       });
    }
 
-   static async del(c: util.Context): Promise<any> {
-      const uid = c.req.param("uid");
+   static async del(c: util.Context, manualUid? : string): Promise<any> {
+      const uid = manualUid ?? c.req.param("uid");
 
       const db = await util.dbClient.storage.findFirstOrThrow({
          where: {
