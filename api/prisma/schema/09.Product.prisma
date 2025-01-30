@@ -9,7 +9,8 @@ model Product {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  toko Seller @relation(fields: [seller_id], references: [id], onDelete: Cascade)
+  toko   Seller   @relation(fields: [seller_id], references: [id], onDelete: Cascade)
+  orders Orders[]
 
   @@map("__product")
 }
