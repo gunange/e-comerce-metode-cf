@@ -36,11 +36,11 @@ describe("POST api/admin-toko/product", async () => {
                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({
-               label: "test",
+               label: "test3",
                deskripsi:
                   "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'sunchange",
-               stock: 12,
-               harga: 30000,
+               stock: 20,
+               harga: 25000,
                foto: uidFoto,
             }),
          }
