@@ -1,0 +1,238 @@
+@import "./key-frame";
+
+:root {
+   --nav-height: 10px;
+}
+
+
+/* ------------ main ------------ */
+.home {
+   display: flex;
+   flex-direction: column;
+}
+
+.home .header {
+   flex: 1;
+   position: fixed;
+   top: 0;
+   left: 0;
+}
+
+.home .home-wraper {
+   flex: auto;
+}
+
+.home .batas-for-el-header {
+   height: var(--nav-height);
+}
+
+.home #header .container {
+   transition: .3s;
+}
+.home #header.on-scroll {
+   
+   box-shadow: var(--box-shadow) ;
+}
+.home #header.on-scroll>.container {
+   padding: 20px 0;
+}
+
+
+
+/* ------------ header ------------ */
+.home .header {
+   width: 100%;
+   z-index: 2;
+   background-color: var(--p-surface-0) !important;
+}
+
+
+.home .header img {
+   max-height: 50px;
+}
+
+
+.home .header .p-megamenu {
+   padding: unset;
+   background: transparent;
+   color: unset;
+   border: none;
+   border-radius: unset;
+   z-index: 2500;
+}
+
+.home .header .p-megamenu-horizontal .p-megamenu-root-list {
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+   flex: auto;
+   padding: 0 20px;
+}
+
+.home .header .head-menu .p-megamenu-overlay {
+   box-shadow: 0 22px 24px -13px rgba(0, 0, 0, 0.1);
+   margin-top: 20px;
+   transform-origin: top;
+   overflow: hidden;
+}
+
+.home .header.on-scroll .head-menu .p-megamenu-overlay {
+   margin-top: 30px;
+}
+
+.p-megamenu-root-list>.p-megamenu-item-active>.p-megamenu-overlay {
+   animation: panel-animation-in .3s ease-in;
+   animation-fill-mode: forwards;
+}
+
+
+.home .header .head-menu .p-megamenu-item-content {
+   background-color: transparent;
+}
+
+.home .header .head-menu .p-megamenu-item-content:hover {
+   background-color: transparent;
+}
+
+.home .header .head-menu>.p-megamenu-item-content {
+   position: relative;
+   transition: .3s;
+   padding: 20px 0;
+   color: var(--color-primary);
+   cursor: default;
+}
+
+.home .header .head-menu:not(.p-megamenu-item-active)>.p-megamenu-item-content {
+   cursor: pointer;
+}
+
+.home .header .head-menu>.p-megamenu-item-content::before {
+   position: absolute;
+   content: '';
+   bottom: -3px;
+   width: 0%;
+   background-color: rgb(var(--primary));
+   transition: .3s;
+   height: 3px;
+   border-radius: 3px;
+}
+
+.home .header .head-menu.p-megamenu-item-active>.p-megamenu-item-content::before {
+   width: 100%;
+}
+
+
+.home .header .head-menu>.p-megamenu-item-content p span,
+.home .header .sub-menu .p-megamenu-item-content p span {
+   padding-left: 5px;
+   transition: .3s;
+}
+
+.home .header .sub-label {
+   padding-left: 0px;
+   color: var(--color-secondary);
+   padding-bottom: 30px;
+}
+
+.home .header .sub-menu .p-megamenu-item-content p {
+   display: flex;
+   justify-content: start;
+   align-items: center;
+}
+
+
+.home .header .sub-menu .p-megamenu-item-content p {
+   cursor: pointer;
+   margin-bottom: 30px;
+   color: var(--primary-300);
+   transition: .3s;
+   transform-origin: center;
+}
+
+.home .header .sub-menu .p-megamenu-item-content p:hover {
+   color: rgb(var(--primary-600));
+}
+
+.home .header .sub-menu .p-megamenu-item-content p:hover i {
+   -webkit-animation-name: tada;
+   animation-name: tada;
+   -webkit-transform-origin: center bottom;
+   transform-origin: center bottom;
+
+
+   -webkit-animation-duration: 1s;
+   animation-duration: 1s;
+   -webkit-animation-fill-mode: both;
+   animation-fill-mode: both;
+}
+
+/* ------------ bradcump ------------ */
+
+
+
+.home .breadcrumbs {
+   background: var(--color-primary);
+   background: rgb(34, 10, 235);
+   background: -moz-linear-gradient(143deg, rgba(34, 10, 235, 1) 0%, rgba(123, 151, 246, 0.758140756302521) 100%);
+   background: -webkit-linear-gradient(143deg, rgba(34, 10, 235, 1) 0%, rgba(123, 151, 246, 0.758140756302521) 100%);
+   background: linear-gradient(143deg, rgba(34, 10, 235, 1) 0%, rgba(123, 151, 246, 0.758140756302521) 100%);
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#220aeb", endColorstr="#7b97f6", GradientType=1);
+   position: relative;
+   padding: 70px 0;
+   padding-top: 130px;
+   z-index: 1;
+   text-align: left;
+}
+
+.home .breadcrumbs::before,
+.home .breadcrumbs::after {
+   position: absolute;
+   content: "";
+   left: 0;
+   top: 0;
+   height: 100%;
+   width: 100%;
+
+}
+
+.home .breadcrumbs::before {
+   opacity: .2;
+   z-index: -1;
+   background-image: url(@/assets/images/pattern/small-patern.png);
+}
+
+.home .breadcrumbs::after {
+   opacity: .2;
+   z-index: -1;
+   background-image: var(--bg-img);
+   background-size: cover;
+   background-position: top;
+   background-repeat: no-repeat;
+}
+
+
+/* ------------ footer ------------ */
+
+.home .footer img {
+   max-height: 50px;
+}
+
+.home .footer .footer-top {
+
+   /* background-image: url(https://huayouindonesia.com/_next/static/media/indonesia-dot-map.8bcc2d3b.svg); */
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+
+.home .footer .footer-top::before {
+   position: absolute;
+   content: "";
+   left: 0;
+   top: 0;
+   height: 100%;
+   width: 100%;
+   background-color: var(--blue-50);
+   z-index: -1;
+   opacity: .8
+}
