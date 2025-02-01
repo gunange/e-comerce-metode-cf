@@ -1,23 +1,50 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+
+import AdminChildren from "./children/admin.js";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
-    },
-  ],
-})
+   history: createWebHistory(import.meta.env.BASE_URL),
+   routes: [
+      {
+         path: "/",
+         name: "home",
+         component: () => import("@/layouts/login-layout.vue"),
+         // component: () => import("@/layouts/home-layout.vue"),
+      },
+      {
+         path: "/main-home",
+         name: "main-home",
+         component: () => import("@/layouts/home-layout.vue"),
+      },
+      {
+         path: "/login",
+         name: "login",
+         component: () => import("@/layouts/login-layout.vue"),
+      },
+      {
+         path: "/admin",
+         name: "admin",
+         component: () => import("@/layouts/admin-layout.vue"),
+         children: AdminChildren,
+      },
 
-export default router
+      // not-found
+      {
+         path: "/:pathMatch(.*)*",
+         name: "Not Found Home",
+         component: () => import("@/widgets/others/404Layout.vue"),
+     },
+   ],
+});
+
+router.beforeEach((to, from, next) => {
+   NProgress.start();
+   next();
+});
+
+router.afterEach(() => {
+   NProgress.done();
+});
+export default router;
