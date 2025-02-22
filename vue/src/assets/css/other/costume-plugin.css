@@ -153,18 +153,6 @@
    text-overflow: ellipsis;
 }
 
-.text-line.line-1 {
-   -webkit-line-clamp: 1;
-}
-
-.text-line.line-2 {
-   -webkit-line-clamp: 2;
-}
-
-.text-line.line-3 {
-   -webkit-line-clamp: 3;
-}
-
 
 /* -------------------------------------------------------- */
 /* Vue Premiere*/
