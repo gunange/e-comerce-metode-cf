@@ -4,6 +4,7 @@ import "nprogress/nprogress.css";
 
 import AdminChildren from "./children/admin.js";
 import HomeChildren from "./children/home.js";
+import LoginChildren from "./children/login.js";
 
 const router = createRouter({
    history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,7 +18,7 @@ const router = createRouter({
       {
          path: "/login",
          name: "login",
-         component: () => import("@/layouts/login-layout.vue"),
+         children : LoginChildren,
       },
       {
          path: "/admin",

@@ -5,7 +5,7 @@
         </div>
         <div class="flex">
             <p>Daftar</p>
-            <p class="ms-[8px]">Login</p>
+            <Button class="ms-[8px] hover:bg-transparent" label="Login"  as="router-link" to="/login" size="small" variant="text"/>
         </div>
     </div>
 </template>

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-	<div class="login">
+	<div class="login w-full h-svh">
 		
 	</div>
 </template>
