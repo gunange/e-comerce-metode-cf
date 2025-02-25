@@ -9,7 +9,6 @@
    z-index: 8000 !important;
 }
 
-
 /*-----------------V Select-----------------*/
 .form .v-select {
    background-color: var(--form-bg);
@@ -19,11 +18,10 @@
    padding: 6px 13px 6px 2px;
    margin-top: 0.75rem;
 
-
    --vs-search-input-color: var(--text-color);
    --vs-selected-color: var(--text-color-disable);
    --vs-search-input-placeholder-color: var(--form-placeholder-color);
-   --vs-dropdown-color : var(--text-color);
+   --vs-dropdown-color: var(--text-color);
    --vs-controls-color: var(--color-primary);
    --vs-dropdown-option--active-color: #ffffff;
 
@@ -33,9 +31,9 @@
    --vs-border-width: var(--form-border-width);
    --vs-dropdown-z-index: 1000;
    --vs-dropdown-option-padding: 12px 17px;
-   --vs-transition-duration: .2s;
+   --vs-transition-duration: 0.2s;
 
-   transition: .3s border box-shadow;
+   transition: 0.3s border box-shadow;
 }
 
 .form .v-select:hover {
@@ -50,7 +48,7 @@
 .form .v-select ul {
    border: var(--form-border-width) solid var(--surface-border);
    border-radius: 0 0 var(--form-border-radius) var(--form-border-radius);
-   transition: .3s;
+   transition: 0.3s;
 }
 
 .form .vs__clear {
@@ -137,10 +135,10 @@
 
 .customize-table .p-speeddial .p-button-icon-only {
    padding: 3px 10px;
-   --p-icon-size: .6rem;
+   --p-icon-size: 0.6rem;
 }
 
-.customize-table .p-speeddial .p-speeddial-item>.p-button-icon-only {
+.customize-table .p-speeddial .p-speeddial-item > .p-button-icon-only {
    padding: 10px 10px;
 }
 
@@ -153,7 +151,6 @@
    text-overflow: ellipsis;
 }
 
-
 /* -------------------------------------------------------- */
 /* Vue Premiere*/
 /* -------------------------------------------------------- */
@@ -161,18 +158,21 @@
 :root {
    /* Taost */
    /* -------------------------------------------------------- */
-   --toast-success-bg-color-v :  var(--p-primary-50) ;
-   --toast-success-border-color-v :  var(--p-primary-200) ;
-   --toast-success-color-v :  var(--p-primary-600) ;
-   --toast-success-shadow-v : var(--p-primary-500);
+   --toast-success-bg-color-v: var(--p-primary-50);
+   --toast-success-border-color-v: var(--p-primary-200);
+   --toast-success-color-v: var(--p-primary-600);
+   --toast-success-shadow-v: var(--p-primary-500);
 
-
-   --p-toast-success-background: color-mix(in srgb, var(--toast-success-bg-color-v), transparent 5%);
+   --p-toast-success-background: color-mix(
+      in srgb,
+      var(--toast-success-bg-color-v),
+      transparent 5%
+   );
    --p-toast-success-border-color: var(--toast-success-border-color-v);
    --p-toast-success-color: var(--toast-success-color-v);
-   --p-toast-success-shadow: 0px 4px 8px 0px color-mix(in srgb, var(--toast-success-shadow-v) , transparent 96%);
+   --p-toast-success-shadow: 0px 4px 8px 0px
+      color-mix(in srgb, var(--toast-success-shadow-v), transparent 96%);
 }
-
 
 /* form */
 
@@ -185,16 +185,18 @@
    margin-top: 10px;
    --p-inputtext-background: var(--form-bg);
    --p-inputtext-border-color: var(--form-border-color);
+   padding: 8px 15px;
+   border: 1px solid var(--form-border-color);
+   border-radius: 5px;
 }
-
 
 .form .p-inputtext:enabled:hover {
    border-color: var(--form-border-color-active);
 }
 
 .form .p-inputtext:enabled:focus,
-.form .p-datepicker:not(.p-datepicker-disabled).p-focus>.p-inputtext,
-.p-datepicker table td>span:focus {
+.form .p-datepicker:not(.p-datepicker-disabled).p-focus > .p-inputtext,
+.p-datepicker table td > span:focus {
    box-shadow: var(--form-focus-shadow);
    border-color: var(--form-border-color-active);
 }
@@ -210,11 +212,11 @@
    top: 57%;
 }
 
-.form .p-icon-field>.p-input-icon {
+.form .p-icon-field > .p-input-icon {
    margin-top: -0.2rem;
 }
 
-.form .p-icon-field-right>.p-input-icon:last-of-type {
+.form .p-icon-field-right > .p-input-icon:last-of-type {
    color: var(--form-border-color-active);
 }
 
@@ -226,9 +228,12 @@
    padding: 13px;
 }
 
-.p-datepicker-calendar-container .p-datepicker-header .p-button-text.p-button-secondary .p-icon {
+.p-datepicker-calendar-container
+   .p-datepicker-header
+   .p-button-text.p-button-secondary
+   .p-icon {
    position: absolute;
-   --p-icon-size: .8rem;
+   --p-icon-size: 0.8rem;
 }
 
 .form .p-inputswitch {
@@ -251,8 +256,8 @@
 }
 
 .p-button-icon-only.p-button-sm {
-   --p-button-sm-font-size: .7rem;
-   padding: 0.2rem .7rem;
+   --p-button-sm-font-size: 0.7rem;
+   padding: 0.2rem 0.7rem;
 }
 
 .p-button-icon-only.p-button-lg {
@@ -268,7 +273,7 @@
 
 .p-panel .p-panel-header-actions .p-icon {
    position: absolute;
-   --p-icon-size: .5rem
+   --p-icon-size: 0.5rem;
 }
 
 /* tab view */
@@ -300,7 +305,7 @@
 }
 
 /* dialog */
-.p-dialog .p-dialog-maximize-button{
+.p-dialog .p-dialog-maximize-button {
    padding: 1px;
    --p-button-text-secondary-color: var(--color-primary);
 }
@@ -310,7 +315,7 @@
 }
 
 .p-dialog button.p-dialog-close-button .p-icon {
-   --p-icon-size: .7rem;
+   --p-icon-size: 0.7rem;
 }
 
 .p-dialog button.p-dialog-close-button {
@@ -324,7 +329,7 @@
 }
 
 .p-dialog .p-dialog-footer {
-   padding: .8rem 1.5rem;
+   padding: 0.8rem 1.5rem;
 }
 
 /* tooltip */
@@ -337,8 +342,6 @@
    color: #ffffff;
    font-size: var(--font-size);
 }
-
-
 
 /* Avatar Setting Image */
 /* -------------------------------------------------------- */
@@ -374,10 +377,8 @@
 }
 
 .p-steps .p-steps-item:last-child::before {
-
    width: 50%;
 }
-
 
 /* Table Prime */
 /* -------------------------------------------------------- */
@@ -390,7 +391,8 @@
 }
 /* Poper Prime */
 /* -------------------------------------------------------- */
-.p-popover::after, .p-popover::before {
-   --p-popover-arrow-left : 73px;
-   --p-popover-arrow-offse : 1.24rem;
- }
+.p-popover::after,
+.p-popover::before {
+   --p-popover-arrow-left: 73px;
+   --p-popover-arrow-offse: 1.24rem;
+}

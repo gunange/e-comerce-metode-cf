@@ -103,8 +103,7 @@ import TreeTable from "primevue/treetable";
 
 import KeyFilter from "primevue/keyfilter";
 
-import Popover from 'primevue/popover';
-
+import Popover from "primevue/popover";
 
 export class AppPrimeConfig {
    private _app;
@@ -236,7 +235,7 @@ export const primeConfUse = {
          darkModeSelector: "system",
          cssLayer: {
             name: "primevue",
-            order: "tailwind-base, primevue, tailwind-utilities",
+            order: "theme, base, primevue",
          },
       },
    },

@@ -1,11 +1,11 @@
 <template>
     <div class="flex justify-between text-xs pt-3">
         <div class="">
-            <p>Daftar Seller</p>
+            <p>Seller</p>
         </div>
         <div class="flex">
-            <p>Daftar</p>
-            <Button class="ms-[8px] hover:bg-transparent" label="Login"  as="router-link" to="/login" size="small" variant="text"/>
+            <Button class="ms-[8px] hover:bg-transparent" label="Daftar"  as="router-link" to="/login" size="small" variant="text"/>
+            <Button class="ms-[8px] hover:bg-transparent ml-4" label="Login"  as="router-link" to="/login" size="small" variant="text"/>
         </div>
     </div>
 </template>
