@@ -1,4 +1,7 @@
 <script setup>
+	import "@/assets/css/login/main.css";
+	import "@/assets/css/login/responsif.css";
+
 	import { ref } from "vue";
 
 	const form = ref({});
