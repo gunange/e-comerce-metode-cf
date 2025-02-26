@@ -16,7 +16,7 @@
 			<div class="text-white w-[600px] flex-none">
 				<div class="flex items-center mx-[-10px] mb-10">
 					<img src="/images/logo/white.svg" class="size-16" alt="logo">
-					<p class="text-2xl">DiahShoope</p>
+					<p class="text-2xl font-bold">DiahShoope</p>
 				</div>
 				<p class="text-6xl">Daftar Seller</p>
 				<p>
@@ -91,7 +91,7 @@
 								>
 									<label
 									class="leading-none"
-										>Alamat
+										>Alamat Toko
 										<span class="text-red-500"
 											>* <VeeErrorMessage name="alamat" />
 										</span>
