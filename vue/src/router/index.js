@@ -25,6 +25,11 @@ const router = createRouter({
          component: () => import("@/views/others/daftar-pelanggan.vue"),
       },
       {
+         path: "/daftar-seller",
+         name: "daftar-seller",
+         component: () => import("@/views/others/daftar-seller.vue"),
+      },
+      {
          path: "/admin",
          name: "admin",
          component: () => import("@/layouts/admin-layout.vue"),

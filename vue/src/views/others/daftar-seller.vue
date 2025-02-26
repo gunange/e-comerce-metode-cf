@@ -18,7 +18,7 @@
 					<img src="/images/logo/white.svg" class="size-16" alt="logo">
 					<p class="text-2xl">DiahShoope</p>
 				</div>
-				<p class="text-6xl">Daftar Pelanggan</p>
+				<p class="text-6xl">Daftar Seller</p>
 				<p>
 					Jika belum memiliki akun, silahkan daftar lebih dulu melalui tombol yang
 					sudah disediakan
@@ -134,7 +134,7 @@
 								/>
 								<Button
 									type="submit"
-									label="Daftar"
+									label="Sign In"
 									icon="pi pi-send"
 									class="text-[.8rem]"
 									:loading="false"

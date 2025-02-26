@@ -33,7 +33,10 @@
 			<div class="flex-auto ps-28">
 				<Card class="p-5">
 					<template #header>
-						<p class="text-2xl font-bold px-4">Login</p>
+						<div class="flex items-center justify-center mt-5">
+							<img src="/images/logo/blue.svg" class="size-16" alt="logo">
+							<p class="text-2xl font-bold text-sky-500">DiahShoope</p>
+						</div>
 					</template>
 					<template #content>
 						<VeeForm ref="ref_form" :initial-values="form" @submit="onSave">
@@ -45,7 +48,7 @@
 									v-model="form.username"
 								>
 									<label
-										>Account
+										>Username
 										<span class="text-red-500"
 											>* <VeeErrorMessage name="username" />
 										</span>
