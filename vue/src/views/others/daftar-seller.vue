@@ -48,7 +48,7 @@
 									rules="required"
 									v-model="form.nama"
 								>
-									<label
+									<label class="leading-none"
 										>Nama Anda
 										<span class="text-red-500"
 											>* <VeeErrorMessage name="nama" />
@@ -69,7 +69,8 @@
 									v-model="form.no_hp"
 								>
 									<label
-										>Nomor Heandphone Anda
+									class="leading-none"
+										>Nomor Heandphone Toko
 										<span class="text-red-500"
 											>* <VeeErrorMessage name="no_hp" />
 										</span>
@@ -84,11 +85,54 @@
 								</VeeField>
 								<VeeField
 									v-slot="{ field }"
+									name="alamat"
+									rules="required"
+									v-model="form.alamat"
+								>
+									<label
+									class="leading-none"
+										>Alamat
+										<span class="text-red-500"
+											>* <VeeErrorMessage name="alamat" />
+										</span>
+									</label>
+
+									<InputText
+										v-bind="field"
+										placeholder="Masukan Alamat Toko"
+										class="text-xs"
+										autocomplete="off"
+									/>
+								</VeeField>
+								<VeeField
+									v-slot="{ field }"
+									name="nama_toko"
+									rules="required"
+									v-model="form.nama_toko"
+								>
+									<label
+									class="leading-none"
+										>Nama Toko
+										<span class="text-red-500"
+											>* <VeeErrorMessage name="nama_toko" />
+										</span>
+									</label>
+
+									<InputText
+										v-bind="field"
+										placeholder="Masukan Nama Toko"
+										class="text-xs"
+										autocomplete="off"
+									/>
+								</VeeField>
+								<VeeField
+									v-slot="{ field }"
 									name="username"
 									rules="required"
 									v-model="form.username"
 								>
 									<label
+									class="leading-none"
 										>Username
 										<span class="text-red-500"
 											>* <VeeErrorMessage name="username" />
@@ -109,6 +153,7 @@
 									v-model="form.passwords"
 								>
 									<label
+									class="leading-none"
 										>Password
 										<span class="text-red-500"
 											>* <VeeErrorMessage name="password" />
@@ -134,7 +179,7 @@
 								/>
 								<Button
 									type="submit"
-									label="Sign In"
+									label="Daftar"
 									icon="pi pi-send"
 									class="text-[.8rem]"
 									:loading="false"
