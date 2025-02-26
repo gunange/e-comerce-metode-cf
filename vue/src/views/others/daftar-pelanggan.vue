@@ -16,12 +16,13 @@
 					Jika belum memiliki akun, silahkan daftar lebih dulu melalui tombol yang
 					sudah disediakan
 				</p>
+				<Button label="Beranda" icon="pi pi-home" size="large"  class="mt-20"  severity="secondary"  as="router-link" to="/"/>
 			</div>
 			<div class="w-[.6px] flex-initial h-60 bg-white"></div>
 			<div class="flex-auto ps-28">
 				<Card class="p-5">
 					<template #header>
-						<p class="text-2xl font-bold">Login</p>
+						<p class="text-2xl font-bold px-4">Login</p>
 					</template>
 					<template #content>
 						<VeeForm ref="ref_form" :initial-values="form" @submit="onSave">
@@ -67,7 +68,14 @@
 									/>
 								</VeeField>
 							</div>
-							<div class="">
+							<div class="mt-6 flex justify-end">
+								<Button
+									type="button"
+									label="Daftar"
+									icon="pi pi-bell"
+									class="text-[.8rem] mr-2"
+									severity="warn"
+								/>
 								<Button
 									type="submit"
 									label="Sign In"
@@ -75,6 +83,7 @@
 									class="text-[.8rem]"
 									:loading="false"
 								/>
+								
 							</div>
 						</VeeForm>
 					</template>
