@@ -28,25 +28,26 @@
 	export default {
 		computed: {
 			user() {
-				return auth.store.user;
+				// return auth.store.user;
+				return {};
 			},
 		},
-		async beforeRouteEnter(to, from, next) {
-			await auth.init();
-			if (auth.store.isAuth && auth.store.user.role === "4dm1n1sTr4t0r") {
-				auth.setToken();
-				next();
-				return;
-			}
+		// async beforeRouteEnter(to, from, next) {
+		// 	await auth.init();
+		// 	if (auth.store.isAuth && auth.store.user.role === "4dm1n1sTr4t0r") {
+		// 		auth.setToken();
+		// 		next();
+		// 		return;
+		// 	}
 
-			await auth.signOut(() => {
-				next("/login");
-			});
-		},
-		async beforeRouteLeave(to, from, next) {
-			await auth.reset();
-			new UserStorageController().dispose();
-			next();
-		},
+		// 	await auth.signOut(() => {
+		// 		next("/login");
+		// 	});
+		// },
+		// async beforeRouteLeave(to, from, next) {
+		// 	await auth.reset();
+		// 	new UserStorageController().dispose();
+		// 	next();
+		// },
 	};
 </script>

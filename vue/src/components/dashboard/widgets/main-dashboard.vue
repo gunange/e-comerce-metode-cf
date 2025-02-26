@@ -24,31 +24,7 @@
 						},
 					},
 				],
-				notif: [
-					{
-						label: "Notif 1",
-						icon: "pi pi-paperclip",
-						command: () => {
-							console.log("OK");
-						},
-					},
-				],
-				message: [
-					{
-						label: "Message 1",
-						icon: "pi pi-paperclip",
-						command: () => {
-							console.log("OK");
-						},
-					},
-					{
-						label: "Message 2",
-						icon: "pi pi-paperclip",
-						command: () => {
-							console.log("OK");
-						},
-					},
-				],
+				
 			},
 		},
 
@@ -123,8 +99,6 @@
 			/>
 			<ContentDashboard
 				:profil-menu="navbar.profilMenu"
-				:notif="navbar.notif"
-				:message="navbar.message"
 				:nama="nama"
 			>
 				<slot></slot>

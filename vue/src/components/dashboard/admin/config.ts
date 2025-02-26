@@ -43,41 +43,12 @@ const profilMenu = [
    },
 ];
 
-const message = [
-   {
-      label: "Message 1",
-      icon: "pi pi-paperclip",
-      command: () => {
-         console.log("OK");
-      },
-   },
-   {
-      label: "Message 2",
-      icon: "pi pi-paperclip",
-      command: () => {
-         console.log("OK");
-      },
-   },
-];
-
-const notif = [
-   {
-      label: "Notif 1",
-      icon: "pi pi-paperclip",
-      command: () => {
-         console.log("OK");
-      },
-   },
-];
-
 export const sidebar = {
    menu: menu,
 };
 
 export const navbar = {
    profilMenu: profilMenu,
-   message: message,
-   notif: notif,
 };
 
 export const pathApi = "admin";

@@ -1,5 +1,5 @@
 <script setup>
-import { appLogoLight } from '@/config/appInfo';
+	import { appLogoLight } from "@/config/appInfo";
 	const props = defineProps({
 		menu: {
 			type: Array,
@@ -15,11 +15,15 @@ import { appLogoLight } from '@/config/appInfo';
 
 <template>
 	<div class="sidebar-wrapper flex flex-col">
-		<div class="side-header flex-none flex justify-start items-center px-4 mb-8">
-			<div class="">
+		<div class="side-header px-4 mb-8">
+			<div class="flex-none flex justify-start items-center">
 				<img :src="appLogoLight" alt="" class="w-16" />
+				<div class="text-2xl font-bold text-sky-500 leading-none">
+					<p>Diah</p>
+					<p>Shoope</p>
+				</div>
 			</div>
-			<div class="flex flex-col text-slate-500 dark:text-blue-400 ml-3">
+			<div class="flex flex-col text-slate-500 dark:text-blue-400 ml-3 mt-3">
 				<p class="font-bold text-md">{{ title }}</p>
 				<p class="text-[12px]">{{ subTitle }}</p>
 			</div>
@@ -38,7 +42,7 @@ import { appLogoLight } from '@/config/appInfo';
 						v-if="item.route"
 						v-slot="{ href, navigate }"
 						:to="item.route"
-						class="item" 
+						class="item"
 					>
 						<span :class="item.icon" />
 						<span class="label">{{ item.label }}</span>

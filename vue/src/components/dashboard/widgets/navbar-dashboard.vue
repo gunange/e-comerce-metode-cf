@@ -17,14 +17,7 @@
 			type: Array,
 			
 		},
-		notif: {
-			type: Array,
-			
-		},
-		message: {
-			type: Array,
-			
-		},
+	
 		nama:{
 			type: String,
 			default: "Unknow"
@@ -46,40 +39,9 @@
 					Menu
 				</Button>
 			</div>
-			<div class="flex-none w-2/4 search px-5 ">
-				<IconField>
-					<InputIcon class="pi pi-search text-xs" />
-					<InputText
-						v-model="search"
-						placeholder="Search.."
-						variant="filled"
-						class="w-full text-xs dark:bg-slate-600"
-					/>
-				</IconField>
-			</div>
+		
 			<div class="flex-1 flex justify-end align-items-center">
-				<div class="flex justify-end items-center">
-					<div
-						class="bg-slate-100 dark:bg-slate-600 rounded-[8px] w-7 h-7 flex justify-center items-center cursor-pointer"
-						@click="$refs.notif.toggle"
-					>
-						<OverlayBadge :value="notif.length" size="small">
-							<i class="pi pi-bell" style="font-size: 0.6rem" />
-						</OverlayBadge>
-					</div>
-					<div
-						class="bg-slate-100 dark:bg-slate-600 rounded-[8px] w-7 h-7 flex justify-center items-center ml-4 cursor-pointer"
-						@click="$refs.message.toggle"
-					>
-						<OverlayBadge
-							:value="message.length"
-							size="small"
-							severity="danger"
-						>
-							<i class="pi pi-envelope" style="font-size: 0.6rem" />
-						</OverlayBadge>
-					</div>
-				</div>
+				
 				<div
 					class="ml-10 flex justify-end cursor-pointer items-center text-slate-500"
 					@click="$refs.profilMenu.toggle"
@@ -100,20 +62,7 @@
 					class="animated fadeInUp text-xs"
 					pt:root:style="top : 95px; min-width: 14.5rem;"
 				/>
-				<Menu
-					ref="notif"
-					:model="notif"
-					:popup="true"
-					class="animated fadeInUp text-xs"
-					pt:root:style="top : 95px; min-width: 14.5rem;"
-				/>
-				<Menu
-					ref="message"
-					:model="message"
-					:popup="true"
-					class="animated fadeInUp text-xs"
-					pt:root:style="top : 95px; min-width: 14.5rem;"
-				/>
+				
 			</div>
 		</div>
 	</div>

@@ -60,24 +60,12 @@ const message = [
    },
 ];
 
-const notif = [
-   {
-      label: "Notif 1",
-      icon: "pi pi-paperclip",
-      command: () => {
-         console.log("OK");
-      },
-   },
-];
-
 export const sidebar = {
    menu: menu,
 };
 
 export const navbar = {
    profilMenu: profilMenu,
-   message: message,
-   notif: notif,
 };
 
 export const pathApi = "admin";

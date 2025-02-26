@@ -6,14 +6,7 @@
 			type: Array,
 			
 		},
-		notif: {
-			type: Array,
-			
-		},
-		message: {
-			type: Array,
-			
-		},
+		
 		nama:{
 			type: String,
 			default: "Unknow"
@@ -26,8 +19,7 @@
 		<div class="navbar-wrapper flex-none shadow-md">
 			<NavbarDashboard
 				:profil-menu="profilMenu"
-				:notif="notif"
-				:message="message"
+				
 				:nama="nama"
 			/>
 		</div>
