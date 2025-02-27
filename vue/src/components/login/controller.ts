@@ -32,7 +32,7 @@ export class Controller {
       try {
          const { data, status, errors, message } = await post("user/login", body);
 
-         this.post.sukses = status === 200;
+         this.post.sukses = status === 201;
          this.post.data = data;
 
          if (this.post.sukses) {

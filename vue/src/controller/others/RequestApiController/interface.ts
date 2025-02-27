@@ -5,6 +5,7 @@ export interface ApiResponse {
    data: any;
    message: string;
    errors: any;
+   detail_errors: string;
 }
 
 export interface ToastAlertSuccessResponse {

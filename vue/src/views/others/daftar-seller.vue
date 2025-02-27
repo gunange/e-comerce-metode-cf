@@ -1,13 +1,24 @@
 <script setup>
 	import "@/assets/css/daftar/main.css";
 	import "@/assets/css/daftar/responsif.css";
+	import { ControllerDaftarSeller } from "@/components/others/c-daftar-seller.ts";
+	import ErrorModal from "@/components/login/error.vue";
+	import SuksesModal from "@/components/others/view/sukses-register.vue";
 
 	import { ref } from "vue";
 
+	const main = new ControllerDaftarSeller();
 	const form = ref({});
 	const ref_form = ref();
+	const ref_modal_err = ref();
+	const ref_modal_sukses = ref();
 
-	const onSave = async (e) => {};
+	const onSave = async (e) => {
+		await main.onSubmit(e);
+		main.post.sukses
+			? ref_modal_sukses.value.open(main.post.message, main.post.data)
+			: ref_modal_err.value.open(main.post.message, main.post.errors);
+	};
 </script>
 
 <template>
@@ -85,15 +96,15 @@
 								</VeeField>
 								<VeeField
 									v-slot="{ field }"
-									name="alamat"
+									name="alamat_toko"
 									rules="required"
-									v-model="form.alamat"
+									v-model="form.alamat_toko"
 								>
 									<label
 									class="leading-none"
 										>Alamat Toko
 										<span class="text-red-500"
-											>* <VeeErrorMessage name="alamat" />
+											>* <VeeErrorMessage name="alamat_toko" />
 										</span>
 									</label>
 
@@ -191,4 +202,6 @@
 			</div>
 		</div>
 	</div>
+	<ErrorModal ref="ref_modal_err" />
+	<SuksesModal ref="ref_modal_sukses" />
 </template>

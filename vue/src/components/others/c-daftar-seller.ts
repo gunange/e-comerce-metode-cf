@@ -7,7 +7,7 @@ import { reactive } from "vue";
 import { routerStore } from "@/stores/services/router-store";
 import { post } from "@/controller/others/RequestApiController";
 
-export class ControllerDaftarPelanggan {
+export class ControllerDaftarSeller {
    collection_name = "users";
    router = routerStore().router;
 
@@ -30,16 +30,20 @@ export class ControllerDaftarPelanggan {
       this.post.load = true;
 
       try {
-         const { data, status, errors, message } = await post("main/register/pelanggan", body);
+         const { data, status, message, detail_errors } = await post(
+            "main/register/seller",
+            body
+         );
 
          this.post.sukses = status === 201;
          this.post.data = data;
          this.post.message = message;
-         
+
          if (this.post.sukses) {
             this.post.data = this.post.data ?? {};
          } else {
-            this.post.errors = ( Array.isArray(errors) && errors.length > 0) ? errors.join(",\n") : errors;
+            console.log(detail_errors)
+            this.post.errors = detail_errors;
          }
          await delay(250);
       } catch (_) {}
