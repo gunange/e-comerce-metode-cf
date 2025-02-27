@@ -8,6 +8,7 @@ import {
    UserLoginValidate,
 } from "../services/models/user/login";
 import { ErrorHeandler } from "@/middleware/ErrorHeandler";
+import { pelangganResponse } from "../interfaces/resource";
 
 export class UsersController {
    static async Register(c: util.Context, role_id: number): Promise<User> {
@@ -59,6 +60,30 @@ export class UsersController {
             }),
          },
          201
+      );
+   }
+
+   static async UserProfil(c: util.Context) {
+      const user = c.get("user");
+
+      let db = user ;
+
+      if (user.role_id == 4) {
+         db = await util.dbClient.pelanggan.findFirst({
+            where: {
+               user_id: user.id,
+            },
+            include: {
+               user: true,
+            },
+         });
+      }
+
+      return c.json(
+         {
+            data: pelangganResponse(db),
+         },
+         200
       );
    }
 }

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 	import { onMounted } from "vue";
 	import { RouterView } from "vue-router";
 
@@ -26,3 +26,21 @@
 		</div>
 	</div>
 </template>
+
+<script>
+
+import { AuthController } from "@/controller/controllers/AuthController";
+
+const auth = new AuthController();
+
+export default {
+
+	async beforeRouteEnter(to, from, next) {
+			await auth.init();
+			if (auth.isAuth) {
+				
+			}
+			next();
+		},
+}
+</script>

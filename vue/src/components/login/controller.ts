@@ -7,6 +7,8 @@ import { reactive } from "vue";
 import { routerStore } from "@/stores/services/router-store";
 import { post } from "@/controller/others/RequestApiController";
 
+import { Controller as PelanggandStorageController } from "@/components/dashboard/pelanggan/controller";
+
 export class Controller {
    collection_name = "users";
    router = routerStore().router;
@@ -30,7 +32,10 @@ export class Controller {
       this.post.load = true;
 
       try {
-         const { data, status, errors, message } = await post("user/login", body);
+         const { data, status, errors, message } = await post(
+            "user/login",
+            body
+         );
 
          this.post.sukses = status === 201;
          this.post.data = data;
@@ -52,7 +57,10 @@ export class Controller {
             }
          } else {
             this.post.message = message;
-            this.post.errors = ( Array.isArray(errors) && errors.length > 0) ? errors.join(",\n") : errors;
+            this.post.errors =
+               Array.isArray(errors) && errors.length > 0
+                  ? errors.join(",\n")
+                  : errors;
          }
          await delay(250);
       } catch (_) {}
@@ -65,8 +73,8 @@ export class Controller {
          routeTo = "/admin";
       } else if (data && data.role === "p4n1T1a") {
          routeTo = "/panitia";
-      } else if (data && data.role === "c4l0n-M4ha515w4") {
-         routeTo = "/calon-mahasiswa";
+      } else if (data && data.role === "p3lAnGg4n") {
+         routeTo = "/";
       }
       return routeTo;
    }
