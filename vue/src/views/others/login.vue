@@ -2,6 +2,7 @@
 	import "@/assets/css/login/main.css";
 	import "@/assets/css/login/responsif.css";
 	import {Controller } from "@/components/login/controller.ts"
+	import ErrorModal from "@/components/login/error.vue"
 
 	import { ref } from "vue";
 
@@ -9,9 +10,13 @@
 
 	const form = ref({});
 	const ref_form = ref();
+	const ref_modal_err = ref();
 
 	const onSave = async (e) => {
-		main.onSubmit(e);
+		await main.onSubmit(e);
+		if (!main.post.sukses) {
+			ref_modal_err.value.open(main.post.message , main.post.errors);
+		}
 	};
 </script>
 
@@ -111,4 +116,5 @@
 			</div>
 		</div>
 	</div>
+	<ErrorModal ref="ref_modal_err" />
 </template>

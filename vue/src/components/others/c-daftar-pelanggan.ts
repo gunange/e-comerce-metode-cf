@@ -7,7 +7,7 @@ import { reactive } from "vue";
 import { routerStore } from "@/stores/services/router-store";
 import { post } from "@/controller/others/RequestApiController";
 
-export class Controller {
+export class ControllerDaftarPelanggan {
    collection_name = "users";
    router = routerStore().router;
 
@@ -30,28 +30,15 @@ export class Controller {
       this.post.load = true;
 
       try {
-         const { data, status, errors, message } = await post("user/login", body);
+         const { data, status, errors, message } = await post("main/register/pelanggan", body);
 
-         this.post.sukses = status === 200;
+         this.post.sukses = status === 201;
          this.post.data = data;
-
+         this.post.message = message;
+         
          if (this.post.sukses) {
-            const router = this.router;
-            const data = this.post.data ?? null;
-            var routeTo = null;
-
-            routeTo = this.routeRedirect(data);
-
-            if (routeTo) {
-               localStorage.setItem(tokenName, data.token);
-               router.push(routeTo);
-               return;
-            } else {
-               this.post.sukses = false;
-               this.post.data.errors = ["Tidak menemukan route"];
-            }
+            this.post.data = this.post.data ?? {};
          } else {
-            this.post.message = message;
             this.post.errors = ( Array.isArray(errors) && errors.length > 0) ? errors.join(",\n") : errors;
          }
          await delay(250);

@@ -1,13 +1,26 @@
 <script setup>
 	import "@/assets/css/daftar/main.css";
 	import "@/assets/css/daftar/responsif.css";
+	import { ControllerDaftarPelanggan } from "@/components/others/c-daftar-pelanggan.ts";
+	import ErrorModal from "@/components/login/error.vue";
+	import SuksesModal from "@/components/others/view/sukses-register.vue";
+
+	import { onMounted } from "vue";
 
 	import { ref } from "vue";
 
+	const main = new ControllerDaftarPelanggan();
 	const form = ref({});
 	const ref_form = ref();
+	const ref_modal_err = ref();
+	const ref_modal_sukses = ref();
 
-	const onSave = async (e) => {};
+	const onSave = async (e) => {
+		await main.onSubmit(e);
+		main.post.sukses
+			? ref_modal_sukses.value.open(main.post.message, main.post.data)
+			: ref_modal_err.value.open(main.post.message, main.post.errors);
+	};
 </script>
 
 <template>
@@ -15,7 +28,7 @@
 		<div class="flex justify-between items-center h-full w-[80%] mx-auto">
 			<div class="text-white w-[600px] flex-none">
 				<div class="flex items-center mx-[-10px] mb-10">
-					<img src="/images/logo/white.svg" class="size-16" alt="logo">
+					<img src="/images/logo/white.svg" class="size-16" alt="logo" />
 					<p class="text-2xl">DiahShoope</p>
 				</div>
 				<p class="text-6xl">Daftar Pelanggan</p>
@@ -130,7 +143,8 @@
 									icon="pi pi-bell"
 									class="text-[.8rem] mr-2"
 									severity="warn"
-									as="router-link" to="/login"
+									as="router-link"
+									to="/login"
 								/>
 								<Button
 									type="submit"
@@ -146,4 +160,6 @@
 			</div>
 		</div>
 	</div>
+	<ErrorModal ref="ref_modal_err" />
+	<SuksesModal ref="ref_modal_sukses" />
 </template>
