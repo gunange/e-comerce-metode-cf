@@ -30,16 +30,19 @@ export class ControllerDaftarPelanggan {
       this.post.load = true;
 
       try {
-         const { data, status, errors, message } = await post("main/register/pelanggan", body);
+         const { data, status, message, detail_errors } = await post(
+            "main/register/pelanggan",
+            body
+         );
 
          this.post.sukses = status === 201;
          this.post.data = data;
          this.post.message = message;
-         
+
          if (this.post.sukses) {
             this.post.data = this.post.data ?? {};
          } else {
-            this.post.errors = ( Array.isArray(errors) && errors.length > 0) ? errors.join(",\n") : errors;
+            this.post.errors = detail_errors;
          }
          await delay(250);
       } catch (_) {}
