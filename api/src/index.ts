@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { mainRoute } from "./router/main";
 import { errorHeandler } from "./middleware/ErrorHeandler";
 import { adminTokoRoute } from "./router/admin-toko";
@@ -7,6 +8,8 @@ import { Auth } from "@/middleware/Auth";
 import { storageRoute } from "./router/storage-route";
 
 const app = new Hono().basePath("/api");
+
+app.use(cors());
 
 app.route("/main", mainRoute);
 app.route("/user", userRoute);

@@ -30,7 +30,7 @@ export class Controller {
       this.post.load = true;
 
       try {
-         const { data, status, errors, message } = await post("login", body);
+         const { data, status, errors, message } = await post("user/login", body);
 
          this.post.sukses = status === 200;
          this.post.data = data;

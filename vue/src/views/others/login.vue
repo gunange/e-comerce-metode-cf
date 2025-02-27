@@ -1,13 +1,18 @@
 <script setup>
 	import "@/assets/css/login/main.css";
 	import "@/assets/css/login/responsif.css";
+	import {Controller } from "@/components/login/controller.ts"
 
 	import { ref } from "vue";
+
+	const main = new Controller() ;
 
 	const form = ref({});
 	const ref_form = ref();
 
-	const onSave = async (e) => {};
+	const onSave = async (e) => {
+		main.onSubmit(e);
+	};
 </script>
 
 <template>
@@ -97,7 +102,7 @@
 									label="Sign In"
 									icon="pi pi-key"
 									class="text-[.8rem]"
-									:loading="false"
+									:loading="main.post.load"
 								/>
 							</div>
 						</VeeForm>
