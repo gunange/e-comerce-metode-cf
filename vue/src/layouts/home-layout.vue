@@ -30,15 +30,16 @@
 <script>
 
 import { AuthController } from "@/controller/controllers/AuthController";
+import { Controller } from "@/components/home/controller.ts";
 
 const auth = new AuthController();
+const _c = new Controller();
 
 export default {
 
 	async beforeRouteEnter(to, from, next) {
 			await auth.init();
 			if (auth.isAuth) {
-				
 			}
 			next();
 		},

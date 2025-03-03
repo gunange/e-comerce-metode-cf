@@ -3,3 +3,8 @@ export interface StoreDataFormApi {
    run: boolean;
    data: any[];
 }
+export interface StoreDataOnlyFormApi {
+   load: boolean;
+   run: boolean;
+   data: any;
+}

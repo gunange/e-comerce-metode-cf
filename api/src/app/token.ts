@@ -46,6 +46,7 @@ export class Token {
             return false;
 
          context.set("user", tokenAkses.user);
+         context.set("token", token)
 
          return true;
       } catch {

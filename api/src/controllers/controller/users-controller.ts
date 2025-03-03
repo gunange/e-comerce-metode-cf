@@ -66,7 +66,7 @@ export class UsersController {
    static async UserProfil(c: util.Context) {
       const user = c.get("user");
 
-      let db = user ;
+      let db = user;
 
       if (user.role_id == 4) {
          db = await util.dbClient.pelanggan.findFirst({
@@ -82,6 +82,23 @@ export class UsersController {
       return c.json(
          {
             data: pelangganResponse(db),
+         },
+         200
+      );
+   }
+   static async UserLogout(c: util.Context) {
+      const user = c.get("user");
+      const token = c.get("token");
+
+      await util.dbClient.personalAksesToken.deleteMany({
+         where: {
+            token: token,
+         },
+      });
+
+      return c.json(
+         {
+            data: user,
          },
          200
       );

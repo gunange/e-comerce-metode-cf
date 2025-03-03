@@ -1,4 +1,4 @@
-import { StoreDataFormApi } from "./interface";
+import { StoreDataFormApi, StoreDataOnlyFormApi } from "./interface";
 
 export const AtributService = {
    get listDays() {
@@ -20,4 +20,10 @@ export const storeDefault: StoreDataFormApi = {
    load: false,
    run: false,
    data: [],
+};
+
+export const storeOnlyDefault: StoreDataOnlyFormApi = {
+   load: false,
+   run: false,
+   data: {},
 };

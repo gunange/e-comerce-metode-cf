@@ -13,3 +13,4 @@ userRoute.use(
  );
 
  userRoute.get("/", UsersController.UserProfil);
+ userRoute.delete("/", UsersController.UserLogout);
