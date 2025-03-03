@@ -3,6 +3,10 @@ import { getActivePinia } from "pinia";
 
 import { userStorage, storeId } from "./store";
 
+import { AuthController } from "@/controller/controllers/AuthController";
+
+const auth = new AuthController();
+
 export class Controller {
    get store() {
       return userStorage();
@@ -21,5 +25,21 @@ export class Controller {
    }
    get time() {
       return new TimeApp();
+   }
+
+   get user() {
+      let user;
+      if (auth.user) {
+         if (auth.user?.user.role_id === 4) {
+            user = auth.user;
+         }
+      }
+      return user;
+   }
+
+   async logout(router)  {
+      await auth.signOut(()=>{
+         router.push('/login')
+      });
    }
 }

@@ -2,7 +2,7 @@ import { getActivePinia } from "pinia";
 
 
 import { delay } from "../tools";
-import { get } from "../others/RequestApiController";
+import { del, get } from "../others/RequestApiController";
 import { tokenName } from "@/config/appInfo.js";
 import { authStore } from "@/stores/users/auth";
 import axios from "axios";
@@ -77,7 +77,7 @@ export class AuthController {
 
    async signOut(redirect: Function) {
       if (this.store.token) {
-         const { status } = await get(`logout`, {
+         const { status } = await del(`user`, {
             config : {
                headers :{
                   "Authorization" : this.token

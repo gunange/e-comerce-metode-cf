@@ -52,7 +52,7 @@
 </template>
 
 <script>
-	import { Controller } from "@/components/home/controller.ts";
+	import { Controller } from "@/components/dashboard/pelanggan/controller.ts";
 
 	const _c = new Controller();
 	export default {
@@ -64,6 +64,9 @@
 						{
 							label: "Logout",
 							icon: "pi pi-power-off text-red-500",
+							command : ()=>{
+								_c.logout(this.$router)
+							}
 						},
 						{
 							label: "Export",
@@ -81,7 +84,7 @@
         methods :{
             toggleMenuProfil(e){
                 this.$refs.menu_profil.toggle(e)
-            }
+            },
         }
 	};
 </script>
