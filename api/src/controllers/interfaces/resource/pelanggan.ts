@@ -13,6 +13,6 @@ export type PelangganResource = {
     return {
         nama : db.user.nama,
         no_hp : db.no_hp,
-        user : db.user
+        user : db.user ?? {}
     }
 }

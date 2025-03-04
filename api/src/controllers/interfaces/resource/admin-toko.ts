@@ -7,6 +7,7 @@ export type AdminTokoResource = {
     no_hp: string;
     nama_toko: string;
     alamat_toko: string;
+    role?: string;
     user : UserResource;
  };
  
@@ -17,6 +18,7 @@ export type AdminTokoResource = {
         no_hp : db.no_hp,
         nama_toko : db.nama_toko,
         alamat_toko : db.alamat_toko,
-        user : db.user
+        role : db.user.role?.role,
+        user : db.user,
     }
 }

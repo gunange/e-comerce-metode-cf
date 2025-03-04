@@ -12,21 +12,21 @@
 	import { AuthController } from "@/controller/controllers/AuthController.ts";
 	import { Controller } from "@/components/login/controller.ts";
 
-	// const auth = new AuthController();
+	const auth = new AuthController();
 
 	export default {
-		// async beforeRouteEnter(to, from, next) {
-		// 	await auth.init();
-		// 	if (auth.isAuth) {
-		// 		const controller = new Controller();
-		// 		const routeTo = controller.routeRedirect(auth.user);
+		async beforeRouteEnter(to, from, next) {
+			await auth.init();
+			if (auth.isAuth) {
+				const controller = new Controller();
+				const routeTo = controller.routeRedirect(auth.user);
 
-		// 		if (routeTo) {
-		// 			next(routeTo);
-		// 			return;
-		// 		}
-		// 	}
-		// 	next();
-		// },
+				if (routeTo) {
+					next(routeTo);
+					return;
+				}
+			}
+			next();
+		},
 	};
 </script>

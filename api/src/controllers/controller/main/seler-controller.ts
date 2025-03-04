@@ -5,7 +5,7 @@ import * as util from "@/controllers/services/util";
 export class SellerController {
    static async register(c: util.Context): Promise<any> {
       const db = await service.SellerRagisterRequest(c);
-      const user = await UsersController.Register(c, 4);
+      const user = await UsersController.Register(c, 2);
 
       db.user_id = user.id;
 

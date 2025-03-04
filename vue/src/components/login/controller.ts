@@ -71,8 +71,8 @@ export class Controller {
       var routeTo = null;
       if (data && data.role === "4dm1n1sTr4t0r") {
          routeTo = "/admin";
-      } else if (data && data.role === "p4n1T1a") {
-         routeTo = "/panitia";
+      } else if (data && data.role === "4dm1n-t0kO") {
+         routeTo = "/seller";
       } else if (data && data.role === "p3lAnGg4n") {
          routeTo = "/";
       }

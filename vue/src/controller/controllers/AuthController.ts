@@ -52,6 +52,7 @@ export class AuthController {
          }
       });
 
+
       this.store.proses.sukses = status === 200;
 
       if (this.store.proses.sukses) {

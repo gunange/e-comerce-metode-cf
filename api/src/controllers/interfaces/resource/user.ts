@@ -3,6 +3,7 @@ import type {  User } from "@prisma/client";
 export type UserResource = {
    username: string;
    nama: string;
+   role? : any ;
 };
 export type UserLoginResource = {
    

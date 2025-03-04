@@ -8,7 +8,7 @@ import {
    UserLoginValidate,
 } from "../services/models/user/login";
 import { ErrorHeandler } from "@/middleware/ErrorHeandler";
-import { pelangganResponse } from "../interfaces/resource";
+import { adminTokoResponse, pelangganResponse } from "../interfaces/resource";
 
 export class UsersController {
    static async Register(c: util.Context, role_id: number): Promise<User> {
@@ -67,7 +67,6 @@ export class UsersController {
       const user = c.get("user");
 
       let db = user;
-
       if (user.role_id == 4) {
          db = await util.dbClient.pelanggan.findFirst({
             where: {
@@ -77,11 +76,26 @@ export class UsersController {
                user: true,
             },
          });
+         db = await pelangganResponse(db);
+      } else if (user.role_id == 2) {
+         db = await util.dbClient.seller.findFirst({
+            where: {
+               user_id: user.id,
+            },
+            include: {
+               user: {
+                  include: {
+                     role: true,
+                  },
+               },
+            },
+         });
+         db = await adminTokoResponse(db);
       }
 
       return c.json(
          {
-            data: pelangganResponse(db),
+            data: db,
          },
          200
       );

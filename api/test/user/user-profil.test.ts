@@ -13,10 +13,10 @@ let token : string ;
 
 describe("GET /api/user", async () => {
    beforeAll(async () => {
-      user = await util.PelangganRegisterTest.create();
+      user = await util.SellerRegisterTest.create();
    });
    afterAll(async () => {
-      await util.PelangganRegisterTest.delete();
+      await util.SellerRegisterTest.delete();
    });
 
    it("should register if login succses", async () => {

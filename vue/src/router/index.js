@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
-import AdminChildren from "./children/admin.js";
+import SellerChildren from "./children/seller.js";
 import HomeChildren from "./children/home.js";
 
 const router = createRouter({
@@ -30,10 +30,10 @@ const router = createRouter({
          component: () => import("@/views/others/daftar-seller.vue"),
       },
       {
-         path: "/admin",
-         name: "admin",
-         component: () => import("@/layouts/admin-layout.vue"),
-         children: AdminChildren,
+         path: "/seller",
+         name: "seller",
+         component: () => import("@/layouts/seller-layout.vue"),
+         children: SellerChildren,
       },
 
       // not-found
