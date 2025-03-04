@@ -140,10 +140,9 @@
 				table: vueRef({
 					search: vueRef(""),
 					th: [
-						{ text: "Label", value: "label" },
-						{ text: "Priode", value: "priode" },
-						{ text: "Tahun", value: "tahun" },
-						{ text: "Status", value: "enable" },
+						{ text: "Nama", value: "nama" },
+						{ text: "No.Heandphone", value: "no_hp" },
+						{ text: "Username", value: "username" },						
 						{ text: "Created", value: "created_at" },
 						{ text: "Updated", value: "updated_at" },
 						{ text: "Operation", value: "operation" },

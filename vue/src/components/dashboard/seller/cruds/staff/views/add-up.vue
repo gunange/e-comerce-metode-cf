@@ -2,10 +2,10 @@
 	import { ref as vueRef, computed, reactive } from "vue";
 
 	import { breakpoints } from "@/config/vue-prime/appPrimeConfig.ts";
+	import {generateUniqID} from "@/controller/tools/other.ts";
 	import { Cruds } from "../controller";
 
 	const main = new Cruds();
-	
 
 	const modal = main.modal;
 	const form = vueRef({});
@@ -42,6 +42,12 @@
 		}
 	};
 
+	/* ----- method ----- */
+
+	const generatePassword = () => {
+		form.value.password = generateUniqID(5);
+	};
+
 	defineExpose({ open, close });
 </script>
 
@@ -62,18 +68,39 @@
 
 			<VeeForm @submit="onSave" :initial-values="form" ref="ref_form">
 				<div class="text-xs grid grid-cols-1 gap-4">
-
 					<div class="form">
 						<VeeField
 							v-slot="{ field }"
-							name="label"
+							name="nama"
 							rules="required"
-							v-model="form.label"
+							v-model="form.nama"
 						>
 							<label>
-								<span>Label</span>
+								<span>Nama</span>
 								<span class="text-red-500">
-									* <VeeErrorMessage name="label" />
+									* <VeeErrorMessage name="nama" />
+								</span>
+							</label>
+
+							<InputText
+								v-bind="field"
+								placeholder="Masukan Input Sesuai Field.."
+								class="text-xs"
+								autocomplete="off"
+							/>
+						</VeeField>
+					</div>
+					<div class="form">
+						<VeeField
+							v-slot="{ field }"
+							name="no_hp"
+							rules="required|phone"
+							v-model="form.no_hp"
+						>
+							<label>
+								<span>No. Heandphone</span>
+								<span class="text-red-500">
+									* <VeeErrorMessage name="no_hp" />
 								</span>
 							</label>
 
@@ -89,37 +116,14 @@
 					<div class="form">
 						<VeeField
 							v-slot="{ field }"
-							name="priode"
+							name="username"
 							rules="required"
-							v-model="form.priode"
+							v-model="form.username"
 						>
 							<label>
-								<span>Priode</span>
+								<span>Username</span>
 								<span class="text-red-500">
-									* <VeeErrorMessage name="priode" />
-								</span>
-							</label>
-
-							<InputText
-								v-bind="field"
-								placeholder="Masukan Input 2024.1 jika ganjil. dan masukan 2024.2 jika genap"
-								class="text-xs"
-								autocomplete="off"
-							/>
-						</VeeField>
-					</div>
-
-					<div class="form">
-						<VeeField
-							v-slot="{ field }"
-							name="tahun"
-							rules="required"
-							v-model="form.tahun"
-						>
-							<label>
-								<span>Tahun</span>
-								<span class="text-red-500">
-									* <VeeErrorMessage name="tahun" />
+									* <VeeErrorMessage name="username" />
 								</span>
 							</label>
 
@@ -131,7 +135,37 @@
 							/>
 						</VeeField>
 					</div>
-					
+					<div class="form">
+						<VeeField
+							v-slot="{ field }"
+							name="password"
+							rules="required"
+							v-model="form.password"
+						>
+							<div class="flex justify-between">
+								<label>
+									<span>Password</span>
+									<span class="text-red-500">
+										* <VeeErrorMessage name="password" />
+									</span>
+								</label>
+								<Button
+									label="Generate password"
+									size="small"
+									icon="pi pi-key"
+									@click="generatePassword"
+									outlined
+								/>
+							</div>
+
+							<InputText
+								v-bind="field"
+								placeholder="Masukan Input Sesuai Field.."
+								class="text-xs"
+								autocomplete="off"
+							/>
+						</VeeField>
+					</div>
 				</div>
 
 				<button type="submit" class="hidden" ref="refBtnAddAndUp">submit</button>

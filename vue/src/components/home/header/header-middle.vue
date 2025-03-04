@@ -1,7 +1,7 @@
 <template>
     <div class="flex justify-between items-center py-[15px]">
         <div class="brand flex items-center mx-[-10px]">
-            <img src="/images/logo/white.svg" class="size-16" alt="logo">
+            <img src="/assets/logo/white.svg" class="size-16" alt="logo">
             <p class="text-2xl">DiahShoope</p>
         </div>
         <div class="search">

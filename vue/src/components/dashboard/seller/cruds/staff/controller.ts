@@ -1,10 +1,15 @@
 import { pathApi } from "@/components/dashboard/seller/config";
 import { delay } from "@/controller/tools";
 import { reactive } from "vue";
-import { userStorage } from "./../../store";
+import { userStorage } from "../../store";
 import { HeandleSubmitApi } from "@/controller/others/HeandleSubmitApi";
 import { TimeApp } from "@/controller/tools";
-import { del, get, patch, post } from "@/controller/others/RequestApiController";
+import {
+   del,
+   get,
+   patch,
+   post,
+} from "@/controller/others/RequestApiController";
 
 export class Controller {
    get collection() {
@@ -14,7 +19,7 @@ export class Controller {
       return new TimeApp();
    }
    get storage() {
-      return userStorage().priode;
+      return userStorage().seller;
    }
 }
 export class Cruds extends Controller {
@@ -91,10 +96,12 @@ export class Cruds extends Controller {
       }
    }
    async add(body: any): Promise<void> {
-      const { data, status } = await post(this.collection, body, {alert: {
-         summary: "Sukses",
-         detail: "Menambahkan data",
-      },});
+      const { data, status } = await post(this.collection, body, {
+         alert: {
+            summary: "Sukses",
+            detail: "Menambahkan data",
+         },
+      });
 
       this.add_item(data, status);
       this.modal.proses_form = false;
@@ -117,32 +124,29 @@ export class Cruds extends Controller {
    }
 
    async del() {
-      const { data, status } = await del(
-         `${this.collection}/${this.uid}`,
-         {
-            alert: {
-               summary: "Sukses",
-               detail: "Menghapus data",
-            },
-         }
-      );
+      const { data, status } = await del(`${this.collection}/${this.uid}`, {
+         alert: {
+            summary: "Sukses",
+            detail: "Menghapus data",
+         },
+      });
       this.del_item(this.uid, status);
       this.modal.proses_form = false;
    }
 
-   async switchStatus(body: any): Promise<void> {
+   async resetPassword(body: any): Promise<void> {
       const { data, status } = await patch(
-         `${this.collection}/switch-status/${this.uid}`,
+         `${this.collection}/reset-password/${this.uid}`,
          body,
          {
             alert: {
                summary: "Sukses",
-               detail: "Memperbahrui Status",
+               detail: `Memperbahrui Passwrod ${this.data.nama}`,
             },
          }
       );
 
-      this.up_item(data, this.uid, status);
+      if (status === 201 || status === 200) this.close();
       this.modal.proses_form = false;
    }
 }
@@ -151,14 +155,16 @@ export class MainData extends Controller {
       return this.storage;
    }
 
-   get items() {      
-      return this.data.data.length ? this.data.data.map((el) => {
-         return {
-            ...el,
-            updated_at: this.time.formatDate(el.updated_at),
-            created_at: this.time.formatDate(el.created_at),
-         };
-      }) : [];
+   get items() {
+      return this.data.data.length
+         ? this.data.data.map((el) => {
+              return {
+                 ...el,
+                 updated_at: this.time.formatDate(el.updated_at),
+                 created_at: this.time.formatDate(el.created_at),
+              };
+           })
+         : [];
    }
 
    async init(): Promise<void> {

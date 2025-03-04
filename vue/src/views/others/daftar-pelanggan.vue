@@ -28,7 +28,7 @@
 		<div class="flex justify-between items-center h-full w-[80%] mx-auto">
 			<div class="text-white w-[600px] flex-none">
 				<div class="flex items-center mx-[-10px] mb-10">
-					<img src="/images/logo/white.svg" class="size-16" alt="logo" />
+					<img src="/assets/logo/white.svg" class="size-16" alt="logo" />
 					<p class="text-2xl">DiahShoope</p>
 				</div>
 				<p class="text-6xl">Daftar Pelanggan</p>

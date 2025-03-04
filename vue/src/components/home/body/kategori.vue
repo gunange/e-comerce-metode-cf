@@ -5,16 +5,16 @@
 		</div>
 		<div class="p-5 flex justify-around">
 			<div class="text-center">
-				<img src="/images/icon/electronik.svg" class="size-20" alt="">
+				<img src="/assets/icon/electronik.svg" class="size-20" alt="">
 				<p class="">Elektronik</p>
 			</div>
 			<div class="text-center">
-				<img src="/images/icon/kosmetik.svg" class="size-20" alt="">
+				<img src="/assets/icon/kosmetik.svg" class="size-20" alt="">
 
 				<p class="">Kosmetik</p>
 			</div>
 			<div class="text-center">
-				<img src="/images/icon/fashion.svg" class="size-20" alt="">
+				<img src="/assets/icon/fashion.svg" class="size-20" alt="">
 				<p class="">Fashion</p>
 			</div>
 		</div>

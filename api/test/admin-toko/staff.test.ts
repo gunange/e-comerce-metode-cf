@@ -4,7 +4,7 @@ import { Env } from "@/app/env";
 
 let debug = Env.debug;
 debug = false;
-const token = "1741092054940dcd411cf1204271b68850c7bbd1f8c1";
+const token = "174110664722c58e49b3a949475391ff075373446c43";
 let id = 1;
 
 describe("POST api/admin-toko/staff", async () => {

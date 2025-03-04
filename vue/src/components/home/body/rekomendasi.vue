@@ -8,7 +8,7 @@
                 <Card class="overflow-hidden rounded-md" v-for="e in 13">
                     <template #header>
                         <div class="bg-white">
-                            <img alt="gambar" src="/images/image/1.png" />
+                            <img alt="gambar" src="/assets/image/1.png" />
                         </div>
                     </template>
                     <template #title>

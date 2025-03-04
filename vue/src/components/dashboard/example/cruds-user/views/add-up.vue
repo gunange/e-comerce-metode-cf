@@ -3,6 +3,7 @@
 
 	import { breakpoints } from "@/config/vue-prime/appPrimeConfig.ts";
 	import { Cruds } from "../controller";
+	import {generateUniqID} from "@/controller/tools/other.ts";
 
 	import { AtributService as atribut } from "@/services/atribut.ts";
 
@@ -43,7 +44,11 @@
 		}
 	};
 
+	/* ----- method ----- */
 
+	const generatePassword = () => {
+		form.value.password = generateUniqID(5);
+	};
 
 	defineExpose({ open, close });
 </script>
@@ -156,7 +161,6 @@
 							/>
 						</VeeField>
 					</div>
-
 				</div>
 
 				<button type="submit" class="hidden" ref="refBtnAddAndUp">submit</button>
