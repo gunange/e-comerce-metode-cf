@@ -1,13 +1,20 @@
+const moduleName = "seller";
+
 const routes = [
    {
       path: "",
-      name: "seller-home",
+      name: `${moduleName}-home`,
       component: () => import("@/views/dashboard/seller/main-view.vue"),
    },
    {
       path: "seller-main",
-      name: "seller-main",
+      name: `${moduleName}-main`,
       component: () => import("@/views/dashboard/seller/main-view.vue"),
+   },
+   {
+      path: "staff",
+      name: `${moduleName}-staff`,
+      component: () => import("@/views/dashboard/seller/staff.vue"),
    },
    
 ];

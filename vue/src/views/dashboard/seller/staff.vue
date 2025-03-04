@@ -1,6 +1,6 @@
 <script setup>
 	import BradcumpWidget from "@/widgets/others/bardcump-widget.vue";
-	import Cruds from "@/components/dashboard/admin/cruds/priode/views/index.vue";
+	import Cruds from "@/components/dashboard/seller/cruds/staff/views/index.vue";
 </script>
 <template>
 	<div>
@@ -8,16 +8,16 @@
 			<BradcumpWidget
 				:home="{
 					icon: 'pi pi-home',
-					route: '/admin',
+					route: '/seller',
 				}"
-				:items="[{ label: 'Library', route: '/admin' }]"
+				:items="[{ label: 'Library', route: '/seller' }]"
 			/>
 		</div>
 		<div class="px-5 mt-5">
 			<div class="card">
 				<div class="card-header flex justify-between">
 					<div class="flex-none flex items-center">
-						<h6><i class="pi pi-sparkles" /> <span>Priode Setting</span></h6>
+						<h6><i class="pi pi-sparkles" /> <span>Staff Setting</span></h6>
 					</div>
 
 					<div class="flex items-center justify-end">
@@ -29,7 +29,7 @@
 							outlined
 							@click="main.reset()"
 						/>
-						
+
 						<Button
 							icon="pi pi-plus"
 							class="ml-2"
@@ -91,8 +91,9 @@
 										{
 											label: 'Swtich Status',
 											icon: 'pi pi-sync',
-											severity : 'info',
-											command : () => $refs.ref_cruds.open('switch-status', item.id)
+											severity: 'info',
+											command: () =>
+												$refs.ref_cruds.open('switch-status', item.id),
 										},
 									]"
 								>
@@ -114,16 +115,10 @@
 									</template>
 								</SpeedDial>
 							</div>
-
 						</template>
 
-
-
 						<template #loading>
-							<img
-								src="@/assets/images/gif/bola.gif"
-								style="width: 100px; height: 80px"
-							/>
+							<img src="/assets/gif/bola.gif" style="width: 100px; height: 80px" />
 						</template>
 					</EasyDataTable>
 				</div>
@@ -135,7 +130,7 @@
 
 <script>
 	import { ref as vueRef } from "vue";
-	import { MainData } from "@/components/dashboard/admin/cruds/priode/controller";
+	import { MainData } from "@/components/dashboard/seller/cruds/staff/controller";
 
 	const main = new MainData();
 
@@ -162,7 +157,7 @@
 				}),
 			};
 		},
-		
+
 		computed: {
 			items() {
 				return main.items;
@@ -171,11 +166,9 @@
 				return main.data.load;
 			},
 		},
-		methods : {
-			
-		},
+		methods: {},
 		async mounted() {
-			if(!main.data.run) await main.init();
+			if (!main.data.run) await main.init();
 		},
 	};
 </script>

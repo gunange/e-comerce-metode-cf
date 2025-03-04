@@ -44,7 +44,7 @@
 				<Card class="p-5">
 					<template #header>
 						<div class="flex items-center justify-center mt-5">
-							<img src="/images/logo/blue.svg" class="size-16" alt="logo">
+							<img src="/assets/logo/blue.svg" class="size-16" alt="logo">
 							<p class="text-2xl font-bold text-sky-500">DiahShoope</p>
 						</div>
 					</template>

@@ -51,4 +51,4 @@ export const navbar = {
    profilMenu: profilMenu,
 };
 
-export const pathApi = "admin";
+export const pathApi = "seller";

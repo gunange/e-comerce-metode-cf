@@ -10,7 +10,7 @@
 		<MainDashboard
 			:sidebar="sidebar"
 			title="Seller"
-			:sub-title="'@' + user.username"
+			:sub-title="'@' + user.user?.username"
 			:nama="user.nama"
 			:navbar="navbar"
 		>
@@ -28,26 +28,25 @@
 	export default {
 		computed: {
 			user() {
-				// return auth.store.user;
-				return {};
+				return auth.store.user;
 			},
 		},
-		// async beforeRouteEnter(to, from, next) {
-		// 	await auth.init();
-		// 	if (auth.store.isAuth && auth.store.user.role === "4dm1n-t0kO") {
-		// 		auth.setToken();
-		// 		next();
-		// 		return;
-		// 	}
+		async beforeRouteEnter(to, from, next) {
+			await auth.init();
+			if (auth.store.isAuth && auth.store.user.role === "4dm1n-t0kO") {
+				auth.setToken();
+				next();
+				return;
+			}
 
-		// 	await auth.signOut(() => {
-		// 		next("/login");
-		// 	});
-		// },
-		// async beforeRouteLeave(to, from, next) {
-		// 	await auth.reset();
-		// 	new UserStorageController().dispose();
-		// 	next();
-		// },
+			await auth.signOut(() => {
+				next("/login");
+			});
+		},
+		async beforeRouteLeave(to, from, next) {
+			await auth.reset();
+			new UserStorageController().dispose();
+			next();
+		},
 	};
 </script>

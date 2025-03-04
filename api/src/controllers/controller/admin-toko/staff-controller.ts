@@ -2,7 +2,7 @@ import * as util from "@/controllers/services/util";
 import { PegawaiSellerRagisterRequest } from "@/controllers/services/models/pegawai_seller/register";
 import { UsersController } from "../users-controller";
 
-export class PegawaiTokoController {
+export class StaffController {
    static async index(c: util.Context): Promise<any> {
       return c.json({
          data: await util.dbClient.pegawaiSeller.findMany(),

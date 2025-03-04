@@ -12,9 +12,9 @@ const menu = [
       route: `/${path}/main`,
    },
    {
-      label: "Feeder",
+      label: "Staff",
       icon: "pi pi-palette",
-      route: `/${path}/feeder`,
+      route: `/${path}/staff`,
    },
    {
       label: "Atribut",
@@ -51,4 +51,4 @@ export const navbar = {
    profilMenu: profilMenu,
 };
 
-export const pathApi = "seller";
+export const pathApi = "admin-toko";

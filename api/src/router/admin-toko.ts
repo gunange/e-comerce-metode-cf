@@ -11,10 +11,10 @@ adminTokoRoute.use(async(c, next) =>{
     await next();
 })
 
-adminTokoRoute.get('/pelanggan',Controller.PegawaiTokoController.index);
-adminTokoRoute.post('/pelanggan', Controller.PegawaiTokoController.insert);
-adminTokoRoute.patch('/pelanggan/:id', Controller.PegawaiTokoController.update);
-adminTokoRoute.delete('/pelanggan/:id', Controller.PegawaiTokoController.del);
+adminTokoRoute.get('/staff',Controller.StaffController.index);
+adminTokoRoute.post('/staff', Controller.StaffController.insert);
+adminTokoRoute.patch('/staff/:id', Controller.StaffController.update);
+adminTokoRoute.delete('/staff/:id', Controller.StaffController.del);
 
 
 adminTokoRoute.get('/product',Controller.ProductController.index);

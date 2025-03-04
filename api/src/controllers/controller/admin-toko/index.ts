@@ -1,8 +1,8 @@
-import { PegawaiTokoController } from "./pegawai-toko-controller";
+import { StaffController } from "./staff-controller";
 import { ProductController } from "./product-controller";
 import * as util from "@/controllers/services/util";
 
-export { PegawaiTokoController , ProductController};
+export { StaffController , ProductController};
 
 export class MainController {
    static async setUser(c: util.Context ): Promise<void> {
