@@ -1,5 +1,8 @@
 import * as util from "@/controllers/services/util";
-import { PegawaiSellerRagisterRequest } from "@/controllers/services/models/pegawai_seller/register";
+import {
+   PegawaiSellerRagisterRequest,
+   PegawaiSellerUpdateRequest,
+} from "@/controllers/services/models/pegawai_seller/register";
 import { UsersController } from "../users-controller";
 import { staffSellerResponse } from "@/controllers/interfaces/resource/seller";
 
@@ -36,13 +39,30 @@ export class StaffController {
    }
 
    static async update(c: util.Context): Promise<any> {
-      const db = await PegawaiSellerRagisterRequest(c);
+      const req = await PegawaiSellerUpdateRequest(c);
+      const db = await util.dbClient.pegawaiSeller.findFirstOrThrow({
+         where: {
+            id: Number(c.req.param("id")),
+         },
+         include: {
+            user: true,
+         },
+      });
+
+      await util.dbClient.user.update({
+         where: {
+            id: db.user.id,
+         },
+         data: {
+            nama: req.nama,
+         },
+      });
 
       return c.json({
          data: staffSellerResponse(
             (await util.dbClient.pegawaiSeller.update({
                data: {
-                  no_hp: db.no_hp,
+                  no_hp: req.no_hp,
                },
                where: {
                   id: Number(c.req.param("id")),

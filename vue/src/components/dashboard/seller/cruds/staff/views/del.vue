@@ -49,7 +49,7 @@
 			<template #default>
 				<div class="text-center">
 					<p>
-						Apakah anda akan menghapus data <b>{{ form.label }} </b> ?
+						Apakah anda akan menghapus data <b>{{ form.nama }} </b> ?
 					</p>
 				</div>
 			</template>

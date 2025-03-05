@@ -13,7 +13,7 @@ export interface UserLoginInterface {
 export const UserValidateRequestRegistrasi: ZodType = z.object({
    username: z.string().min(1).max(100),
    password: z.string().min(1).max(50),
-   nama: z.string().min(1).max(20),
+   nama: z.string().min(1).max(50),
 });
 export const UserValidateLogin: ZodType = z.object({
    username: z.string().min(1).max(100),

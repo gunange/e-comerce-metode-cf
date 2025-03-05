@@ -57,10 +57,8 @@ describe("POST api/admin-toko/staff", async () => {
                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({
-               no_hp: "082212341235",
-               username: "testuser",
                nama: "testuser",
-               password: "testuser",
+               no_hp: "082212341235",
             }),
          }
       );

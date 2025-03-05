@@ -2,7 +2,7 @@
 	import { ref as vueRef, computed, reactive } from "vue";
 
 	import { breakpoints } from "@/config/vue-prime/appPrimeConfig.ts";
-	import {generateUniqID} from "@/controller/tools/other.ts";
+	import { generateUniqID } from "@/controller/tools/other.ts";
 	import { Cruds } from "../controller";
 
 	const main = new Cruds();
@@ -112,59 +112,60 @@
 							/>
 						</VeeField>
 					</div>
-
-					<div class="form">
-						<VeeField
-							v-slot="{ field }"
-							name="username"
-							rules="required"
-							v-model="form.username"
-						>
-							<label>
-								<span>Username</span>
-								<span class="text-red-500">
-									* <VeeErrorMessage name="username" />
-								</span>
-							</label>
-
-							<InputText
-								v-bind="field"
-								placeholder="Masukan Input Sesuai Field.."
-								class="text-xs"
-								autocomplete="off"
-							/>
-						</VeeField>
-					</div>
-					<div class="form">
-						<VeeField
-							v-slot="{ field }"
-							name="password"
-							rules="required"
-							v-model="form.password"
-						>
-							<div class="flex justify-between">
+					<div class="grid grid-cols-1 gap-4" v-if="main.modal.act == 'add'">
+						<div class="form">
+							<VeeField
+								v-slot="{ field }"
+								name="username"
+								rules="required"
+								v-model="form.username"
+							>
 								<label>
-									<span>Password</span>
+									<span>Username</span>
 									<span class="text-red-500">
-										* <VeeErrorMessage name="password" />
+										* <VeeErrorMessage name="username" />
 									</span>
 								</label>
-								<Button
-									label="Generate password"
-									size="small"
-									icon="pi pi-key"
-									@click="generatePassword"
-									outlined
-								/>
-							</div>
 
-							<InputText
-								v-bind="field"
-								placeholder="Masukan Input Sesuai Field.."
-								class="text-xs"
-								autocomplete="off"
-							/>
-						</VeeField>
+								<InputText
+									v-bind="field"
+									placeholder="Masukan Input Sesuai Field.."
+									class="text-xs"
+									autocomplete="off"
+								/>
+							</VeeField>
+						</div>
+						<div class="form">
+							<VeeField
+								v-slot="{ field }"
+								name="password"
+								rules="required"
+								v-model="form.password"
+							>
+								<div class="flex justify-between">
+									<label>
+										<span>Password</span>
+										<span class="text-red-500">
+											* <VeeErrorMessage name="password" />
+										</span>
+									</label>
+									<Button
+										label="Generate password"
+										size="small"
+										icon="pi pi-key"
+										@click="generatePassword"
+										outlined
+									/>
+								</div>
+
+								<InputText
+									v-bind="field"
+									placeholder="Masukan Input Sesuai Field.."
+									class="text-xs"
+									autocomplete="off"
+								/>
+							</VeeField>
+						</div>
 					</div>
 				</div>
 
