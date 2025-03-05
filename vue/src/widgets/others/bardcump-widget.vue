@@ -16,7 +16,7 @@
 		},
 		title: {
 			type: String,
-			default: "Institute Teknologi Gamalama",
+			default: "Diah Shoope",
 		},
 		subTitle: {
 			type: String,
