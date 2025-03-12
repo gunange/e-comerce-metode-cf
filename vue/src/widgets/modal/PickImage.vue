@@ -1,100 +1,42 @@
-<template>
-	<div>
-		<modal-card :modal="md" ref="ref_modal">
-			<template #body>
-				<div class="card">
-					<div
-						class="card-header border-bottom color-no-implement text-danger allow-dark"
-					>
-						<span><i class="bi bi-image"></i> Pick Image</span>
-					</div>
-					<div class="card-body card-scroll">
-						<div class="d-flex flex-column align-items-center" v-if="rx.load">
-							<img
-								src="@/assets/image/other/bola.gif"
-								style="width: 350px; height: auto"
-							/>
-						</div>
-						<div v-else>
-							<VuePictureCropper
-								:boxStyle="{
-									width: '100%',
-									height: '100%',
-									backgroundColor: '#f8f8f8',
-									margin: 'auto',
-								}"
-								:img="pic"
-								:options="options"
-								:presetMode="presetMode"
-							/>
-						</div>
-					</div>
-					<div
-						class="card-footer d-flex justify-content-end border-top text-bg-light"
-					>
-						<div class="btn-group">
-							<button
-								class="btn btn-sm btn-outline-secondary"
-								type="button"
-								data-bs-dismiss="modal"
-							>
-								Cencel
-							</button>
-							<button
-								class="btn btn-sm btn-primary"
-								type="button"
-								@click="getResult"
-							>
-								Pick Image
-							</button>
-						</div>
-					</div>
-				</div>
-			</template>
-		</modal-card>
-		<input
-			ref="refUploadInput"
-			type="file"
-			accept="image/jpg, image/jpeg, image/png, image/gif"
-			@change="selectFile"
-			v-show="false"
-		/>
-	</div>
-</template>
-
 <script setup>
 	import VuePictureCropper, { cropper } from "vue-picture-cropper";
-	import ModalCard from "@/widgets/modal/ModalWidget.vue";
-	import { onMounted, ref as vueRef, computed, reactive } from "vue";
+	import { breakpoints } from "@/config/vue-prime/appPrimeConfig.ts";
 
-	const ref_modal = vueRef();
-	const refUploadInput = vueRef();
+	import { ref, reactive } from "vue";
+
+	const refUploadInput = ref();
 
 	const emit = defineEmits(["onPick"]);
 
-	const pic = vueRef();
-	const nameFile = vueRef("name-file");
+	const modal = ref({
+		show: false,
+		label: "Pick Image",
+		act: null,
+		proses_form: false,
+		uid: null,
+		load: true,
+	});
+
+	const pic = ref();
+	const nameFile = ref("name-file");
 	const result = reactive({
 		dataURL: "",
 		blobURL: "",
 		file: null,
 	});
 
-	const rx = vueRef({
-		load: true,
-	});
 
 	const openModal = () => {
-		rx.value.load = true;
-		ref_modal.value.open();
+		modal.value.load = true;
+		modal.value.show = true;
 	};
 	const closeModal = () => {
-		rx.value.load = true;
-		ref_modal.value.close();
+		modal.value.load = true;
+		modal.value.show = false;
 	};
 
 	const selectFile = (e) => {
-		rx.value.load = true;
+		modal.value.load = true;
 		pic.value = "";
 		result.dataURL = "";
 		result.blobURL = "";
@@ -117,7 +59,7 @@
 
 			// Finish Load
 			setTimeout(() => {
-				rx.value.load = false;
+				modal.value.load = false;
 			}, 700);
 
 			// Clear selected files of input element
@@ -147,19 +89,19 @@
 	};
 
 	const atPick = () => {
+		result.blobURL = "";
+		result.dataURL = "";
+		result.file = null;
+
 		refUploadInput.value.click();
 	};
 
 	defineExpose({ openModal, closeModal, atPick, nameFile });
 	defineProps({
-		md: {
-			id: "modal-pick",
-			class: "modal-lg",
-		},
 		options: {
 			viewMode: 1,
-			dragMode: "move",
 			aspectRatio: 1,
+			dragMode: "move",
 			cropBoxResizable: false,
 		},
 		presetMode: {
@@ -169,3 +111,71 @@
 		},
 	});
 </script>
+
+<template>
+	<main>
+		<Dialog
+			v-model:visible="modal.show"
+			:breakpoints="breakpoints.dialog"
+			:style="{ width: '40vw' }"
+			modal
+		>
+			<template #header>
+				<h6 class="text-primary text-sm flex items-center">
+					<i class="pi pi-tags mr-2"></i>
+					<span>{{ modal.label }}</span>
+				</h6>
+			</template>
+
+			<div class="card">
+				<div class="">
+					<div class="flex justify-center items-center" v-if="modal.load">
+						<img src="/assets/gif/bola.gif" style="width: 350px; height: auto" />
+					</div>
+					<div v-else>
+						<VuePictureCropper
+							:boxStyle="{
+								width: '100%',
+								height: '100%',
+								backgroundColor: '#f8f8f8',
+								margin: 'auto',
+							}"
+							:img="pic"
+							:options="options"
+							:presetMode="presetMode"
+						/>
+					</div>
+				</div>
+			</div>
+			<template #footer>
+				<div class="">
+					<div class="btn-group">
+						<InputGroup>
+							<Button
+								label="Cencel"
+								icon="pi pi-times"
+								severity="danger"
+								size="small"
+								@click="closeModal"
+							/>
+							<Button
+								label="Pick Image"
+								icon="pi pi-check"
+								iconPos="right"
+								size="small"
+								@click="getResult"
+							/>
+						</InputGroup>
+					</div>
+				</div>
+			</template>
+		</Dialog>
+		<input
+			ref="refUploadInput"
+			type="file"
+			accept="image/jpg, image/jpeg, image/png, image/gif"
+			@change="selectFile"
+			v-show="false"
+		/>
+	</main>
+</template>

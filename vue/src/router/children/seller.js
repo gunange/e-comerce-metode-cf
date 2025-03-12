@@ -16,6 +16,11 @@ const routes = [
       name: `${moduleName}-staff`,
       component: () => import("@/views/dashboard/seller/staff.vue"),
    },
+   {
+      path: "product",
+      name: `${moduleName}-product`,
+      component: () => import("@/views/dashboard/seller/product.vue"),
+   },
    
 ];
 

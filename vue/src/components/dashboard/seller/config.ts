@@ -17,9 +17,9 @@ const menu = [
       route: `/${path}/staff`,
    },
    {
-      label: "Atribut",
+      label: "Product",
       icon: "pi pi-palette",
-      route: `/${path}/atribut`,
+      route: `/${path}/product`,
    },
    {
       label: "Priode",

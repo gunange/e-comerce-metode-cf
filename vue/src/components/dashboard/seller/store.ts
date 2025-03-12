@@ -7,7 +7,9 @@ export const storeId = "admin-store";
 export const userStorage = defineStore(storeId, {
    state: (): {
       seller: StoreDataFormApi;
+      product: StoreDataFormApi;
    } => ({
       seller: { ...storeDefault },
+      product: { ...storeDefault },
    }),
 });
