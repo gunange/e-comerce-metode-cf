@@ -125,4 +125,28 @@ export class StorageController {
          },
       });
    }
+   static async get(c: util.Context): Promise<any> {
+      const uid = c.req.param("uid");
+
+      const db = await util.dbClient.storage.findFirstOrThrow({
+         where: {
+            uid: uid,
+         },
+      });
+
+      const pathFile = `${db.path}/${db.name}`;
+
+      try {
+         const fileBuffer = await Bun.file(pathFile).arrayBuffer();
+         const mimeType = db.mime_type || "application/octet-stream";
+ 
+         return new Response(fileBuffer, {
+             headers: {
+                 "Content-Type": mimeType,
+             },
+         });
+     } catch (error) {
+         return c.json({ error: "File not found" }, 404);
+     }
+   }
 }

@@ -3,6 +3,7 @@ model Product {
   seller_id  Int
   label      String   @db.VarChar(255)
   deskripsi  String   @db.VarChar(255)
+  kategori  String   @db.VarChar(100)
   stock      Decimal  @db.Decimal(8, 0)
   harga      Decimal  @db.Decimal(10, 0)
   foto       String   @db.VarChar(255)

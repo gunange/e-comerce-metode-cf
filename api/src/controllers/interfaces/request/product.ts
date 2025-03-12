@@ -8,6 +8,7 @@ interface ProductCreate {
    stock: number;
    harga: number;
    foto: string;
+   kategori: string;
 }
 
 interface ProductUpdate {
@@ -16,6 +17,7 @@ interface ProductUpdate {
    stock: number;
    harga: number;
    foto: string;
+   kategori: string;
 }
 
 export async function ProductCreateRequest(
@@ -25,6 +27,7 @@ export async function ProductCreateRequest(
    const validate: util.ZodType = util.zod.object({
       label: util.zod.string().min(1).max(255),
       deskripsi: util.zod.string().min(1).max(255),
+      kategori: util.zod.string().min(1).max(100),
       stock: util.zod.number().min(1),
       harga: util.zod.number().min(1),
       foto: util.zod.string().min(1).max(255),
@@ -43,6 +46,7 @@ export async function ProductUpRequest(
    const validate: util.ZodType = util.zod.object({
       label: util.zod.string().min(1).max(255),
       deskripsi: util.zod.string().min(1).max(255),
+      kategori: util.zod.string().min(1).max(100),
       stock: util.zod.number().min(1),
       harga: util.zod.number().min(1),
       foto: util.zod.string().min(1).max(255).optional(),

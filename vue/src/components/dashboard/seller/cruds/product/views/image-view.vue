@@ -21,14 +21,7 @@
 		main.close();
 	};
 
-	/* ----- on submit ----- */
-	const onSave = async () => {
-		if (modal.proses_form) return;
-		modal.proses_form = true;
-
-		await main.del();
-		close();
-	};
+	
 
 	defineExpose({ open, close });
 </script>
@@ -38,34 +31,20 @@
 		<Dialog
 			v-model:visible="modal.show"
 			:breakpoints="breakpoints.dialog"
-			:style="{ width: '30vw' }"
+			:style="{ width: '50vw' }"
 			modal
 		>
 			<template #header>
-				<h6 class="text-red-300 text-sm flex items-center">
-					<i class="pi pi-trash mr-2"></i> <span>Hapus Data</span>
+				<h6 class="text-blue-300 text-sm flex items-center">
+					<i class="pi pi-image mr-2"></i> <span>Image Show</span>
 				</h6>
 			</template>
 			<template #default>
-				<div class="text-center">
-					<p>
-						Apakah anda akan menghapus data <b>{{ form.label }} </b> ?
-					</p>
+				<div class="bg-gray-300 flex justify-center items-center size-full">
+					<Image :src="'http://localhost:3001/api/storage/' + form.foto" alt="Image" width="250" />
 				</div>
 			</template>
-			<template #footer>
-				<div class="d-flex justify-content-end gap-2">
-					<Button
-						type="button"
-						label="Hapus"
-						icon="pi pi-trash"
-						size="small"
-						@click="onSave"
-						:loading="modal.proses_form"
-						outlined
-					></Button>
-				</div>
-			</template>
+			
 		</Dialog>
 	</main>
 </template>

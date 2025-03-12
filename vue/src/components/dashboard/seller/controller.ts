@@ -18,7 +18,6 @@ export class Controller {
 
    dispose() {
       if (this.isInitStore) {
-         if(this.store.websocket) this.store.websocket.close();
          this.store.$reset();
          this.store.$dispose();
       }

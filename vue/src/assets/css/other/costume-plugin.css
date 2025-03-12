@@ -10,6 +10,13 @@
 }
 
 /*-----------------V Select-----------------*/
+:root {
+   --vs-dropdown-z-index: 2010 ;
+}
+.vs__dropdown-menu{
+   font-size : var(--vs-font-size);
+}
+
 .form .v-select {
    background-color: var(--form-bg);
    background-clip: padding-box;
@@ -27,11 +34,13 @@
 
    --vs-line-height: var(--form-line-height);
    --vs-dropdown-bg--vs-dropdown-bg: var(--background);
-   /* --vs-dropdown-bg : var(--p-form-field-background); */
+   --vs-dropdown-bg : var(--p-form-field-background);
    --vs-border-width: var(--form-border-width);
-   --vs-dropdown-z-index: 1000;
+   --vs-dropdown-z-index: 2010 !important;
    --vs-dropdown-option-padding: 12px 17px;
    --vs-transition-duration: 0.2s;
+
+   
 
    transition: 0.3s border box-shadow;
 }
@@ -65,9 +74,10 @@
    border: none;
 }
 
+
+
 /*-----------------easy table vue 3-----------------*/
 .customize-table {
-   /* background */
    --easy-table-header-background-color: transparent;
    --easy-table-body-row-background-color: transparent;
    --easy-table-footer-background-color: transparent;

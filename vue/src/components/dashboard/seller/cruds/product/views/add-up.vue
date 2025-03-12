@@ -2,11 +2,15 @@
 	import { ref as vueRef, computed, reactive } from "vue";
 	import PickImage from "@/widgets/modal/PickImage.vue";
 
+	import { AuthController } from "@/controller/controllers/AuthController";
+	import { AtributService as atribut } from "@/services/atribut.ts";
+
 	import { breakpoints } from "@/config/vue-prime/appPrimeConfig.ts";
 
 	import { Cruds } from "../controller";
 
 	const main = new Cruds();
+	const userStorage = new AuthController().user;
 
 	const pick_image = vueRef({
 		dataURL: null,
@@ -47,7 +51,18 @@
 		if (modal.proses_form) return;
 		modal.proses_form = true;
 
+		e.stock = Number(e.stock);
+		e.harga = Number(e.harga);
+
 		if (modal.act == "add") {
+			const formFile = new FormData();
+
+			formFile.append("file", pick_image.value.file);
+			formFile.append("label", e.label);
+			formFile.append("path", `product/${userStorage.nama_toko}`);
+
+			const { data, status } = await main.sendFile(formFile);
+			e.foto = data.uid;
 			await main.add(e);
 		} else if (modal.act == "up") {
 			await main.up(e);
@@ -79,8 +94,9 @@
 			</template>
 
 			<VeeForm @submit="onSave" :initial-values="form" ref="ref_form">
+				
 				<div class="text-xs grid grid-cols-1 gap-4">
-					<div class="form">
+					<div class="form" v-if="modal.act == 'add'">
 						<div class="mb-5 bg-gray-300 rounded">
 							<div
 								class="h-[250px] flex items-center justify-center cursor-pointer"
@@ -139,6 +155,25 @@
 						</VeeField>
 					</div>
 					<div class="form">
+						<VeeField name="kategori" rules="required" v-model="form.kategori">
+							<label>
+								<span>Kategori</span>
+								<span class="text-red-500">
+									* <VeeErrorMessage name="kategori" />
+								</span>
+							</label>
+
+							<v-select
+								class="form"
+								placeholder="Silahkan Pilih .."
+								:options="atribut.listOpsiKategori"
+								v-model="form.kategori"
+								:appendToBody="true"
+							/>
+						</VeeField>
+					</div>
+
+					<div class="form">
 						<VeeField
 							v-slot="{ field }"
 							name="stock"
@@ -149,6 +184,28 @@
 								<span>Stock</span>
 								<span class="text-red-500">
 									* <VeeErrorMessage name="stock" />
+								</span>
+							</label>
+
+							<InputText
+								v-bind="field"
+								placeholder="Masukan Input Sesuai Field.."
+								class="text-xs"
+								autocomplete="off"
+							/>
+						</VeeField>
+					</div>
+					<div class="form">
+						<VeeField
+							v-slot="{ field }"
+							name="harga"
+							rules="required|number"
+							v-model="form.herga"
+						>
+							<label>
+								<span>Harga</span>
+								<span class="text-red-500">
+									* <VeeErrorMessage name="harga" />
 								</span>
 							</label>
 

@@ -11,8 +11,8 @@ export const AtributService = {
          { label: "Sabtu", value: 6 },
       ];
    },
-   get listOpsiPanitia() {
-      return ["Ketua", "Sekretaris", "Bendahara", "Anggota"];
+   get listOpsiKategori() {
+      return ["Elektronik", "Kosmetik", "Fasahion"];
    },
 };
 

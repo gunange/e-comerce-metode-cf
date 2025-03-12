@@ -89,11 +89,11 @@
 											command: () => $refs.ref_cruds.open('del', item.id),
 										},
 										{
-											label: 'Swtich Status',
-											icon: 'pi pi-sync',
+											label: 'Image View',
+											icon: 'pi pi-image',
 											severity: 'info',
 											command: () =>
-												$refs.ref_cruds.open('switch-status', item.id),
+												$refs.ref_cruds.open('image-view', item.id),
 										},
 									]"
 								>
@@ -140,9 +140,10 @@
 				table: vueRef({
 					search: vueRef(""),
 					th: [
-						{ text: "Nama", value: "nama" },
-						{ text: "No.Heandphone", value: "no_hp" },
-						{ text: "Username", value: "username" },						
+						{ text: "Label", value: "label" },
+						{ text: "Harga", value: "harga" },
+						{ text: "Stock", value: "stock" },						
+						{ text: "Deskripsi", value: "deskripsi" },						
 						{ text: "Created", value: "created_at" },
 						{ text: "Updated", value: "updated_at" },
 						{ text: "Operation", value: "operation" },

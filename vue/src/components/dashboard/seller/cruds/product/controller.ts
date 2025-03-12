@@ -95,6 +95,19 @@ export class Cruds extends Controller {
          await this.reset();
       }
    }
+   async sendFile(body: any): Promise<{
+      data: any;
+      status: number;
+   }> {
+      const { data, status } = await post("storage", body,{
+         config :{
+            headers :{
+               'Content-Type': 'multipart/form-data'
+            }
+         }
+      });
+      return { data, status };
+   }
    async add(body: any): Promise<void> {
       const { data, status } = await post(this.collection, body, {
          alert: {
