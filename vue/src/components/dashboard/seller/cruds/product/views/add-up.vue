@@ -240,14 +240,14 @@
 			@onPick="onPick"
 			:presetMode="{
 				mode: 'fixedSize',
-				width: 250,
-				height: 250,
+				width: 650,
+				height: 650,
 			}"
 			:options="{
 				viewMode: 1,
 				dragMode: 'move',
-				aspectRatio: 1,
 				cropBoxResizable: false,
+				aspectRatio: 1,
 			}"
 		/>
 	</main>

@@ -12,7 +12,7 @@ export const AtributService = {
       ];
    },
    get listOpsiKategori() {
-      return ["Elektronik", "Kosmetik", "Fasahion"];
+      return ["Elektronik", "Kosmetik", "Fashion"];
    },
 };
 
