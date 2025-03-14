@@ -1,9 +1,9 @@
 <template>
 	<div class="flex justify-between items-center py-[15px]">
-		<div class="brand flex items-center mx-[-10px] flex-auto">
+		<router-link class="brand flex items-center mx-[-10px] flex-auto" to="/">
 			<img src="/assets/logo/white.svg" class="size-16" alt="logo" />
 			<p class="text-2xl">DiahShoope</p>
-		</div>
+		</router-link>
 		<div class="search flex-3/12">
 			<InputGroup>
 				<InputText
@@ -20,7 +20,7 @@
 				size="large"
 				variant="text"
 				as="router-link"
-				to="keranjang"
+				to="/keranjang"
 			/>
 		</div>
 	</div>
