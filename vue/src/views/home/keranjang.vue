@@ -66,9 +66,11 @@
 												icon="pi pi-shopping-cart"
 												label="Order Sekarang"
                                                 size="small"
+												as="router-link"
+												to="/order/2"
 												:disabled="item.stock === 0"
 												class="flex-auto md:flex-initial whitespace-nowrap"
-											></Button>
+											/>
 										</div>
 									</div>
 								</div>

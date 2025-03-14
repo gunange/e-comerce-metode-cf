@@ -63,8 +63,8 @@
 						</InputNumber>
 					</div>
                     <div class="mt-5">
-                        <Button label="Masukan Keranjan" class="me-4"  severity="warn" outlined size="small" icon="pi pi-cart-plus" />
-                        <Button label="Beli Sekarang" size="small" />
+                        <Button label="Masukan Keranjan" class="me-4"  severity="warn" outlined size="small" icon="pi pi-cart-plus"  />
+                        <Button label="Beli Sekarang" size="small" to="/order/2" />
                     </div>
 				</div>
 			</div>

@@ -21,6 +21,11 @@ const routes = [
       name: `${moduleName}-keranjang`,
       component: () => import("@/views/home/keranjang.vue"),
    },
+   {
+      path: "order/:id",
+      name: `${moduleName}-order`,
+      component: () => import("@/views/home/order.vue"),
+   },
 ];
 
 export default routes;
