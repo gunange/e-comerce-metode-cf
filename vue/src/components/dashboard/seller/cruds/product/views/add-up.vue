@@ -94,7 +94,6 @@
 			</template>
 
 			<VeeForm @submit="onSave" :initial-values="form" ref="ref_form">
-				
 				<div class="text-xs grid grid-cols-1 gap-4">
 					<div class="form" v-if="modal.act == 'add'">
 						<div class="mb-5 bg-gray-300 rounded">
@@ -196,12 +195,7 @@
 						</VeeField>
 					</div>
 					<div class="form">
-						<VeeField
-							v-slot="{ field }"
-							name="harga"
-							rules="required|number"
-							v-model="form.herga"
-						>
+						<VeeField name="harga" rules="required|number" v-model="form.herga">
 							<label>
 								<span>Harga</span>
 								<span class="text-red-500">
@@ -209,11 +203,12 @@
 								</span>
 							</label>
 
-							<InputText
-								v-bind="field"
+							<InputNumber
+								v-model="form.herga"
+								inputId="integeronly"
 								placeholder="Masukan Input Sesuai Field.."
-								class="text-xs"
-								autocomplete="off"
+								inputClass="text-xs"
+								fluid
 							/>
 						</VeeField>
 					</div>
