@@ -16,6 +16,11 @@ const routes = [
       name: `${moduleName}-detail-product`,
       component: () => import("@/views/home/detail-product.vue"),
    },
+   {
+      path: "keranjang",
+      name: `${moduleName}-keranjang`,
+      component: () => import("@/views/home/keranjang.vue"),
+   },
 ];
 
 export default routes;
