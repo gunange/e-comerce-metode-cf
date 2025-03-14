@@ -1,5 +1,5 @@
 <script setup>
-import {api} from "@/config/apiConfig.js"
+	import { api } from "@/config/apiConfig.js";
 </script>
 <template>
 	<div class="md:w-[80%] mx-auto mt-10 bg-white py-5">
@@ -23,8 +23,20 @@ import {api} from "@/config/apiConfig.js"
 		</div>
 	</div>
 	<div class="md:w-[80%] mx-auto mt-5 mb-20">
-		<div class="grid md:grid-cols-5 sm:grid-cols-2 gap-4 " v-if="items.length && store.run">
-			<CardProduct v-for="(item, i) in items" :key="i" :title="item.label" :subtitle="'Rp. ' + item.harga" :description="item.deskripsi" :image="`${api.url_api}storage/` +item.foto" />
+		<div
+			class="grid md:grid-cols-5 sm:grid-cols-2 gap-4"
+			v-if="items.length && store.run"
+		>
+			<CardProduct
+				v-for="(item, i) in items"
+				:key="i"
+				:title="item.label"
+				:subtitle="'Rp. ' + item.harga"
+				:description="item.deskripsi"
+				:image="`${api.url_api}storage/` + item.foto"
+				:item-id="item.id"
+				@detail-product="goToProduct"
+			/>
 		</div>
 		<div class="text-red-400 text-center text-2xl" v-else-if="store.run">
 			<i class="pi pi-exclamation-triangle text-4xl mt-5" />
@@ -41,8 +53,6 @@ import {api} from "@/config/apiConfig.js"
 	import { delay } from "@/controller/tools";
 	import { reactive } from "vue";
 	import { get } from "@/controller/others/RequestApiController";
-
-	
 
 	const __c = new Controller();
 
@@ -80,6 +90,9 @@ import {api} from "@/config/apiConfig.js"
 				this.store.data = data;
 				this.store.run = status === 200;
 				this.store.load = false;
+			},
+			async goToProduct(a) {
+				this.$router.push({ name: "home-detail-product", params: { id: a.id } });
 			},
 		},
 	};

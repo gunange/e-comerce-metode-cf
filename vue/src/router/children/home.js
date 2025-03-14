@@ -1,13 +1,20 @@
+const moduleName = "home";
+
 const routes = [
    {
       path: "",
-      name: "sub-main-home",
+      name: `${moduleName}-submain`,
       component: () => import("@/views/home/home-view.vue"),
    },
    {
-      path: "sub-main-home",
-      name: "home-sub-main-home",
+      path: "sub-main",
+      name: `${moduleName}-sub-main`,
       component: () => import("@/views/home/home-view.vue"),
+   },
+   {
+      path: "detail-product/:id",
+      name: `${moduleName}-detail-product`,
+      component: () => import("@/views/home/detail-product.vue"),
    },
 ];
 

@@ -5,7 +5,8 @@
 	import "@/assets/css/home/main.css";
 	import "@/assets/css/home/responsif.css";
 
-	import LoadingArea from "@/widgets/others/loading-area.vue";
+	
+	import HeaderCostume from '@/components/home/header/index.vue';
 
 	import { LoadHtml } from "@/controller/tools";
 
@@ -19,11 +20,9 @@
 </script>
 
 <template>
-	<div>
-		<LoadingArea v-show="isLoadHtml" />
-		<div v-show="!isLoadHtml" class="home">
-			<RouterView />
-		</div>
+	<div class="home">
+		<HeaderCostume />
+		<RouterView />
 	</div>
 </template>
 

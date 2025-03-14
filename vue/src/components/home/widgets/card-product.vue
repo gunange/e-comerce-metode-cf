@@ -20,6 +20,11 @@
                 </p>
             </div>
         </template>
+        <template #footer>
+            <div class="flex gap-4 mt-1">
+                <Button label="Detail Product" class="w-full" size="small" @click="goToDetail"/>
+            </div>
+        </template>
         
     </Card>
 </template>
@@ -34,6 +39,11 @@ export default {
         }
     },
     props: {
+        itemId:{
+            type: Number,
+            required : false,
+            default : null
+        },
         title:{
             type: String,
             required : false,
@@ -63,8 +73,20 @@ export default {
             type: String,
             required : false,
             default : 'Elektronik'
-        },
-        
+        },  
+    },
+    methods: {
+        goToDetail() {
+            this.$emit('detail-product', { 
+                id: this.itemId,
+                title: this.title,
+                subtitle: this.subtitle,
+                description: this.description,
+                price: this.price,
+                image: this.image,
+                category: this.category
+             });
+        }
     }
 }
 </script>
