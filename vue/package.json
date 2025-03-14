@@ -28,6 +28,7 @@
     "vue-picture-cropper": "^0.7.0",
     "vue-router": "^4.5.0",
     "vue-select": "^4.0.0-beta.6",
+    "vue-star-rating": "^2.1.0",
     "vue3-count-to": "^1.1.2",
     "vue3-easy-data-table": "^1.5.47",
     "vue3-smooth-scroll": "^0.8.1"

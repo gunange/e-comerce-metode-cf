@@ -12,6 +12,9 @@
   --p-form-field-color: var(--text-color);
   --p-inputtext-padding-y : .7rem ;
 
+  --p-rating-icon-active-color : #FFE100FF  ;
+  --p-rating-icon-color : #93CEF3FF  ;
+
   /* vue select */
   --vs-font-size: var(--font-size);
   --vs-dropdown-option--active-bg: var(--color-primary);

@@ -1,8 +1,10 @@
 <script setup>
-import BodyWrapper from '@/components/home/body/index.vue';
+import Kategori from '@/components/home/components/home/kategori.vue';
+import Rekomendasi from '@/components/home/components/home/rekomendasi.vue';
 </script>
 
 
 <template>
-	<BodyWrapper />
+	<Kategori />
+    <Rekomendasi />
 </template>
