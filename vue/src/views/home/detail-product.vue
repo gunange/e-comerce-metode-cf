@@ -13,7 +13,7 @@
 		<div class="mt-10 mb-15 bg-white p-5 rounded-md flex">
 			<div class="flex-1/5">
 				<Image
-					src="/assets/image/1.png"
+					:src="foto"
 					alt="Gambar Product"
 					preview
 					imageClass="mx-auto"
@@ -22,10 +22,9 @@
 			</div>
 			<div class="flex-auto px-5 flex flex-col justify-between">
 				<div class="">
-					<p class="text-2xl">Lorem ipsum dolor sit.</p>
+					<p class="text-2xl">{{item.label}}</p>
 					<p>
-						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex harum
-						delectus minus.
+						{{item.deskripsi}}
 					</p>
 					<div class="flex">
 						<div class="flex border-e pe-3 me-2 border-gray-300">
@@ -37,7 +36,7 @@
 							<i class="pi pi-heart-fill ms-3 text-red-400" />
 						</div>
 					</div>
-					<p class="mt-3 text-3xl text-primary font-bold">Rp. 120.000</p>
+					<p class="mt-3 text-3xl text-primary font-bold">{{ harga }}</p>
 				</div>
 				<div class="">
 					<div class="flex">
@@ -85,11 +84,49 @@
 </template>
 
 <script>
+	import { pathApi } from "@/components/dashboard/seller/config";
+	import { delay } from "@/controller/tools";
+	import { get } from "@/controller/others/RequestApiController";
+	import { api } from "@/config/apiConfig.js";
+
 	export default {
 		data() {
 			return {
+				item: {},
+				load: false,
+				run: false,
 				quntity: 1,
 			};
+		},
+		computed: {
+			id() {
+				return this.$route.params.id;
+			},
+			foto() {
+				return this.item.foto ? `${api.url_api}storage/${this.item.foto}` : "";
+			},
+			harga() {
+				return new Intl.NumberFormat("id-ID", {
+					style: "currency",
+					currency: "IDR",
+					minimumFractionDigits: 0,
+				}).format(this.item.harga);
+			},
+		},
+
+		methods: {
+			async init() {
+				if (this.load) return;
+				this.load = true;
+
+				const { data, status } = await get(`main/product/detail/${this.id}`);
+				this.item = data;
+				this.run = status === 200;
+				this.load = false;
+			},
+		},
+		mounted() {
+			this.init();
 		},
 	};
 </script>
