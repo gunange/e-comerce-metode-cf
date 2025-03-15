@@ -13,7 +13,7 @@
 				<Button icon="pi pi-search text-white" severity="secondary" variant="text" />
 			</InputGroup>
 		</div>
-		<div class="keranjang flex-auto flex justify-end">
+		<div class="keranjang flex-auto flex justify-end relative">
 			<Button
 				icon="pi pi-shopping-cart hover:bg-transparent text-white"
 				severity="secondary"
@@ -22,6 +22,7 @@
 				as="router-link"
 				to="/keranjang"
 			/>
+			<Badge value="2" class="absolute -top-1 -right-2" size="small" severity="secondary"/>
 		</div>
 	</div>
 </template>

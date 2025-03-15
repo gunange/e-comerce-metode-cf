@@ -91,7 +91,6 @@ import Textarea from "primevue/textarea";
 import Toast from "primevue/toast";
 import Toolbar from "primevue/toolbar";
 
-
 import Tag from "primevue/tag";
 import Terminal from "primevue/terminal";
 import Timeline from "primevue/timeline";
@@ -104,12 +103,13 @@ import TreeTable from "primevue/treetable";
 import KeyFilter from "primevue/keyfilter";
 
 import Popover from "primevue/popover";
+import OverlayBadge from "primevue/overlaybadge";
 
 // Tabs
-import Tabs from 'primevue/tabs';
-import TabList from 'primevue/tablist';
-import Tab from 'primevue/tab';
-import TabPanels from 'primevue/tabpanels';
+import Tabs from "primevue/tabs";
+import TabList from "primevue/tablist";
+import Tab from "primevue/tab";
+import TabPanels from "primevue/tabpanels";
 import TabPanel from "primevue/tabpanel";
 
 export class AppPrimeConfig {
@@ -197,7 +197,7 @@ export class AppPrimeConfig {
       this._app.component("Splitter", Splitter);
       this._app.component("SplitterPanel", SplitterPanel);
       this._app.component("Steps", Steps);
-      
+
       this._app.component("Tag", Tag);
       this._app.component("Textarea", Textarea);
       this._app.component("Terminal", Terminal);
@@ -210,6 +210,7 @@ export class AppPrimeConfig {
       this._app.component("TreeSelect", TreeSelect);
       this._app.component("TreeTable", TreeTable);
       this._app.component("Popover", Popover);
+      this._app.component("OverlayBadge", OverlayBadge);
 
       // Tabs
       this._app.component("Tabs", Tabs);
