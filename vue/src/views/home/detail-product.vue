@@ -44,15 +44,14 @@
 						<p class="me-2">Kuantitas</p>
 						<InputNumber
 							:min="1"
-                            v-model="quntity"
+							v-model="quntity"
 							inputId="horizontal-buttons"
 							showButtons
 							buttonLayout="horizontal"
 							:step="1"
-                            size="small"
-                            
-                            :allowEmpty="false"
-                            inputClass="w-14 text-sm py-0 px-3"
+							size="small"
+							:allowEmpty="false"
+							inputClass="w-14 text-sm py-0 px-3"
 						>
 							<template #incrementbuttonicon>
 								<span class="pi pi-plus text-sm" />
@@ -62,23 +61,35 @@
 							</template>
 						</InputNumber>
 					</div>
-                    <div class="mt-5">
-                        <Button label="Masukan Keranjan" class="me-4"  severity="warn" outlined size="small" icon="pi pi-cart-plus"  />
-                        <Button label="Beli Sekarang" size="small" to="/order/2" />
-                    </div>
+					<div class="mt-5">
+						<Button
+							label="Masukan Keranjan"
+							class="me-4"
+							severity="warn"
+							outlined
+							size="small"
+							icon="pi pi-cart-plus"
+						/>
+						<Button
+							label="Beli Sekarang"
+							icon="pi pi-wallet"
+							size="small"
+							as="router-link"
+							to="/order/2"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
-
 <script>
-export default {
-    data() {
-        return {
-            quntity: 1
-        }
-    }
-}
+	export default {
+		data() {
+			return {
+				quntity: 1,
+			};
+		},
+	};
 </script>

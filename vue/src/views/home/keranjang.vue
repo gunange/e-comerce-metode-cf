@@ -63,8 +63,8 @@
 										<div class="flex flex-row-reverse md:flex-row gap-2">
 											<Button icon="pi pi-trash"  size="small" severity="danger" outlined></Button>
 											<Button
-												icon="pi pi-shopping-cart"
-												label="Order Sekarang"
+												icon="pi pi-wallet"
+												label="Beli Sekarang"
                                                 size="small"
 												as="router-link"
 												to="/order/2"

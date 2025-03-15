@@ -1,0 +1,14 @@
+model StatusOrder {
+    id           Int    @id @default(autoincrement())
+    pelanggan_id Int
+    order_id   Int
+    status       String @db.VarChar(50)
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    pelanggan Pelanggan @relation(fields: [pelanggan_id], references: [id], onDelete: Cascade)
+    order   Orders   @relation(fields: [order_id], references: [id], onDelete: Cascade)
+
+    @@map("__status_order")
+}

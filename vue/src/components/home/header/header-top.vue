@@ -22,7 +22,7 @@
 				severity="secondary"
 			/>
 			<div class="" v-if="user">
-                <Menu ref="menu_profil" id="overlay_menu" :model="menu.items" :popup="true" />
+                <Menu ref="menu_profil" id="overlay_menu" :model="menu.items" :popup="true" class="text-sm" />
 				<Button
 					type="button"
                     :label="user.nama"
@@ -69,8 +69,9 @@
 							}
 						},
 						{
-							label: "Export",
-							icon: "pi pi-upload",
+							label: "Pesanan Saya",
+							icon: "pi pi-address-book",
+							command : () => this.$router.push('/pesanan-saya')
 						},
 					],
 				},

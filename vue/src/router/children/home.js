@@ -26,6 +26,18 @@ const routes = [
       name: `${moduleName}-order`,
       component: () => import("@/views/home/order.vue"),
    },
+   {
+      path: "pesanan-saya",
+      name: `${moduleName}-pesanan-saya`,
+      component: () => import("@/views/home/pesanan-saya.vue"),
+   },
+
+    // not-found
+    {
+      path: "/home/:pathMatch(.*)*",
+      name: "Not Found Landing Page",
+      component: () => import("@/widgets/others/404Layout.vue"),
+   },
 ];
 
 export default routes;

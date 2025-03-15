@@ -14,6 +14,9 @@ export const AtributService = {
    get listOpsiKategori() {
       return ["Elektronik", "Kosmetik", "Fashion"];
    },
+   get listOpsiKurir() {
+      return ["JNE", "J&T", "Ninja Express", "Tiki"];
+   },
 };
 
 export const storeDefault: StoreDataFormApi = {

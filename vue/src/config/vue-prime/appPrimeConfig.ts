@@ -90,8 +90,8 @@ import TieredMenu from "primevue/tieredmenu";
 import Textarea from "primevue/textarea";
 import Toast from "primevue/toast";
 import Toolbar from "primevue/toolbar";
-import TabView from "primevue/tabview";
-import TabPanel from "primevue/tabpanel";
+
+
 import Tag from "primevue/tag";
 import Terminal from "primevue/terminal";
 import Timeline from "primevue/timeline";
@@ -104,6 +104,13 @@ import TreeTable from "primevue/treetable";
 import KeyFilter from "primevue/keyfilter";
 
 import Popover from "primevue/popover";
+
+// Tabs
+import Tabs from 'primevue/tabs';
+import TabList from 'primevue/tablist';
+import Tab from 'primevue/tab';
+import TabPanels from 'primevue/tabpanels';
+import TabPanel from "primevue/tabpanel";
 
 export class AppPrimeConfig {
    private _app;
@@ -190,9 +197,7 @@ export class AppPrimeConfig {
       this._app.component("Splitter", Splitter);
       this._app.component("SplitterPanel", SplitterPanel);
       this._app.component("Steps", Steps);
-      this._app.component("TabMenu", TabMenu);
-      this._app.component("TabView", TabView);
-      this._app.component("TabPanel", TabPanel);
+      
       this._app.component("Tag", Tag);
       this._app.component("Textarea", Textarea);
       this._app.component("Terminal", Terminal);
@@ -205,6 +210,14 @@ export class AppPrimeConfig {
       this._app.component("TreeSelect", TreeSelect);
       this._app.component("TreeTable", TreeTable);
       this._app.component("Popover", Popover);
+
+      // Tabs
+      this._app.component("Tabs", Tabs);
+      this._app.component("TabList", TabList);
+      this._app.component("Tab", Tab);
+      this._app.component("TabPanels", TabPanels);
+      this._app.component("TabMenu", TabMenu);
+      this._app.component("TabPanel", TabPanel);
    }
    runDirective() {
       this._app.directive("tooltip", Tooltip);

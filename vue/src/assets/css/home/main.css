@@ -26,3 +26,7 @@
 .home .header .keranjang .p-button-text.p-button-secondary:not(:disabled):hover {
    background: transparent !important;
  }
+
+ .home .pesanan-saya .p-tablist-content > .p-tablist-tab-list{
+   justify-content: space-between;
+ }

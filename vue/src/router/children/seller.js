@@ -21,6 +21,13 @@ const routes = [
       name: `${moduleName}-product`,
       component: () => import("@/views/dashboard/seller/product.vue"),
    },
+
+   // not-found
+   {
+      path: "/seller/:pathMatch(.*)*",
+      name: "Not-Found-Seller",
+      component: () => import("@/widgets/others/404Layout.vue"),
+   },
    
 ];
 

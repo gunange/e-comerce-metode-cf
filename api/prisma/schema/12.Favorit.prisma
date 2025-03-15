@@ -1,0 +1,14 @@
+model Favorit {
+    id           Int     @id @default(autoincrement())
+    pelanggan_id Int
+    product_id   Int
+    like         Decimal @db.Decimal(10, 0)
+
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+
+    product   Product   @relation(fields: [product_id], references: [id], onDelete: Cascade)
+    pelanggan Pelanggan @relation(fields: [pelanggan_id], references: [id], onDelete: Cascade)
+
+    @@map("__favorit")
+}
