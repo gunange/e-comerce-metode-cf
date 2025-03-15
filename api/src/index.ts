@@ -3,6 +3,7 @@ import { cors } from "hono/cors";
 import { mainRoute } from "./router/main";
 import { errorHeandler } from "./middleware/ErrorHeandler";
 import { adminTokoRoute } from "./router/admin-toko";
+import { pelanggan } from "./router/pelanggan";
 import { userRoute } from "./router/user";
 
 import { storageRoute } from "./router/storage-route";
@@ -14,8 +15,8 @@ app.use(cors());
 app.route("/main", mainRoute);
 app.route("/user", userRoute);
 app.route("/storage", storageRoute);
-
 app.route("/admin-toko", adminTokoRoute);
+app.route("/pelanggan", pelanggan);
 
 app.notFound((c) => {
    return c.json(
