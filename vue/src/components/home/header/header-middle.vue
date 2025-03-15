@@ -22,7 +22,29 @@
 				as="router-link"
 				to="/keranjang"
 			/>
-			<Badge value="2" class="absolute -top-1 -right-2" size="small" severity="secondary"/>
+			<Badge
+				v-if="keranjang.show && keranjang.value.length > 0"
+				value="2"
+				class="absolute -top-1 -right-2"
+				size="small"
+				severity="secondary"
+				data-aos="fade-up-right"
+				data-aos-anchor-placement="bottom"
+			/>
 		</div>
 	</div>
 </template>
+
+<script>
+
+export default {
+	data(){
+		return {
+			keranjang :{
+				show: false,
+				value :0,
+			}
+		}
+	}
+}
+</script>
