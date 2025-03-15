@@ -12,5 +12,14 @@ export class ProductController {
          }),
       });
    }
+   static async detailProduct(c: util.Context): Promise<any> {
+      return c.json({
+         data: await util.dbClient.product.findFirstOrThrow({
+            where: {
+               id: Number(c.req.param("id")),
+            },
+         }),
+      });
+   }
    
 }

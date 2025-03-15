@@ -8,5 +8,6 @@ mainRoute.post("/register/pelanggan", PelangganController.register);
 mainRoute.post("/register/seller", SellerController.register);
 
 mainRoute.get("/product/kategori/:kategori", ProductController.kategori);
+mainRoute.get("/product/detail/:id", ProductController.detailProduct);
 
 

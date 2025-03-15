@@ -6,7 +6,6 @@ import { Env } from "@/app/env";
 const debug = Env.debug;
 
 describe("GET /api/main/product/..", () => {
-  
    it("should if product kategori", async () => {
       const response = await app.request(
          "http://localhost:3000/api/main/product/kategori/Fashion",
@@ -19,7 +18,14 @@ describe("GET /api/main/product/..", () => {
 
       expect(response.status).toBe(200);
    });
-   
-
-   
+   it("should if detail product", async () => {
+      const response = await app.request(
+         "http://localhost:3000/api/main/product/detail/31",
+         {
+            method: "GET",
+         }
+      );
+      const body = await response.json();
+      if (true) console.log(body, `\nstatus :`, response.status);
+   });
 });
