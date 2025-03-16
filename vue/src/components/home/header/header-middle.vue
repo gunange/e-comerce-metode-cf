@@ -23,28 +23,38 @@
 				to="/keranjang"
 			/>
 			<Badge
-				v-if="keranjang.show && keranjang.value.length > 0"
-				value="2"
+				v-if="keranjang > 0"
+				:value="keranjang"
 				class="absolute -top-1 -right-2"
 				size="small"
 				severity="secondary"
 				data-aos="fade-up-right"
 				data-aos-anchor-placement="bottom"
+				data-aos-once="false"
 			/>
 		</div>
 	</div>
 </template>
 
 <script>
+	import { MainData } from "@/components/home/components/home/keranjang/controller.ts";
 
-export default {
-	data(){
-		return {
-			keranjang :{
-				show: false,
-				value :0,
-			}
-		}
-	}
-}
+	const __m = new MainData();
+
+	export default {
+		data() {
+			return {
+				keranjangShow: false,
+			};
+		},
+
+		computed: {
+			keranjang() {
+				return __m.items.length;
+			},
+		},
+		async mounted() {
+			__m.init();
+		},
+	};
 </script>

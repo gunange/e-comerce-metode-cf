@@ -98,7 +98,7 @@ export class Cruds extends Controller {
    async add(body: any): Promise<void> {
       const { data, status } = await post(this.collection, body, {alert: {
          summary: "Sukses",
-         detail: "Menambahkan data",
+         detail: "Berhasil masukan ke keranjang",
       },});
 
       this.add_item(data, status);
@@ -151,7 +151,7 @@ export class MainData extends Controller {
    }
 
    async init(): Promise<void> {
-      if (this.data.load) return;
+      if (this.data.load || this.data.run) return;
       this.data.load = true;
 
       const { data, status } = await get(`${this.collection}`);
