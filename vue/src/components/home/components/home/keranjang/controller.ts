@@ -134,22 +134,6 @@ export class Cruds extends Controller {
       this.del_item(this.uid, status);
       this.modal.proses_form = false;
    }
-
-   async switchStatus(body: any): Promise<void> {
-      const { data, status } = await patch(
-         `${this.collection}/switch-status/${this.uid}`,
-         body,
-         {
-            alert: {
-               summary: "Sukses",
-               detail: "Memperbahrui Status",
-            },
-         }
-      );
-
-      this.up_item(data, this.uid, status);
-      this.modal.proses_form = false;
-   }
 }
 export class MainData extends Controller {
    get data() {

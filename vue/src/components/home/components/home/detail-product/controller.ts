@@ -51,7 +51,8 @@ export class MainData extends Controller {
    async reset() {
       this.data.load = false;
       this.data.run = false;
-      this.data.data = [];
+      this.data.id = null;
+      this.data.data = {};
 
       await delay(100);
 

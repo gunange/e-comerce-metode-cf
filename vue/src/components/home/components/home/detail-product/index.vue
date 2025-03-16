@@ -47,7 +47,7 @@
 						<p class="me-2">Kuantitas</p>
 						<InputNumber
 							:min="1"
-							v-model="quntity"
+							v-model="quantity"
 							inputId="horizontal-buttons"
 							showButtons
 							buttonLayout="horizontal"
@@ -92,15 +92,18 @@
 	
 	import { api } from "@/config/apiConfig.js";
 
+	import { Cruds } from "@/components/home/components/home/keranjang/controller.ts";
+
 	import { MainData } from "@/components/home/components/home/detail-product/controller";
     import { convertCurency } from "@/controller/tools";
-
+	
 	const __main = new MainData();
+	const __c = new Cruds();
 
 	export default {
 		data() {
 			return {
-				quntity: 1,
+				quantity: 1,
 			};
 		},
        
@@ -118,7 +121,12 @@
                 return convertCurency(item)
             },
 			async addKeranjang(){
-				
+				await __c.add({
+					quantity: this.quantity,
+					product_id: __main.data.id,
+					price: this.item.harga,
+               		total_price: this.item.harga * this.quantity,
+				});
 			}
         },
 		
