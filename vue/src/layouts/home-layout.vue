@@ -5,8 +5,7 @@
 	import "@/assets/css/home/main.css";
 	import "@/assets/css/home/responsif.css";
 
-	
-	import HeaderCostume from '@/components/home/header/index.vue';
+	import HeaderCostume from "@/components/home/header/index.vue";
 
 	import { LoadHtml } from "@/controller/tools";
 
@@ -22,26 +21,35 @@
 <template>
 	<div class="home">
 		<HeaderCostume />
-		<RouterView />
+		<div class="wrapper">
+			<RouterView />
+		</div>
 	</div>
 </template>
 
 <script>
+	import { AuthController } from "@/controller/controllers/AuthController";
+	import { Controller } from "@/components/home/controller.ts";
+	import { HeaderLandingPage } from "@/controller/tools";
 
-import { AuthController } from "@/controller/controllers/AuthController";
-import { Controller } from "@/components/home/controller.ts";
+	
 
-const auth = new AuthController();
-const _c = new Controller();
+	const auth = new AuthController();
+	const _c = new Controller();
 
-export default {
-
-	async beforeRouteEnter(to, from, next) {
+	export default {
+		async beforeRouteEnter(to, from, next) {
 			await auth.init();
 			if (auth.isAuth) {
 				auth.setToken();
 			}
 			next();
 		},
-}
+
+		mounted(){
+			const __header = new HeaderLandingPage(document.getElementById("header"));
+
+			__header.init();
+		}
+	};
 </script>

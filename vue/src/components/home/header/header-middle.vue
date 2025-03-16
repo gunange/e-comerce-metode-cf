@@ -30,7 +30,7 @@
 				severity="secondary"
 				data-aos="fade-up-right"
 				data-aos-anchor-placement="bottom"
-				data-aos-once="false"
+				:data-aos-once="true"
 			/>
 		</div>
 	</div>

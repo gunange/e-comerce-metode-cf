@@ -4,7 +4,7 @@
 </script>
 
 <template>
-	<div class="bg-sky-500 text-white header">
+	<div class="bg-sky-500 text-white header" id="header">
 		<div class="w-[80%] mx-auto">
 			<HeaderTop />
 			<HeaderMiddle />

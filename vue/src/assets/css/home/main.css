@@ -1,12 +1,22 @@
 @import "./key-frame";
 
 :root {
-   --nav-height: 10px;
+   --header-height: 80px;
 }
 
 
 /* ------------ main ------------ */
 
+.home .header  {
+   position: fixed;
+   width: 100%;
+   top: 0;
+   z-index: 1;
+   transition: .3s;
+}
+.home .header.on-scroll{
+   padding: 5px 0px;
+}
 .home .header .search .p-inputgroup {
    background: white;
    border-radius: 5px;
@@ -25,6 +35,10 @@
 
 .home .header .keranjang .p-button-text.p-button-secondary:not(:disabled):hover {
    background: transparent !important;
+ }
+
+ .home .wrapper {
+   padding-top: var(--header-height);
  }
 
  .home .pesanan-saya .p-tablist-content > .p-tablist-tab-list{
