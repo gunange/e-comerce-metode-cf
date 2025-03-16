@@ -39,6 +39,7 @@ export default {
 	async beforeRouteEnter(to, from, next) {
 			await auth.init();
 			if (auth.isAuth) {
+				auth.setToken();
 			}
 			next();
 		},

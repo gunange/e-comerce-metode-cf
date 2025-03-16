@@ -1,3 +1,7 @@
+<script setup>
+import { convertCurency } from "@/controller/tools";
+</script>
+
 <template>
 	<div class="md:w-[80%] mx-auto mt-10">
 		<div class="bg-white px-5 py-2 ps-2 rounded-lg flex justify-between items-center">
@@ -25,16 +29,14 @@
 								<div class="md:w-40 relative">
 									<Image
 										class="block xl:block mx-auto rounded w-full"
-										:src="`${item.foto}`"
+										:src="foto(item)"
 										:alt="item.label"
-                                        preview
+										preview
 									/>
 									<div
 										class="absolute bg-black/70 rounded-border"
 										style="left: 4px; top: 4px"
-									>
-										
-									</div>
+									></div>
 								</div>
 								<div
 									class="flex flex-col md:flex-row justify-between md:items-center flex-1 gap-6"
@@ -47,25 +49,32 @@
 												class="font-medium text-surface-500 dark:text-surface-400 text-sm"
 												>{{ item.kategori }}</span
 											>
-											<div class="text-lg font-medium mt-2">
-												{{ item.label }}
+											<div class="font-medium mt-2">
+												<p class="text-3xl">{{ item.label }}</p>
+												<p class="text-sm">{{ item.deskripsi }}</p>
 											</div>
 										</div>
-                                        <Rating v-model="item.rating" readonly />
-										
+										<Rating v-model="item.rating" readonly />
 									</div>
 									<div class="flex flex-col md:items-end gap-8">
-                                        <p>
-                                            <span class="text-xl font-semibold me-3">Rp. {{ item.price }} </span>
-                                            <span class="text-sm">(x 1)</span>
-                                        </p>
-										
+										<p>
+											<span class="text-xl font-semibold me-3"
+												>{{ convertCurency(item.price) }}
+											</span>
+											<span class="text-sm">(x 1)</span>
+										</p>
+
 										<div class="flex flex-row-reverse md:flex-row gap-2">
-											<Button icon="pi pi-trash"  size="small" severity="danger" outlined></Button>
+											<Button
+												icon="pi pi-trash"
+												size="small"
+												severity="danger"
+												outlined
+											></Button>
 											<Button
 												icon="pi pi-wallet"
 												label="Beli Sekarang"
-                                                size="small"
+												size="small"
 												as="router-link"
 												to="/order/2"
 												:disabled="item.stock === 0"
@@ -79,59 +88,49 @@
 					</div>
 				</template>
 			</DataView>
+			{{ items }}
 		</div>
 	</div>
 </template>
 
 <script>
+	import { get } from "@/controller/others/RequestApiController";
+	import { api } from "@/config/apiConfig.js";
+	import { Controller } from "@/components/dashboard/pelanggan/controller.ts";
+
+	const _c = new Controller();
+
 	export default {
 		data() {
 			return {
-				items: [
-					{
-						id: 1,
-                        label : "lorem",
-                        kategori : "lorem Ipsum",
-                        price : "20000",
-                        foto : "/assets/image/1.png",
-                        rating : 3,
-					},
-                    
-					{
-						id: 2,
-                        label : "lorem",
-                        kategori : "lorem",
-                        price : "20000",
-                        foto : "/assets/image/1.png",
-                        rating : 2,
-					},
-					{
-						id: 3,
-                        label : "lorem",
-                        kategori : "lorem",
-                        price : "20000",
-                        foto : "/assets/image/1.png",
-                        rating : 5,
-					},
-					{
-						id: 4,
-                        label : "lorem",
-                        kategori : "lorem",
-                        price : "20000",
-                        foto : "/assets/image/1.png",
-                        rating : 4,
-					},
-					{
-						id: 5,
-                        label : "lorem",
-                        kategori : "lorem",
-                        price : "20000",
-                        foto : "/assets/image/1.png",
-                        rating : 4,
-					},
-
-				],
+				
 			};
 		},
+		computed :{
+			store (){
+				return _c.store.keranjang;
+			},
+			items(){
+				return this.store.data;
+			}
+		},
+
+		methods: {
+			async init() {
+				if (this.store.load) return;
+				this.store.load = true;
+
+				const { data, status } = await get(`pelanggan/keranjang`);
+				this.store.data = data;
+				this.store.run = status === 200;
+				this.store.load = false;
+			},
+			foto (item){
+				return item.foto ? `${api.url_api}storage/${item.foto}` : "";
+			}
+		},
+		mounted (){
+			this.init();
+		}
 	};
 </script>

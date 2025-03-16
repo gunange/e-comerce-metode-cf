@@ -6,5 +6,6 @@ export interface StoreDataFormApi {
 export interface StoreDataOnlyFormApi {
    load: boolean;
    run: boolean;
+   id?: number;
    data: any;
 }

@@ -49,9 +49,6 @@
 	import CardProduct from "@/components/home/widgets/card-product.vue";
 	import { Controller } from "@/components/home/controller.ts";
 
-	import { pathApi } from "@/components/dashboard/seller/config";
-	import { delay } from "@/controller/tools";
-	import { reactive } from "vue";
 	import { get } from "@/controller/others/RequestApiController";
 
 	const __c = new Controller();

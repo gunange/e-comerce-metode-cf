@@ -35,4 +35,8 @@ export class KeranjangController {
       });
 
    }
+
+   static async del(c: util.Context) : Promise<any>{
+      
+   }
 }

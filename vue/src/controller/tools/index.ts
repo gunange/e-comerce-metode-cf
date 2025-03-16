@@ -1,7 +1,7 @@
 import {LocationApp} from './location';
 import { delay, generateUniqID, LoadHtml } from './other';
 import { TimeApp } from './time';
-
+import {convertCurency} from './convert';
 
 export {
    LocationApp,
@@ -9,4 +9,5 @@ export {
    LoadHtml,
    delay,
    generateUniqID,
+   convertCurency,
 }

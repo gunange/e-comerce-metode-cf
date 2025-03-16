@@ -1,26 +1,18 @@
 import { defineStore } from "pinia";
-import { StoreDataFormApi, StoreDataOnlyFormApi } from "@/services/interface";
-import { storeDefault } from "@/services/atribut";
 
-export const storeId = "pelanggan-store";
-
-export interface StoreKategoriFormApi {
-   load: boolean;
-   run: boolean;
-   label: string;
-   data: any[];
-}
-export const storeDefaultKategori: StoreKategoriFormApi = {
-   load: false,
-   run: false,
-   label: '',
-   data: [],
-};
+export const storeId = "home-store";
 
 export const homeStorage = defineStore(storeId, {
    state: (): {
-      kategori: StoreKategoriFormApi;
+      kategori: {
+         load: boolean;
+         run: boolean;
+         label: string;
+         data: any[];
+      };
+      detail_product: { load: boolean; run: boolean; id: number; data: any };
    } => ({
-      kategori: { ...storeDefaultKategori },
+      kategori: { load: false, run: false, label: "", data: [] },
+      detail_product: { load: false, run: false, id: null, data: {} },
    }),
 });
