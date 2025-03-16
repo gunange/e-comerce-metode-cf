@@ -1,21 +1,19 @@
 import { pathApi } from "@/components/dashboard/seller/config";
 import { delay } from "@/controller/tools";
-import { reactive } from "vue";
+
 
 import {homeStorage} from "@/components/home/store"
 
-import { HeandleSubmitApi } from "@/controller/others/HeandleSubmitApi";
 import { TimeApp } from "@/controller/tools";
 import {
-   del,
+   
    get,
-   patch,
-   post,
+   
 } from "@/controller/others/RequestApiController";
 
 export class Controller {
    get collection() {
-      return `${pathApi}/product`;
+      return `main/product`;
    }
    get time() {
       return new TimeApp();
@@ -24,6 +22,8 @@ export class Controller {
     return homeStorage().detail_product;
  }
 }
+
+
 
 export class MainData extends Controller {
     get data() {
@@ -42,7 +42,7 @@ export class MainData extends Controller {
       if (this.data.load) return;
       this.data.load = true;
 
-      const { data, status } = await get(`main/product/detail/${this.data.id}`);
+      const { data, status } = await get(`${this.collection}/detail/${this.data.id}`);
       this.data.data = data;
       this.data.run = status === 200;
       this.data.load = false;

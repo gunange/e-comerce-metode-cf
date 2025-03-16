@@ -72,6 +72,7 @@
 							outlined
 							size="small"
 							icon="pi pi-cart-plus"
+							@click="addKeranjang"
 						/>
 						<Button
 							label="Beli Sekarang"
@@ -116,6 +117,9 @@
             harga(item){
                 return convertCurency(item)
             },
+			async addKeranjang(){
+				
+			}
         },
 		
 	};
