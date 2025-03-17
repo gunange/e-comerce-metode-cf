@@ -22,7 +22,7 @@ const routes = [
       component: () => import("@/views/home/keranjang.vue"),
    },
    {
-      path: "order/:id",
+      path: "order/:id/:quantity?",
       name: `${moduleName}-order`,
       component: () => import("@/views/home/order.vue"),
    },

@@ -1,5 +1,3 @@
-
-
 <template>
 	<div class="md:w-[80%] mx-auto mt-10">
 		<div class="bg-white px-5 py-2 ps-2 rounded-lg flex justify-between items-center">
@@ -39,7 +37,7 @@
 						</div>
 					</div>
 					<p class="mt-3 text-3xl text-primary font-bold">
-						{{ harga(item.harga) }}
+						{{ convertCurency(item.harga * quantity) }}
 					</p>
 				</div>
 				<div class="">
@@ -47,6 +45,7 @@
 						<p class="me-2">Kuantitas</p>
 						<InputNumber
 							:min="1"
+							:max="maxStock"
 							v-model="quantity"
 							inputId="horizontal-buttons"
 							showButtons
@@ -79,7 +78,7 @@
 							icon="pi pi-wallet"
 							size="small"
 							as="router-link"
-							to="/order/2"
+							:to="`/order/${item.id}/${quantity}`"
 						/>
 					</div>
 				</div>
@@ -89,14 +88,13 @@
 </template>
 
 <script>
-	
 	import { api } from "@/config/apiConfig.js";
 
 	import { Cruds } from "@/components/home/components/keranjang/controller";
 
 	import { MainData } from "@/components/home/components/detail-product/controller";
-    import { convertCurency } from "@/controller/tools";
-	
+	import * as tools from "@/controller/tools";
+
 	const __main = new MainData();
 	const __c = new Cruds();
 
@@ -104,31 +102,35 @@
 		data() {
 			return {
 				quantity: 1,
+				maxStock : 10,
 			};
 		},
-       
+
 		computed: {
 			item() {
 				return __main.data.data;
 			},
-           
+
 			foto() {
 				return this.item.foto ? `${api.url_api}storage/${this.item.foto}` : null;
 			},
 		},
-        methods:{
-            harga(item){
-                return convertCurency(item)
-            },
-			async addKeranjang(){
+		methods: {
+			...tools,
+			
+			async addKeranjang() {
 				await __c.add({
 					quantity: this.quantity,
 					product_id: __main.data.id,
 					price: this.item.harga,
-               		total_price: this.item.harga * this.quantity,
+					total_price: this.item.harga * this.quantity,
 				});
+			},
+		},
+		mounted(){
+			if(this.item){
+				this.maxStock = Number(this.item.stock)
 			}
-        },
-		
+		}
 	};
 </script>
