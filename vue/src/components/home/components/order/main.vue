@@ -101,6 +101,8 @@
 					price: this.item.harga,
 					total_price: this.item.harga * this.quantity,
 				});
+
+				this.$router.push('/');
 			},
 		},
 		mounted() {

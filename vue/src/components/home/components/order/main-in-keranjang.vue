@@ -64,15 +64,15 @@
 		</template>
 		<template #footer>
 			<div class="flex justify-end mt-5 pt-5 border-t border-gray-300">
-				<Button label="Kirim Permintaan Order" size="small" icon="pi pi-wallet" />
+				<Button label="Kirim Permintaan Order" size="small" icon="pi pi-wallet" @click="order" />
 			</div>
 		</template>
 	</Card>
-	<!-- {{ item }} -->
+	{{ item }}
 </template>
 
 <script>
-	import { MainData } from "./controller.ts";
+	import { MainData, Cruds } from "./controller.ts";
 	import { api } from "@/config/apiConfig.js";
 
 	const __c = new MainData();
@@ -94,6 +94,19 @@
 				return this.item.foto ? `${api.url_api}storage/${this.item.foto}` : null;
 			},
 		},
+		methods:{
+			async order() {
+				const cruds = new Cruds();
+				await cruds.add({
+					product_id: this.item.product_id,
+					quantity: this.quantity,
+					price: this.item.harga,
+					total_price: this.item.harga * this.quantity,
+				});
+				this.$router.push('/');
+			},
+		}
+		,
 		mounted() {
             if (this.item) {
                 this.quantity = Number(this.item.quantity);
