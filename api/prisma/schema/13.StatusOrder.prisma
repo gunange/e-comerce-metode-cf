@@ -3,6 +3,7 @@ model StatusOrder {
   pelanggan_id Int
   order_id     Int
   status       String    @db.VarChar(50)
+  status_code  Decimal?  @db.Decimal(2, 0)
   created_at   DateTime  @default(now())
   updated_at   DateTime  @updatedAt
   order        Orders    @relation(fields: [order_id], references: [id], onDelete: Cascade)

@@ -28,9 +28,12 @@ export class OrderController {
             data: body,
             include: {
                product: true,
+               status_order: true,
             },
          })) as any
       );
+
+      await StatusOrderModel.setStatusCode(db.status_order);
 
       await StatusOrderModel.setProses({
          order_id: db.id,
@@ -39,21 +42,6 @@ export class OrderController {
 
       return c.json({
          data: db,
-      });
-   }
-
-   static async del(c: util.Context): Promise<any> {
-      return c.json({
-         data: Resource.resource(
-            (await util.dbClient.keranjang.delete({
-               where: {
-                  id: Number(c.req.param("id")),
-               },
-               include: {
-                  product: true,
-               },
-            })) as any
-         ),
       });
    }
 }

@@ -63,6 +63,7 @@ export class StatusOrderModel {
       order_id: number;
       pelanggan_id: number;
    }) {
+      
       await util.dbClient.statusOrder.create({
          data: {
             status: status,
@@ -70,5 +71,18 @@ export class StatusOrderModel {
             pelanggan_id: pelanggan_id,
          },
       });
+   }
+
+   static async setStatusCode(data : any){
+      data.map(async(item: { id: any; } ) => {
+         await util.dbClient.statusOrder.update({
+            where: {
+               id: item.id,
+            },
+            data: {
+               status_code: 1,
+            },
+         });
+      })
    }
 }

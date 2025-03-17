@@ -35,7 +35,7 @@ describe("GET /api/pelanggan/order", () => {
                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({
-               product_id: 2,
+               product_id: 3,
                quantity: 2,
                price: 2000,
                total_price: 4000,
