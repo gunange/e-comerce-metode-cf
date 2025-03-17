@@ -104,7 +104,7 @@ export class Cruds extends Controller {
          await this.reset();
       }
    }
-   async add(body: any): Promise<void> {
+   async add(body: any): Promise<boolean> {
       const { data, status } = await post(this.collection, body, {alert: {
          summary: "Sukses",
          detail: "Berhasil melakukan pemesanan",
@@ -112,6 +112,7 @@ export class Cruds extends Controller {
 
       this.add_item(data, status);
       this.modal.proses_form = false;
+      return status == 200;
    }
 
    async up(body: any): Promise<void> {

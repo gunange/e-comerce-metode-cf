@@ -51,12 +51,12 @@
 						</div>
 					</div>
 					<div class="form">
-						<label for="quantity">Jasa Kurir</label>
+						<label for="quantity">Jasa Kirim</label>
 						<v-select
 							class="form text-xs w-full"
 							placeholder="Silahkan Pilih .."
 							:options="atribut.listOpsiKurir"
-							v-model="jasa_kurir"
+							v-model="jasa_kirim"
 						/>
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 			</div>
 		</template>
 	</Card>
-	{{ item }}
+	
 </template>
 
 <script>
@@ -97,13 +97,14 @@
 		methods:{
 			async order() {
 				const cruds = new Cruds();
-				await cruds.add({
+				const send = await cruds.add({
 					product_id: this.item.product_id,
 					quantity: this.quantity,
 					price: this.item.harga,
 					total_price: this.item.harga * this.quantity,
+					jasa_kirim : this.jasa_kirim,
 				});
-				this.$router.push('/');
+				if(send)this.$router.push('/');
 			},
 		}
 		,
