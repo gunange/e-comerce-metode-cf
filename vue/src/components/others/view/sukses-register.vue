@@ -46,7 +46,7 @@
                <tr class="border border-gray-300">
                   <td class="p-2">No Heandphone</td>
                   <td class="p-2">:</td>
-                  <td class="p-2">{{ data.nama}}</td>
+                  <td class="p-2">{{ data.no_hp}}</td>
                </tr>
             </table>
 

@@ -97,6 +97,26 @@
 								</VeeField>
 								<VeeField
 									v-slot="{ field }"
+									name="alamat"
+									rules="required"
+									v-model="form.alamat"
+								>
+									<label
+										>Alamat Anda
+										<span class="text-red-500"
+											>* <VeeErrorMessage name="alamat" />
+										</span>
+									</label>
+
+									<InputText
+										v-bind="field"
+										placeholder="Masukan Alamat"
+										class="text-xs"
+										autocomplete="off"
+									/>
+								</VeeField>
+								<VeeField
+									v-slot="{ field }"
 									name="username"
 									rules="required"
 									v-model="form.username"
