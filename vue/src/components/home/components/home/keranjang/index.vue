@@ -54,6 +54,7 @@
                                         size="small"
                                         severity="danger"
                                         outlined
+                                        @click="$refs.cruds.open('del', item.id)"
                                     ></Button>
                                     <Button
                                         icon="pi pi-wallet"
@@ -72,6 +73,7 @@
             </div>
         </template>
     </DataView>
+    <Crud ref="cruds"/>
 </template>
 
 
@@ -79,15 +81,18 @@
 	import { api } from "@/config/apiConfig.js";
     import * as tools from "@/controller/tools";
 	import { MainData } from "@/components/home/components/home/keranjang/controller.ts";
+    import Crud from "./cruds/index.vue"
 
 	const __m = new MainData();
-
 	export default {
 		data() {
 			return {
 				
 			};
 		},
+        components :{
+            Crud,
+        },
 		computed :{
 			
 			items(){
@@ -101,8 +106,6 @@
 			foto (item){
 				return item.foto ? `${api.url_api}storage/${item.foto}` : "";
 			},
-            
-			async add(){}
 		},
 		
 	};
