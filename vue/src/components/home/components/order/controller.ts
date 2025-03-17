@@ -1,4 +1,4 @@
-import { pathApi } from "@/components/dashboard/seller/config";
+import { pathApi } from "@/components/dashboard/pelanggan/config";
 import { delay } from "@/controller/tools";
 
 import { homeStorage } from "@/components/home/store";
@@ -13,13 +13,16 @@ const __c = new UserController();
 
 export class Controller {
    get collection() {
-      return `main/product`;
+      return `${pathApi}/order`;
    }
    get time() {
       return new TimeApp();
    }
    get storage() {
       return homeStorage().order;
+   }
+   get storages() {
+      return homeStorage().orders;
    }
 
    get user() {
@@ -65,6 +68,7 @@ export class Cruds extends Controller {
    get data() {
       return this.storage.data.find((el) => el.id === this.modal.uid);
    }
+   
    get uid() {
       return this.modal.uid;
    }
@@ -75,27 +79,27 @@ export class Cruds extends Controller {
 
    async add_item(data: any, status: Number) {
       if (status === 201 || status === 200) {
-         this.storage.data.push(data);
+         this.storages.data.push(data);
          await this.reset();
       }
    }
    async del_item(id: Number, status: Number) {
       if (status === 201 || status === 200) {
-         const index = this.storage.data.findIndex((item) => item.id === id);
+         const index = this.storages.data.findIndex((item) => item.id === id);
 
          if (index !== -1) {
-            this.storage.data.splice(index, 1);
+            this.storages.data.splice(index, 1);
          }
          await this.reset();
       }
    }
    async up_item(data: any, id: Number, status: Number) {
       if (status === 201 || status === 200) {
-         const index = this.storage.data.findIndex(
+         const index = this.storages.data.findIndex(
             (dataItem) => dataItem.id === id
          );
          if (index !== -1) {
-            this.storage.data.splice(index, 1, data);
+            this.storages.data.splice(index, 1, data);
          }
          await this.reset();
       }
@@ -159,7 +163,7 @@ export class MainData extends Controller {
       this.data.load = true;
 
       const { data, status } = await get(
-         `${this.collection}/detail/${this.data.id}`
+         `main/product/detail/${this.data.id}`
       );
       this.data.data = data;
       this.data.run = status === 200;

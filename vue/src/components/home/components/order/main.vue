@@ -1,6 +1,6 @@
 <script setup>
 	import { AtributService as atribut } from "@/services/atribut";
-    import { convertCurency } from "@/controller/tools";
+	import { convertCurency } from "@/controller/tools";
 </script>
 
 <template>
@@ -64,14 +64,14 @@
 		</template>
 		<template #footer>
 			<div class="flex justify-end mt-5 pt-5 border-t border-gray-300">
-				<Button label="Kirim Permintaan Order" size="small" icon="pi pi-wallet" />
+				<Button label="Kirim Permintaan Order" size="small" icon="pi pi-wallet" @click="order" />
 			</div>
 		</template>
 	</Card>
 </template>
 
 <script>
-	import { MainData } from "./controller.ts";
+	import { MainData, Cruds } from "./controller.ts";
 	import { api } from "@/config/apiConfig.js";
 
 	const __c = new MainData();
@@ -85,18 +85,23 @@
 		},
 
 		computed: {
-			
-            item() {
+			item() {
 				return __c.item;
 			},
-            foto() {
+			foto() {
 				return this.item.foto ? `${api.url_api}storage/${this.item.foto}` : null;
 			},
 		},
 		methods: {
-			async order(){
-				
-			}
+			async order() {
+				const cruds = new Cruds();
+				await cruds.add({
+					product_id: this.item.id,
+					quantity: this.quantity,
+					price: this.item.harga,
+					total_price: this.item.harga * this.quantity,
+				});
+			},
 		},
 		mounted() {
 			if (this.$route.params.quantity) {

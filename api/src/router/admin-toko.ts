@@ -9,13 +9,13 @@ export const adminTokoRoute = new Hono();
 // yang ada dibawah ini butuh authentikasi
 adminTokoRoute.use(
     "/*",
-    Auth.bearer
+    Auth.bearer,
+    async(c, next) =>{
+        await Controller.MainController.setUser(c)
+        await next();
+    }
  );
 
-adminTokoRoute.use(async(c, next) =>{
-    await Controller.MainController.setUser(c)
-    await next();
-})
 
 adminTokoRoute.get('/staff',Controller.StaffController.index);
 adminTokoRoute.post('/staff', Controller.StaffController.insert);
