@@ -39,6 +39,7 @@ describe("GET /api/pelanggan/order", () => {
                quantity: 2,
                price: 2000,
                total_price: 4000,
+               jasa_kirim: "JNE",
             }),
          }
       );

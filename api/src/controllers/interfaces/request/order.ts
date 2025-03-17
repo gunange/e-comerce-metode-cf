@@ -7,6 +7,7 @@ export class Order {
          quantity: util.zod.number().min(1).max(11),
          price: util.zod.number().min(1),
          total_price: util.zod.number().min(1),
+         jasa_kirim: util.zod.string().max(150),
       });
 
       let data = await validate.parse(await util.HeandleRequest.parse(c));
