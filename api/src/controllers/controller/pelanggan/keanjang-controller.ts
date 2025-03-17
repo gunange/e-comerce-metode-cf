@@ -37,6 +37,17 @@ export class KeranjangController {
    }
 
    static async del(c: util.Context) : Promise<any>{
-      
+      return c.json({
+         data: Resource.resource(
+            (await util.dbClient.keranjang.delete({
+               where :{
+                  id : Number(c.req.param("id")),
+               },
+               include: {
+                  product: true,
+               },
+            })) as any
+         ),
+      });
    }
 }

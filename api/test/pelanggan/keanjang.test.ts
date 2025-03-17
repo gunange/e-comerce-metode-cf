@@ -50,4 +50,24 @@ describe("GET /api/pelanggan/keranjang", () => {
          expect(response.status).toBe(200);
       }
    });
+   it("should if delete", async () => {
+      const response = await app.request(
+         "http://localhost:3000/api/pelanggan/keranjang/5",
+         {
+            method: "DELETE",
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+           
+         }
+      );
+      const body = await response.json();
+      if (debug) {
+         console.log(body);
+         console.log("status : ", response.status);
+      } else {
+         expect(response.status).toBe(200);
+      }
+   });
+
 });

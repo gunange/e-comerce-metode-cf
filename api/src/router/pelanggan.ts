@@ -13,3 +13,4 @@ pelanggan.use(async(c, next) =>{
 })
 pelanggan.get("/keranjang", KeranjangController.index);
 pelanggan.post("/keranjang", KeranjangController.add);
+pelanggan.delete("/keranjang/:id", KeranjangController.del);
