@@ -1,18 +1,18 @@
 model Orders {
-    id           Int     @id @default(autoincrement())
-    pelanggan_id Int
-    product_id   Int
-    quantity     Int     @db.Int
-    ranting      Decimal @db.Decimal(2, 0)
-    price        Decimal @db.Decimal(10, 2)
-    total_price  Decimal @db.Decimal(10, 2)
+  id           Int           @id @default(autoincrement())
+  pelanggan_id Int
+  product_id   Int
+  quantity     Int
+  price        Decimal       @db.Decimal(10, 2)
+  total_price  Decimal       @db.Decimal(10, 2)
+  ranting      Decimal?      @db.Decimal(2, 0)
+  created_at   DateTime      @default(now())
+  updated_at   DateTime      @updatedAt
+  pelanggan    Pelanggan     @relation(fields: [pelanggan_id], references: [id], onDelete: Cascade)
+  product      Product       @relation(fields: [product_id], references: [id], onDelete: Cascade)
+  status_order StatusOrder[]
 
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
-
-    product      Product       @relation(fields: [product_id], references: [id], onDelete: Cascade)
-    pelanggan    Pelanggan     @relation(fields: [pelanggan_id], references: [id], onDelete: Cascade)
-    status_order StatusOrder[]
-
-    @@map("__orders")
+  @@index([pelanggan_id], map: "__orders_pelanggan_id_fkey")
+  @@index([product_id], map: "__orders_product_id_fkey")
+  @@map("__orders")
 }

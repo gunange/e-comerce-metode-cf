@@ -1,16 +1,16 @@
 model Keranjang {
-    id             Int     @id @default(autoincrement())
-    pelanggan_id   Int
-    product_id     Int
-    quantity       Int     @db.Int
-    price          Decimal @db.Decimal(10, 2)
-    total_price    Decimal @db.Decimal(10, 2)
+  id           Int       @id @default(autoincrement())
+  pelanggan_id Int
+  product_id   Int
+  quantity     Int
+  price        Decimal   @db.Decimal(10, 2)
+  total_price  Decimal   @db.Decimal(10, 2)
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
+  pelanggan    Pelanggan @relation(fields: [pelanggan_id], references: [id], onDelete: Cascade)
+  product      Product   @relation(fields: [product_id], references: [id], onDelete: Cascade)
 
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
-
-    product Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
-    pelanggan Pelanggan @relation(fields: [pelanggan_id], references: [id], onDelete: Cascade)
-
-    @@map("__keranjang")
+  @@index([pelanggan_id], map: "__keranjang_pelanggan_id_fkey")
+  @@index([product_id], map: "__keranjang_product_id_fkey")
+  @@map("__keranjang")
 }

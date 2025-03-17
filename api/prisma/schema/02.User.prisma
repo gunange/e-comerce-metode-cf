@@ -1,6 +1,6 @@
 model User {
   id                 Int                  @id @default(autoincrement())
-  role_id            Int                  
+  role_id            Int
   username           String
   password           String
   nama               String
@@ -14,5 +14,6 @@ model User {
   sessions           Sessions[]
   role               Role                 @relation(fields: [role_id], references: [id])
 
+  @@index([role_id], map: "__users_role_id_fkey")
   @@map("__users")
 }

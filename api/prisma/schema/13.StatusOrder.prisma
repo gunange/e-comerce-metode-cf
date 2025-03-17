@@ -1,14 +1,14 @@
 model StatusOrder {
-    id           Int    @id @default(autoincrement())
-    pelanggan_id Int
-    order_id   Int
-    status       String @db.VarChar(50)
+  id           Int       @id @default(autoincrement())
+  pelanggan_id Int
+  order_id     Int
+  status       String    @db.VarChar(50)
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
+  order        Orders    @relation(fields: [order_id], references: [id], onDelete: Cascade)
+  pelanggan    Pelanggan @relation(fields: [pelanggan_id], references: [id], onDelete: Cascade)
 
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
-
-    pelanggan Pelanggan @relation(fields: [pelanggan_id], references: [id], onDelete: Cascade)
-    order   Orders   @relation(fields: [order_id], references: [id], onDelete: Cascade)
-
-    @@map("__status_order")
+  @@index([order_id], map: "__status_order_order_id_fkey")
+  @@index([pelanggan_id], map: "__status_order_pelanggan_id_fkey")
+  @@map("__status_order")
 }

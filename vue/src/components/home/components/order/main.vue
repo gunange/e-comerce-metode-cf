@@ -72,6 +72,7 @@
 
 <script>
 	import { MainData } from "./controller.ts";
+	import { api } from "@/config/apiConfig.js";
 
 	const __c = new MainData();
 	export default {
@@ -91,6 +92,11 @@
             foto() {
 				return this.item.foto ? `${api.url_api}storage/${this.item.foto}` : null;
 			},
+		},
+		methods: {
+			async order(){
+				
+			}
 		},
 		mounted() {
 			if (this.$route.params.quantity) {

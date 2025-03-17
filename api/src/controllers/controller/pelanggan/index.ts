@@ -1,8 +1,9 @@
 
 import { KeranjangController } from "./keanjang-controller";
+import { OrderController } from "./order-controller";
 import * as util from "@/controllers/services/util";
 
-export {  KeranjangController};
+export {  KeranjangController, OrderController};
 
 export class MainController {
    static async setUser(c: util.Context ): Promise<void> {

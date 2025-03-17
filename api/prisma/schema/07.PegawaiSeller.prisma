@@ -1,12 +1,13 @@
 model PegawaiSeller {
   id         Int      @id @default(autoincrement())
   user_id    Int      @unique
-  seller_id  Int      
+  seller_id  Int
   no_hp      String   @db.VarChar(20)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   toko       Seller   @relation(fields: [seller_id], references: [id], onDelete: Cascade)
   user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
+  @@index([seller_id], map: "__pegawai_seller_seller_id_fkey")
   @@map("__pegawai_seller")
 }
