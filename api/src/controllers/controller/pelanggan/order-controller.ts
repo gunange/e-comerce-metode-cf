@@ -1,6 +1,7 @@
 import * as util from "@/controllers/services/util";
 import { Order as HRequest } from "@/controllers/interfaces/request/order";
 import { Order as Resource } from "@/controllers/interfaces/resource/order";
+import { StatusOrderModel } from "@/controllers/model/status-order-model";
 
 export class OrderController {
    static async index(c: util.Context): Promise<any> {
@@ -12,9 +13,9 @@ export class OrderController {
                where: {
                   pelanggan_id: user.id,
                },
-               include : {
-                  product : true,
-               }
+               include: {
+                  product: true,
+               },
             })) as any
          ),
       });
@@ -22,26 +23,31 @@ export class OrderController {
 
    static async add(c: util.Context): Promise<any> {
       const body = await HRequest.create(c);
+      const db = Resource.resource(
+         (await util.dbClient.orders.create({
+            data: body,
+            include: {
+               product: true,
+            },
+         })) as any
+      );
 
-      return c.json({
-         data: Resource.resource(
-            (await util.dbClient.orders.create({
-               data: body,
-               include: {
-                  product : true,
-               },
-            })) as any
-         ),
+      await StatusOrderModel.setProses({
+         order_id: db.id,
+         pelanggan_id: db.pelanggan_id,
       });
 
+      return c.json({
+         data: db,
+      });
    }
 
-   static async del(c: util.Context) : Promise<any>{
+   static async del(c: util.Context): Promise<any> {
       return c.json({
          data: Resource.resource(
             (await util.dbClient.keranjang.delete({
-               where :{
-                  id : Number(c.req.param("id")),
+               where: {
+                  id: Number(c.req.param("id")),
                },
                include: {
                   product: true,
