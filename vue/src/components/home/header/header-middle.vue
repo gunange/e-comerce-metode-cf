@@ -37,7 +37,7 @@
 </template>
 
 <script>
-	import { MainData } from "@/components/home/components/home/keranjang/controller.ts";
+	import { MainData } from "@/components/home/components/keranjang/controller";
 
 	const __m = new MainData();
 

@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import DetailProduct  from "@/components/home/components/home/detail-product/index.vue"
-import { MainData } from "@/components/home/components/home/detail-product/controller";
+import DetailProduct  from "@/components/home/components/detail-product/index.vue"
+import { MainData } from "@/components/home/components/detail-product/controller";
 const __main = new MainData();
 
 export default {

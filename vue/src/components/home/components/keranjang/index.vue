@@ -80,7 +80,7 @@
 <script>
 	import { api } from "@/config/apiConfig.js";
     import * as tools from "@/controller/tools";
-	import { MainData } from "@/components/home/components/home/keranjang/controller.ts";
+	import { MainData } from "@/components/home/components/keranjang/controller";
     import Crud from "./cruds/index.vue"
 
 	const __m = new MainData();

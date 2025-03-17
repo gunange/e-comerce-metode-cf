@@ -1,5 +1,5 @@
 <script setup>
-	import KeranjangView from "@/components/home/components/home/keranjang/index.vue";
+	import KeranjangView from "@/components/home/components/keranjang/index.vue";
 </script>
 
 <template>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-	import { MainData } from "@/components/home/components/home/keranjang/controller.ts";
+	import { MainData } from "@/components/home/components/keranjang/controller";
 
 	const __m = new MainData();
 

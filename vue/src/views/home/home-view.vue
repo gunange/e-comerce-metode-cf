@@ -1,6 +1,6 @@
 <script setup>
-import Kategori from '@/components/home/components/home/kategori.vue';
-import Rekomendasi from '@/components/home/components/home/rekomendasi.vue';
+import Kategori from '@/components/home/components/kategori.vue';
+import Rekomendasi from '@/components/home/components/rekomendasi.vue';
 </script>
 
 

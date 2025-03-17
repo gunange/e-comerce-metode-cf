@@ -92,9 +92,9 @@
 	
 	import { api } from "@/config/apiConfig.js";
 
-	import { Cruds } from "@/components/home/components/home/keranjang/controller.ts";
+	import { Cruds } from "@/components/home/components/keranjang/controller";
 
-	import { MainData } from "@/components/home/components/home/detail-product/controller";
+	import { MainData } from "@/components/home/components/detail-product/controller";
     import { convertCurency } from "@/controller/tools";
 	
 	const __main = new MainData();
