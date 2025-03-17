@@ -4,14 +4,16 @@ import { reactive } from "vue";
 import { Controller as UserController } from "@/components/dashboard/pelanggan/controller";
 import { HeandleSubmitApi } from "@/controller/others/HeandleSubmitApi";
 import { TimeApp } from "@/controller/tools";
-import { del, get, patch, post } from "@/controller/others/RequestApiController";
+import {
+   del,
+   get,
+   patch,
+   post,
+} from "@/controller/others/RequestApiController";
 
-
-const __c =  new UserController();
+const __c = new UserController();
 
 export class Controller {
-    
-
    get collection() {
       return `${pathApi}/keranjang`;
    }
@@ -96,10 +98,12 @@ export class Cruds extends Controller {
       }
    }
    async add(body: any): Promise<void> {
-      const { data, status } = await post(this.collection, body, {alert: {
-         summary: "Sukses",
-         detail: "Berhasil masukan ke keranjang",
-      },});
+      const { data, status } = await post(this.collection, body, {
+         alert: {
+            summary: "Sukses",
+            detail: "Berhasil masukan ke keranjang",
+         },
+      });
 
       this.add_item(data, status);
       this.modal.proses_form = false;
@@ -121,15 +125,19 @@ export class Cruds extends Controller {
       this.modal.proses_form = false;
    }
 
-   async del() {
-      const { data, status } = await del(
-         `${this.collection}/${this.uid}`,
-         {
+   async del(alert = true) {
+      let config = {};
+      if (alert) {
+         config = {
             alert: {
                summary: "Sukses",
                detail: "Menghapus data",
             },
-         }
+         };
+      }
+      const { data, status } = await del(
+         `${this.collection}/${this.uid}`,
+         config
       );
       this.del_item(this.uid, status);
       this.modal.proses_form = false;
@@ -140,14 +148,16 @@ export class MainData extends Controller {
       return this.storage;
    }
 
-   get items() {      
-      return this.data.data.length ? this.data.data.map((el) => {
-         return {
-            ...el,
-            updated_at: this.time.formatDate(el.updated_at),
-            created_at: this.time.formatDate(el.created_at),
-         };
-      }) : [];
+   get items() {
+      return this.data.data.length
+         ? this.data.data.map((el) => {
+              return {
+                 ...el,
+                 updated_at: this.time.formatDate(el.updated_at),
+                 created_at: this.time.formatDate(el.created_at),
+              };
+           })
+         : [];
    }
 
    async init(): Promise<void> {

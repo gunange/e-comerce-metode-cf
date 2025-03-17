@@ -73,9 +73,13 @@
 
 <script>
 	import { MainData, Cruds } from "./controller.ts";
+	import {  Cruds as KeranjangController } from "@/components/home/components/keranjang/controller.ts";
 	import { api } from "@/config/apiConfig.js";
 
 	const __c = new MainData();
+	const __kc = new KeranjangController();
+
+
 	export default {
 		data() {
 			return {
@@ -104,7 +108,11 @@
 					total_price: this.item.harga * this.quantity,
 					jasa_kirim : this.jasa_kirim,
 				});
-				if(send)this.$router.push('/');
+				if(send){
+					await __kc.setUid(this.item.id);
+					await __kc.del(false);
+					this.$router.push('/')
+				}
 			},
 		}
 		,
