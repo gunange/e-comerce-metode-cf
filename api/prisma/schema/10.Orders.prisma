@@ -6,6 +6,8 @@ model Orders {
   price        Decimal       @db.Decimal(10, 2)
   total_price  Decimal       @db.Decimal(10, 2)
   ranting      Decimal?      @db.Decimal(2, 0)
+  jasa_kirim   String        @db.VarChar(150)
+  estimasi     String?       @db.VarChar(150)
   created_at   DateTime      @default(now())
   updated_at   DateTime      @updatedAt
   pelanggan    Pelanggan     @relation(fields: [pelanggan_id], references: [id], onDelete: Cascade)
