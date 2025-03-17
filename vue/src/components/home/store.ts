@@ -11,8 +11,10 @@ export const homeStorage = defineStore(storeId, {
          data: any[];
       };
       detail_product: { load: boolean; run: boolean; id: number; data: any };
+      order: { load: boolean; run: boolean; id: number; data: any };
    } => ({
       kategori: { load: false, run: false, label: "", data: [] },
       detail_product: { load: false, run: false, id: null, data: {} },
+      order: { load: false, run: false, id: null, data: {} },
    }),
 });

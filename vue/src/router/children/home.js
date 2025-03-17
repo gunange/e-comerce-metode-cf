@@ -31,6 +31,11 @@ const routes = [
       name: `${moduleName}-pesanan-saya`,
       component: () => import("@/views/home/pesanan-saya.vue"),
    },
+   {
+      path: "order-in-keranjang/:id",
+      name: `${moduleName}-order-in-keranjang`,
+      component: () => import("@/views/home/order-in-keranjang.vue"),
+   },
 
     // not-found
     {

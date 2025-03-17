@@ -61,7 +61,7 @@
                                         label="Beli Sekarang"
                                         size="small"
                                         as="router-link"
-                                        to="/order/2"
+                                        :to="`/order-in-keranjang/${item.id}`"
                                         :disabled="item.stock === 0"
                                         class="flex-auto md:flex-initial whitespace-nowrap"
                                     />

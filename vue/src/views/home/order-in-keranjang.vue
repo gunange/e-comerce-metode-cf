@@ -1,6 +1,6 @@
 <script setup>
 	import AlamatView from "@/components/home/components/order/alamat.vue";
-	import MainView from "@/components/home/components/order/main.vue";
+	import MainView from "@/components/home/components/order/main-in-keranjang.vue";
 </script>
 
 <template>
@@ -26,15 +26,9 @@
 	const __main = new MainData();
 
 	export default {
-		async beforeRouteEnter(to, from, next) {
-			
+		async beforeRouteEnter(to, from, next) {			
 			__main.data.id = to.params.id;
-			if (from.name == "home-keranjang") {
-				await __main.initFormKeranjang();
-			} else {
-				await __main.init();
-			}
-
+			await __main.initFormKeranjang();
 			next();
 		},
 	};
