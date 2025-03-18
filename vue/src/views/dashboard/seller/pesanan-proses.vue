@@ -17,7 +17,7 @@
 			<div class="card">
 				<div class="card-header flex justify-between">
 					<div class="flex-none flex items-center">
-						<h6><i class="pi pi-sparkles" /> <span>Pesanan Belum Diproses</span></h6>
+						<h6><i class="pi pi-sparkles" /> <span>Proses Antar</span></h6>
 					</div>
 
 					<div class="flex items-center justify-end">
@@ -30,6 +30,7 @@
 							@click="main.reset()"
 						/>
 
+						
 					</div>
 				</div>
 				<div class="card-body">
@@ -63,50 +64,7 @@
 							</div>
 						</template>
 						<template #item-operation="item">
-							<div class="" style="position: relative">
-								<SpeedDial
-									direction="left"
-									style="position: absolute; top: -8px; right: 48%"
-									:model="[
-										{
-											label: 'Proses',
-											icon: 'pi pi-check',
-											severity: 'success',
-											command: () => $refs.ref_cruds.open('terima', item.id),
-										},
-										{
-											label: 'Tolak',
-											icon: 'pi pi-times',
-											severity: 'danger',
-											command: () => $refs.ref_cruds.open('del', item.id),
-										},
-										{
-											label: 'Image View',
-											icon: 'pi pi-image',
-											severity: 'info',
-											command: () =>
-												$refs.ref_cruds.open('image-view', item.id),
-										},
-									]"
-								>
-									<template #button="{ toggleCallback }">
-										<Button
-											class=""
-											@click="toggleCallback"
-											icon="pi pi-align-right"
-										/>
-									</template>
-									<template #item="{ item, toggleCallback }">
-										<Button
-											:icon="item.icon"
-											:title="item.label"
-											rounded
-											:severity="item.severity ?? 'secondary'"
-											@click="toggleCallback"
-										/>
-									</template>
-								</SpeedDial>
-							</div>
+							<Button @click="$refs.ref_cruds.open('image-view', item.id)" icon="pi pi-image" />
 						</template>
 
 						<template #loading>
@@ -117,6 +75,17 @@
 							<span>
 								{{ convertCurency(item.harga) }} ({{ item.quantity }} Product)
 							</span>
+						</template>
+
+						<template #expand="item">
+							<div>
+								<div v-for="(e, i) in item.status_order" :key="i" class="mb-2">
+									<p>
+										Status : {{e.status}}
+									</p>
+									<p><i class="pi pi-calendar text-blue-300 " /> : {{time.formatDate(e.created_at, true)}}</p>
+								</div>
+							</div>
 						</template>
 					</EasyDataTable>
 				</div>
@@ -130,6 +99,7 @@
 	import { ref as vueRef } from "vue";
 	import { MainData } from "@/components/dashboard/seller/cruds/orders/controller";
 	import * as tools from "@/controller/tools";
+	import { TimeApp } from "@/controller/tools";
 
 	const main = new MainData();
 
@@ -157,11 +127,14 @@
 
 		computed: {
 			items() {
-				return main.itemsProses;
+				return main.itemsDikirim;
 			},
 			loadItems() {
 				return main.data.load;
 			},
+			time(){
+				return new TimeApp();
+			}
 		},
 		methods: {
 			...tools,

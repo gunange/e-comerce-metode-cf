@@ -26,6 +26,11 @@ const menu = [
       icon: "pi pi-palette",
       route: `/${path}/priode`,
    },
+   {
+      label: "Pesanan Diproses",
+      icon: "pi pi-palette",
+      route: `/${path}/pesanan-proses`,
+   },
    
    
 ];

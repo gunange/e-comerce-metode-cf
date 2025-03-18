@@ -21,6 +21,11 @@ const routes = [
       name: `${moduleName}-product`,
       component: () => import("@/views/dashboard/seller/product.vue"),
    },
+   {
+      path: "pesanan-proses",
+      name: `${moduleName}-pesanan-proses`,
+      component: () => import("@/views/dashboard/seller/pesanan-proses.vue"),
+   },
 
    // not-found
    {
