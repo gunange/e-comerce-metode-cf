@@ -1,66 +1,74 @@
 <template>
 	<div class="">
-        <div class="search-easy-table mb-5">
-            <InputGroup class="">
-                <InputGroupAddon>
-                    <i class="pi pi-search text-primary"></i>
-                </InputGroupAddon>
-                <InputText placeholder="Search.." v-model="table.search" class="text-xs" />
-            </InputGroup>
-        </div>
-        <EasyDataTable
-            :items="items"
-            :loading="loadItems"
-            :headers="table.th"
-            :search-value="table.search"
-            :sort-by="table.sort"
-            :sort-type="table.sortType"
-            :rowsItems="table.rowsItems"
-            :rowsPerPage="table.rowsPerPage"
-            rows-per-page-message="Jumlah data per-halaman"
-            rows-of-page-separator-message="dari"
-            theme-color="rgb(var(--primary))"
-            table-class-name="customize-table"
-            empty-message="Data tidak ditemukan"
-            show-index
-        >
-            <template #header-operation>
-                <div class="text-center">
-                    <i class="pi pi-spin pi-cog"></i>
-                </div>
-            </template>
-            <template #item-operation="item">
-                <Button
-                    @click="$refs.ref_cruds.open('image-view', item.id)"
-                    icon="pi pi-image"
-                />
-            </template>
+		<div class="search-easy-table mb-5">
+			<InputGroup class="">
+				<InputGroupAddon>
+					<i class="pi pi-search text-primary"></i>
+				</InputGroupAddon>
+				<InputText placeholder="Search.." v-model="table.search" class="text-xs" />
+			</InputGroup>
+		</div>
+		<EasyDataTable
+			:items="items"
+			:loading="loadItems"
+			:headers="table.th"
+			:search-value="table.search"
+			:sort-by="table.sort"
+			:sort-type="table.sortType"
+			:rowsItems="table.rowsItems"
+			:rowsPerPage="table.rowsPerPage"
+			rows-per-page-message="Jumlah data per-halaman"
+			rows-of-page-separator-message="dari"
+			theme-color="rgb(var(--primary))"
+			table-class-name="customize-table"
+			empty-message="Data tidak ditemukan"
+			show-index
+		>
+			<template #header-operation>
+				<div class="text-center">
+					<i class="pi pi-spin pi-cog"></i>
+				</div>
+			</template>
+			<template #item-operation="item">
+				<ButtonGroup>
+					<Button
+						@click="$refs.ref_cruds.open('image-view', item.id)"
+						icon="pi pi-image"
+						label="Gambar"
+						size="small"
+						variant="outlined"
+					/>
+					<Button
+						@click="$refs.ref_cruds.open('terima', item.id)"
+						icon="pi pi-check"
+						label="Di Terima"
+						size="small"
+					/>
+				</ButtonGroup>
+			</template>
 
-            <template #loading>
-                <img src="/assets/gif/bola.gif" style="width: 100px; height: 80px" />
-            </template>
+			<template #loading>
+				<img src="/assets/gif/bola.gif" style="width: 100px; height: 80px" />
+			</template>
 
-            <template #item-total_price="item">
-                <span>
-                    {{ convertCurency(item.harga) }} ({{ item.quantity }} Product)
-                </span>
-            </template>
+			<template #item-total_price="item">
+				<span> {{ convertCurency(item.harga) }} ({{ item.quantity }} Product) </span>
+			</template>
 
-            <template #expand="item">
-                <div>
-                    <div v-for="(e, i) in item.status_order" :key="i" class="mb-2">
-                        <p>Status : {{ e.status }}</p>
-                        <p>
-                            <i class="pi pi-calendar text-blue-300" /> :
-                            {{ time.formatDate(e.created_at, true) }}
-                        </p>
-                       
-                    </div>
-                </div>
-            </template>
-        </EasyDataTable>
-        <Cruds ref="ref_cruds" />
-    </div>
+			<template #expand="item">
+				<div>
+					<div v-for="(e, i) in item.status_order" :key="i" class="mb-2">
+						<p>Status : {{ e.status }}</p>
+						<p>
+							<i class="pi pi-calendar text-blue-300" /> :
+							{{ time.formatDate(e.created_at, true) }}
+						</p>
+					</div>
+				</div>
+			</template>
+		</EasyDataTable>
+		<Cruds ref="ref_cruds" />
+	</div>
 </template>
 
 <script>
@@ -68,7 +76,7 @@
 	import { MainData } from "@/components/home/components/pesanan/controller.ts";
 	import * as tools from "@/controller/tools";
 	import { TimeApp } from "@/controller/tools";
-    import Cruds from "@/components/home/components/pesanan/views/index.vue";
+	import Cruds from "@/components/home/components/pesanan/views/index.vue";
 
 	const main = new MainData();
 
@@ -94,9 +102,9 @@
 				}),
 			};
 		},
-        components :{
-            Cruds
-        },
+		components: {
+			Cruds,
+		},
 		computed: {
 			items() {
 				return main.itemsDikirim;

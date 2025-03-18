@@ -13,6 +13,7 @@ import Badge from "primevue/badge";
 import BadgeDirective from "primevue/badgedirective";
 import BlockUI from "primevue/blockui";
 import Button from "primevue/button";
+import ButtonGroup from "primevue/buttongroup";
 import Breadcrumb from "primevue/breadcrumb";
 
 import DatePicker from "primevue/datepicker";
@@ -132,6 +133,7 @@ export class AppPrimeConfig {
       this._app.component("BlockUI", BlockUI);
       this._app.component("Breadcrumb", Breadcrumb);
       this._app.component("Button", Button);
+      this._app.component("ButtonGroup", ButtonGroup);
       this._app.component("DatePicker", DatePicker);
       this._app.component("Card", Card);
       this._app.component("Carousel", Carousel);
