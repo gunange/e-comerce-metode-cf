@@ -20,5 +20,18 @@ export class Order {
 
       return data;
    }
+
+   
+   static async terimaPesananOnSeller(c: util.Context): Promise<any> {
+      const validate: util.ZodType = util.zod.object({
+         estimasi: util.zod.string().max(150),
+      });
+
+      let data = await validate.parse(await util.HeandleRequest.parse(c));
+
+      return data;
+   }
+
+
 }
 

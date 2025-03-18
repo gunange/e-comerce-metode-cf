@@ -6,7 +6,7 @@ import { Env } from "@/app/env";
 const debug = Env.debug;
 const token = "1742293147836abf1c54014f4ec98f43f6f0ee5a047d";
 
-describe("GET /api/pelanggan/order", () => {
+describe("GET /api/admin-toko/order", () => {
    it("should if get", async () => {
       const response = await app.request(
          "http://localhost:3000/api/admin-toko/order",
@@ -18,7 +18,7 @@ describe("GET /api/pelanggan/order", () => {
          }
       );
       const body = await response.json();
-      
+
       if (debug) {
          console.log(body);
          console.log("status : ", response.status);
@@ -26,6 +26,26 @@ describe("GET /api/pelanggan/order", () => {
          expect(response.status).toBe(200);
       }
    });
-  
+   it("should if proses", async () => {
+      const response = await app.request(
+         "http://localhost:3000/api/admin-toko/order/proses/26",
+         {
+            method: "POST",
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+               estimasi: "2 - 3 Hari",
+            }),
+         }
+      );
+      const body = await response.json();
 
+      if (debug) {
+         console.log(body);
+         console.log("status : ", response.status);
+      } else {
+         expect(response.status).toBe(200);
+      }
+   });
 });

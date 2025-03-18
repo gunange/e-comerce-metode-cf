@@ -6,6 +6,7 @@ import { Order as HRequest } from "@/controllers/interfaces/request/order";
 import { Order as Resource } from "@/controllers/interfaces/resource/order";
 import * as util from "@/controllers/services/util";
 import { StorageController } from "../main/storage-controller";
+import { StatusOrderModel } from "@/controllers/model/status-order-model";
 
 export class OrderController {
    static async index(c: util.Context): Promise<any> {
@@ -17,21 +18,41 @@ export class OrderController {
                      seller_id: Number(c.get("seller").id),
                   },
                },
-               include: Resource.includeSeller
+               include: Resource.includeSeller,
             })) as any
          ),
       });
    }
 
-   static async update(c: util.Context): Promise<any> {
-      const db = await ProductUpRequest(c);
+   static async proses(c: util.Context): Promise<any> {
+      const body = await HRequest.terimaPesananOnSeller(c);
+      const db = await util.dbClient.orders.update({
+         data: body,
+         where: {
+            id: Number(c.req.param("id")),
+         },
+         include: {
+            status_order: true,
+            product: true,
+         },
+      });
+
+      await StatusOrderModel.setStatusCode(db.status_order);
+
+      await StatusOrderModel.setDiantar({
+         order_id: db.id,
+         pelanggan_id: db.pelanggan_id,
+      });
+
       return c.json({
-         data: await util.dbClient.product.update({
-            data: db,
-            where: {
-               id: Number(c.req.param("id")),
-            },
-         }),
+         data: Resource.resource(
+            (await util.dbClient.orders.findFirst({
+               where: {
+                  id: db.id,
+               },
+               include: Resource.includeSeller,
+            })) as any
+         ),
       });
    }
    static async del(c: util.Context): Promise<any> {
