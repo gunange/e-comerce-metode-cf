@@ -3,6 +3,7 @@ model StatusOrder {
   pelanggan_id Int
   order_id     Int
   status       String    @db.VarChar(50)
+  keterangan   String?   @db.VarChar(250)
   status_code  Decimal?  @db.Decimal(2, 0)
   created_at   DateTime  @default(now())
   updated_at   DateTime  @updatedAt
