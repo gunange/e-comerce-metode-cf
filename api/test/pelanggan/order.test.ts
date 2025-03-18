@@ -18,7 +18,6 @@ describe("GET /api/pelanggan/order", () => {
          }
       );
       const body = await response.json();
-      if (debug) console.log(body);
       if (debug) {
          console.log(body);
          console.log("status : ", response.status);
