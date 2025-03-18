@@ -19,7 +19,7 @@ export class OrderController {
       });
    }
 
-   static async proses(c: util.Context): Promise<any> {
+   static async terima(c: util.Context): Promise<any> {
       const body = await HRequest.terimaPesananOnSeller(c);
       const db = await util.dbClient.orders.update({
          data: body,

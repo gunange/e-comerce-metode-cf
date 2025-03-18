@@ -5,7 +5,7 @@ interface KeranjangItem {
 
 export class Order {
    static resource(db: KeranjangItem) {
-      if(!db) return null;
+      if (!db) return null;
       const product = db.product;
       delete db.product;
       return { ...product, ...db };
@@ -17,7 +17,7 @@ export class Order {
 
    static get includeSeller() {
       return {
-         product : true,
+         product: true,
          pelanggan: {
             select: {
                alamat: true,
@@ -29,6 +29,7 @@ export class Order {
                },
             },
          },
+         status_order: true,
       };
    }
 }

@@ -99,36 +99,26 @@ export class Cruds extends Controller {
       data: any;
       status: number;
    }> {
-      const { data, status } = await post("storage", body,{
-         config :{
-            headers :{
-               'Content-Type': 'multipart/form-data'
-            }
-         }
+      const { data, status } = await post("storage", body, {
+         config: {
+            headers: {
+               "Content-Type": "multipart/form-data",
+            },
+         },
       });
       return { data, status };
    }
-   async add(body: any): Promise<void> {
-      const { data, status } = await post(this.collection, body, {
-         alert: {
-            summary: "Sukses",
-            detail: "Menambahkan data",
-         },
-      });
+   
 
-      this.add_item(data, status);
-      this.modal.proses_form = false;
-   }
-
-   async up(body: any): Promise<void> {
-      console.log(body)
+   async setTerima(body: any): Promise<void> {
+      console.log(body);
       const { data, status } = await patch(
-         `${this.collection}/${this.uid}`,
+         `${this.collection}/terima/${this.uid}`,
          body,
          {
             alert: {
                summary: "Sukses",
-               detail: "Memperbahrui data",
+               detail: "Menerima Pesanan",
             },
          }
       );
@@ -148,21 +138,7 @@ export class Cruds extends Controller {
       this.modal.proses_form = false;
    }
 
-   async resetPassword(body: any): Promise<void> {
-      const { data, status } = await patch(
-         `${this.collection}/reset-password/${this.uid}`,
-         body,
-         {
-            alert: {
-               summary: "Sukses",
-               detail: `Memperbahrui Passwrod ${this.data.nama}`,
-            },
-         }
-      );
-
-      if (status === 201 || status === 200) this.close();
-      this.modal.proses_form = false;
-   }
+   
 }
 export class MainData extends Controller {
    get data() {
@@ -179,6 +155,24 @@ export class MainData extends Controller {
               };
            })
          : [];
+   }
+   get itemsProses() {
+      const data = this.data.data.length
+         ? this.data.data.map((el) => {
+              return {
+                 ...el,
+                 updated_at: this.time.formatDate(el.updated_at),
+                 created_at: this.time.formatDate(el.created_at),
+              };
+           })
+         : [];
+
+      return data.filter((el) =>
+         el.status_order.some(
+            (e) =>
+               !e.status_code && e.status === "PROSES"
+         )
+      );
    }
 
    async init(): Promise<void> {

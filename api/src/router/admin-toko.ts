@@ -22,5 +22,5 @@ adminTokoRoute.patch("/product/:id", Controller.ProductController.update);
 adminTokoRoute.delete("/product/:id", Controller.ProductController.del);
 
 adminTokoRoute.get("/order", Controller.OrderController.index);
-adminTokoRoute.post("/order/proses/:id", Controller.OrderController.proses);
-adminTokoRoute.post("/order/batalkan/:id", Controller.OrderController.dibatalkan);
+adminTokoRoute.patch("/order/terima/:id", Controller.OrderController.terima);
+adminTokoRoute.patch("/order/batalkan/:id", Controller.OrderController.dibatalkan);

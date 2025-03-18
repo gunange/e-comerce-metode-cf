@@ -80,7 +80,7 @@
 											label: 'Proses',
 											icon: 'pi pi-check',
 											severity: 'success',
-											command: () => $refs.ref_cruds.open('up', item.id),
+											command: () => $refs.ref_cruds.open('terima', item.id),
 										},
 										{
 											label: 'Tolak',
@@ -165,7 +165,7 @@
 
 		computed: {
 			items() {
-				return main.items;
+				return main.itemsProses;
 			},
 			loadItems() {
 				return main.data.load;

@@ -28,9 +28,9 @@ describe("GET /api/admin-toko/order", () => {
    });
    it("should if proses", async () => {
       const response = await app.request(
-         "http://localhost:3000/api/admin-toko/order/proses/26",
+         "http://localhost:3000/api/admin-toko/order/terima/26",
          {
-            method: "POST",
+            method: "PATCH",
             headers: {
                Authorization: `Bearer ${token}`,
             },

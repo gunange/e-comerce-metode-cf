@@ -2,11 +2,14 @@ import * as util from "@/controllers/services/util";
 
 export class HeandleRequest {
    static async parse(c: util.Context): Promise<any> {
-      let body;
-      try {
+      let body ;
+      if(c.req.method == "POST"){
+
          body = await c.req.json().catch(util.ErrorHeandler.jsonCatch);
-      } catch (_) {
+      }else if(c.req.method == "PATCH"){
          body = await c.req.parseBody().catch(util.ErrorHeandler.jsonCatch);
+      } else {
+         body = {};
       }
 
       return this.convertTypes(body);
