@@ -32,6 +32,7 @@ describe("GET /api/pelanggan/pesanan", () => {
             method: "PATCH",
             headers: {
                Authorization: `Bearer ${token}`,
+               "Content-Type": "application/json"
             },
             body: JSON.stringify({
                ranting: 4,

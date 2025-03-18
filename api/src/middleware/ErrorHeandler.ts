@@ -16,9 +16,9 @@ export class ErrorHeandler {
          throw new ZodError(err.error.errors);
       }
    }
-   static jsonCatch(err=null) {
+   static jsonCatch(err : null | undefined | any = null ) {
       throw new util.HTTPException(404, {
-         message: err ?? "Body tidak ditemukan",
+         message: (err) ? err : "Body tidak ditemukan",
       });
    }
 }

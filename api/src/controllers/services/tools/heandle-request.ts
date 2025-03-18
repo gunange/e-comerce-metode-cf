@@ -2,22 +2,26 @@ import * as util from "@/controllers/services/util";
 
 export class HeandleRequest {
    static async parse(c: util.Context): Promise<any> {
-      let body;
-
+      let body = null;
       try {
-         body = await c.req.json();
-         if (!body || Object.keys(body).length === 0) {
-            throw new Error("Empty JSON");
-         }
-      } catch (_) {
-         try {
+         const contentType = c.req.header("content-type") || "";
+
+         if (contentType.includes("application/json")) {
+            body = await c.req.json();
+         } else if (contentType.includes("application/x-www-form-urlencoded")) {
             body = await c.req.parseBody();
-            if (!body || Object.keys(body).length === 0) {
-               throw new Error("Empty Body");
-            }
-         } catch (err) {
-            util.ErrorHeandler.jsonCatch();
+         } else {
+            throw new Error("Unsupported Content-Type");
          }
+      } catch (err) {
+         return util.ErrorHeandler.jsonCatch(err);
+      }
+
+      if (
+         !body ||
+         (typeof body === "object" && Object.keys(body).length === 0)
+      ) {
+         return util.ErrorHeandler.jsonCatch(new Error("Body request kosong"));
       }
 
       return this.convertTypes(body);

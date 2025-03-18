@@ -101,25 +101,15 @@ export class Cruds extends Controller {
          await this.reset();
       }
    }
-   async add(body: any): Promise<boolean> {
-      const { data, status } = await post(this.collection, body, {alert: {
-         summary: "Sukses",
-         detail: "Berhasil melakukan pemesanan",
-      },});
 
-      this.add_item(data, status);
-      this.modal.proses_form = false;
-      return status == 200;
-   }
-
-   async up(body: any): Promise<void> {
+   async terima(body: any): Promise<void> {
       const { data, status } = await patch(
-         `${this.collection}/${this.uid}`,
+         `${this.collection}/terima/${this.uid}`,
          body,
          {
             alert: {
                summary: "Sukses",
-               detail: "Memperbahrui data",
+               detail: "Berhasil Klaim dan Penilaian",
             },
          }
       );
@@ -128,19 +118,6 @@ export class Cruds extends Controller {
       this.modal.proses_form = false;
    }
 
-   async del() {
-      const { data, status } = await del(
-         `${this.collection}/${this.uid}`,
-         {
-            alert: {
-               summary: "Sukses",
-               detail: "Menghapus data",
-            },
-         }
-      );
-      this.del_item(this.uid, status);
-      this.modal.proses_form = false;
-   }
 }
 
 export class MainData extends Controller {
