@@ -12,7 +12,11 @@ export class PesananController {
                   pelanggan_id: Number(c.get("pelanggan").id),
                },
                include: {
-                  product: true,
+                  product: {
+                     include :{
+                        toko : true,
+                     }
+                  },
                   status_order : true,
                },
             })) as any

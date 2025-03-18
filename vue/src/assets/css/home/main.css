@@ -5,35 +5,43 @@
 }
 
 
+/* ------------ global ------------ */
+.search-easy-table .p-inputtext 
+{
+   --p-inputtext-background: transparent;
+}
+.search-easy-table .p-inputgroupaddon {
+   background-color: transparent;
+}
 /* ------------ main ------------ */
 
-.home .header  {
+.home > .header  {
    position: fixed;
    width: 100%;
    top: 0;
    z-index: 1;
    transition: .3s;
 }
-.home .header.on-scroll{
+.home > .header.on-scroll{
    padding: 5px 0px;
 }
-.home .header .search .p-inputgroup {
+.home > .header .search .p-inputgroup {
    background: white;
    border-radius: 5px;
    padding: 5px;
 }
 
-.home .header .search .p-inputgroup input {
+.home > .header .search .p-inputgroup input {
    color: #181717;
 }
 
-.home .header .search .p-button-icon-only {
+.home > .header .search .p-button-icon-only {
    background-color: var(--color-sky-500);
    padding: 10px 35px;
    border-radius: 5px;
 }
 
-.home .header .keranjang .p-button-text.p-button-secondary:not(:disabled):hover {
+.home > .header .keranjang .p-button-text.p-button-secondary:not(:disabled):hover {
    background: transparent !important;
  }
 

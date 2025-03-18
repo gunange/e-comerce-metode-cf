@@ -8,7 +8,9 @@ export const storeId = "pelanggan-store";
 export const userStorage = defineStore(storeId, {
    state: (): {
       keranjang: StoreDataFormApi;
+      pesanan: StoreDataFormApi;
    } => ({
       keranjang: { ...storeDefault },
+      pesanan: { ...storeDefault },
    }),
 });
