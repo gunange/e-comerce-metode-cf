@@ -7,7 +7,7 @@ const routes = [
       component: () => import("@/views/dashboard/seller/main-view.vue"),
    },
    {
-      path: "seller-main",
+      path: "main",
       name: `${moduleName}-main`,
       component: () => import("@/views/dashboard/seller/main-view.vue"),
    },
