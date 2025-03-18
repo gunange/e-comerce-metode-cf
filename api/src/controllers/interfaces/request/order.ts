@@ -25,6 +25,7 @@ export class Order {
    static async terimaPesananOnSeller(c: util.Context): Promise<any> {
       const validate: util.ZodType = util.zod.object({
          estimasi: util.zod.string().max(150),
+         resi: util.zod.string().max(150),
       });
 
       let data = await validate.parse(await util.HeandleRequest.parse(c));
@@ -34,6 +35,17 @@ export class Order {
    static async batalkanPesananOnSeller(c: util.Context): Promise<any> {
       const validate: util.ZodType = util.zod.object({
          keterangan: util.zod.string().max(250),
+      });
+
+      let data = await validate.parse(await util.HeandleRequest.parse(c));
+
+      return data;
+   }
+
+   static async terimaPesananOnPelanggan(c: util.Context): Promise<any> {
+      const validate: util.ZodType = util.zod.object({
+         komentar: util.zod.string().max(200),
+         ranting: util.zod.number().min(1).max(5),
       });
 
       let data = await validate.parse(await util.HeandleRequest.parse(c));

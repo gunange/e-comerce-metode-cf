@@ -25,4 +25,26 @@ describe("GET /api/pelanggan/pesanan", () => {
          expect(response.status).toBe(200);
       }
    });
+   it("should if terima", async () => {
+      const response = await app.request(
+         "http://localhost:3000/api/pelanggan/pesanan/terima/26",
+         {
+            method: "PATCH",
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+               ranting: 4,
+               komentar: "Terima pesanan bagus sekali kurang pada bagia wanrah saja",
+            }),
+         }
+      );
+      const body = await response.json();
+      if (debug) {
+         console.log(body);
+         console.log("status : ", response.status);
+      } else {
+         expect(response.status).toBe(200);
+      }
+   });
 });

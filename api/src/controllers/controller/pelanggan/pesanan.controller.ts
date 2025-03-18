@@ -11,17 +11,42 @@ export class PesananController {
                where: {
                   pelanggan_id: Number(c.get("pelanggan").id),
                },
-               include: {
-                  product: {
-                     include :{
-                        toko : true,
-                     }
-                  },
-                  status_order : true,
-               },
+               include: Resource.includePelanggan,
             })) as any
          ),
       });
    }
 
+   static async terima(c: util.Context): Promise<any> {
+      const body = await HRequest.terimaPesananOnPelanggan(c);
+
+      const db = await util.dbClient.orders.update({
+         data: body,
+         where: {
+            id: Number(c.req.param("id")),
+         },
+         include: {
+            status_order: true,
+            product: true,
+         },
+      });
+
+      await StatusOrderModel.setStatusCode(db.status_order);
+
+      await StatusOrderModel.setSelesai({
+         order_id: db.id,
+         pelanggan_id: db.pelanggan_id,
+      });
+
+      return c.json({
+         data: Resource.resource(
+            (await util.dbClient.orders.findFirst({
+               where: {
+                  id: db.id,
+               },
+               include: Resource.includePelanggan,
+            })) as any
+         ),
+      });
+   }
 }

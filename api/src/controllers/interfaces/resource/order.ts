@@ -32,4 +32,14 @@ export class Order {
          status_order: true,
       };
    }
+   static get includePelanggan() {
+      return {
+         product: {
+            include :{
+               toko : true,
+            }
+         },
+         status_order : true,
+      };
+   }
 }

@@ -36,6 +36,7 @@ describe("GET /api/admin-toko/order", () => {
             },
             body: JSON.stringify({
                estimasi: "2 - 3 Hari",
+               resi: "ABCDEFGHI098726",
             }),
          }
       );

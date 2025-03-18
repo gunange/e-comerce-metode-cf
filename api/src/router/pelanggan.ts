@@ -19,3 +19,4 @@ pelanggan.delete("/keranjang/:id", Controller.KeranjangController.del);
 pelanggan.post("/order", Controller.OrderController.add);
 
 pelanggan.get("/pesanan", Controller.PesananController.index);
+pelanggan.patch("/pesanan/terima/:id", Controller.PesananController.terima);
