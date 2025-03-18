@@ -1,11 +1,6 @@
-import {
-   ProductCreateRequest,
-   ProductUpRequest,
-} from "@/controllers/interfaces/request/product";
 import { Order as HRequest } from "@/controllers/interfaces/request/order";
 import { Order as Resource } from "@/controllers/interfaces/resource/order";
 import * as util from "@/controllers/services/util";
-import { StorageController } from "../main/storage-controller";
 import { StatusOrderModel } from "@/controllers/model/status-order-model";
 
 export class OrderController {
@@ -59,7 +54,7 @@ export class OrderController {
       const body = await HRequest.batalkanPesananOnSeller(c);
       const db = await util.dbClient.orders.update({
          data: {
-            estimasi : null,
+            estimasi: null,
          },
          where: {
             id: Number(c.req.param("id")),
@@ -71,22 +66,22 @@ export class OrderController {
       });
 
       await util.dbClient.product.update({
-         where : {
-            id : db.product_id,
+         where: {
+            id: db.product_id,
          },
-         data : {
-            stock : {
-               increment : db.quantity,
-            }
-         }
-      })
+         data: {
+            stock: {
+               increment: db.quantity,
+            },
+         },
+      });
 
       await StatusOrderModel.setStatusCode(db.status_order);
 
       await StatusOrderModel.setDibatalkan({
          order_id: db.id,
          pelanggan_id: db.pelanggan_id,
-         keterangan : body.keterangan
+         keterangan: body.keterangan,
       });
 
       return c.json({
