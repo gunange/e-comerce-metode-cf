@@ -121,7 +121,6 @@ export class Cruds extends Controller {
    }
 
    async up(body: any): Promise<void> {
-      console.log(body)
       const { data, status } = await patch(
          `${this.collection}/${this.uid}`,
          body,

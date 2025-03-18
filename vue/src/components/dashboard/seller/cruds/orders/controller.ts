@@ -111,7 +111,6 @@ export class Cruds extends Controller {
    
 
    async setTerima(body: any): Promise<void> {
-      console.log(body);
       const { data, status } = await patch(
          `${this.collection}/terima/${this.uid}`,
          body,
