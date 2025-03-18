@@ -125,17 +125,23 @@ export class Cruds extends Controller {
       this.up_item(data, this.uid, status);
       this.modal.proses_form = false;
    }
+   async setTolak(body: any): Promise<void> {
+      const { data, status } = await patch(
+         `${this.collection}/batalkan/${this.uid}`,
+         body,
+         {
+            alert: {
+               summary: "Sukses",
+               detail: "Tolak Pesanan",
+            },
+         }
+      );
 
-   async del() {
-      const { data, status } = await del(`${this.collection}/${this.uid}`, {
-         alert: {
-            summary: "Sukses",
-            detail: "Menghapus data",
-         },
-      });
-      this.del_item(this.uid, status);
+      this.up_item(data, this.uid, status);
       this.modal.proses_form = false;
    }
+
+   
 
    
 }

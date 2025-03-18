@@ -78,7 +78,7 @@
 											label: 'Tolak',
 											icon: 'pi pi-times',
 											severity: 'danger',
-											command: () => $refs.ref_cruds.open('del', item.id),
+											command: () => $refs.ref_cruds.open('tolak', item.id),
 										},
 										{
 											label: 'Image View',

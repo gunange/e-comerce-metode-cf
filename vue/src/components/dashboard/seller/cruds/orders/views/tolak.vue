@@ -15,7 +15,7 @@
 	/* ----- action dialog ----- */
 	const open = async (act, uid) => {
 		main.modal.act = act;
-		main.modal.label = "Terima Pesanan";
+		main.modal.label = "Tolak Pesanan";
 		form.value = {};
 
 		await main.open(act);
@@ -32,7 +32,7 @@
 	const onSave = async (e, { resetForm }) => {
 		if (modal.proses_form) return;
 		modal.proses_form = true;
-		await main.setTerima(e);
+		await main.setTolak(e);
 	};
 
 	/* ----- method ----- */
@@ -49,8 +49,8 @@
 			modal
 		>
 			<template #header>
-				<h6 class="text-primary text-sm flex items-center">
-					<i class="pi pi-check mr-2"></i>
+				<h6 class="text-red-300 text-sm flex items-center">
+					<i class="pi pi-times mr-2"></i>
 					<span>{{ modal.label }}</span>
 				</h6>
 			</template>
@@ -59,23 +59,25 @@
 				<div class="text-xs grid grid-cols-1 gap-4">
 					<div class="form">
 						<VeeField
-							v-slot="{ field }"
-							name="estimasi"
+							
+							name="keterangan"
 							rules="required"
-							v-model="form.estimasi"
+							v-model="form.keterangan"
 						>
 							<label>
-								<span>Estimasi Pengiriman</span>
+								<span>Keterangan Pengiriman</span>
 								<span class="text-red-500">
-									* <VeeErrorMessage name="estimasi" />
+									* <VeeErrorMessage name="keterangan" />
 								</span>
 							</label>
 
-							<InputText
-								v-bind="field"
+							<Textarea
+								v-model="form.keterangan"
 								placeholder="Masukan Input Sesuai Field.."
-								class="text-xs"
+								class="text-xs w-full mt-2"
 								autocomplete="off"
+								 rows="5"
+								
 							/>
 						</VeeField>
 						

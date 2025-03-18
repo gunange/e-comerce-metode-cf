@@ -52,7 +52,7 @@ describe("GET /api/admin-toko/order", () => {
       const response = await app.request(
          "http://localhost:3000/api/admin-toko/order/batalkan/26",
          {
-            method: "POST",
+            method: "PATCH",
             headers: {
                Authorization: `Bearer ${token}`,
             },
