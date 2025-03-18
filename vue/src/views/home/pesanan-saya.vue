@@ -41,15 +41,9 @@
 						</div>
 					</TabPanel>
 					<TabPanel value="3">
-						<p class="m-0">
-							At vero eos et accusamus et iusto odio dignissimos ducimus qui
-							blanditiis praesentium voluptatum deleniti atque corrupti quos
-							dolores et quas molestias excepturi sint occaecati cupiditate non
-							provident, similique sunt in culpa qui officia deserunt mollitia
-							animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-							est et expedita distinctio. Nam libero tempore, cum soluta nobis est
-							eligendi optio cumque nihil impedit quo minus.
-						</p>
+						<div class="">
+							<Dibatalkan />
+						</div>
 					</TabPanel>
 				</TabPanels>
 			</Tabs>
@@ -60,6 +54,7 @@
 <script>
 	import DiProses from "@/components/home/components/pesanan/diproses.vue";
 	import Dikirim from "@/components/home/components/pesanan/dikirim.vue";
+	import Dibatalkan from "@/components/home/components/pesanan/dibatalkan.vue";
 	import {MainData} from "@/components/home/components/pesanan/controller.ts"
 
 	const __c = new MainData();
@@ -70,6 +65,7 @@
 		components: {
 			DiProses,
 			Dikirim,
+			Dibatalkan,
 		},
 
 		async beforeRouteEnter (to, from, next) {

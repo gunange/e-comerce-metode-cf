@@ -192,6 +192,24 @@ export class MainData extends Controller {
          )
       );
    }
+   get itemsDibatalkan() {
+      const data = this.data.data.length
+         ? this.data.data.map((el) => {
+              return {
+                 ...el,
+                 updated_at: this.time.formatDate(el.updated_at),
+                 created_at: this.time.formatDate(el.created_at),
+              };
+           })
+         : [];
+
+      return data.filter((el) =>
+         el.status_order.some(
+            (e) =>
+               !e.status_code && e.status === "DIBATALKAN"
+         )
+      );
+   }
 
    async init(): Promise<void> {
       if (this.data.load) return;
