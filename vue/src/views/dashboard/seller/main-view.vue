@@ -66,7 +66,7 @@
 						show-index
 					>
 						<template #header-operation>
-							<div class="text-center w-100">
+							<div class="text-center">
 								<i class="pi pi-spin pi-cog"></i>
 							</div>
 						</template>
@@ -77,14 +77,14 @@
 									style="position: absolute; top: -8px; right: 48%"
 									:model="[
 										{
-											label: 'Update',
-											icon: 'pi pi-pencil text-red',
+											label: 'Proses',
+											icon: 'pi pi-check',
 											severity: 'success',
 											command: () => $refs.ref_cruds.open('up', item.id),
 										},
 										{
-											label: 'Delete',
-											icon: 'pi pi-trash',
+											label: 'Tolak',
+											icon: 'pi pi-times',
 											severity: 'danger',
 											command: () => $refs.ref_cruds.open('del', item.id),
 										},
@@ -120,6 +120,12 @@
 						<template #loading>
 							<img src="/assets/gif/bola.gif" style="width: 100px; height: 80px" />
 						</template>
+
+						<template #item-total_price="item">
+							<span>
+								{{ convertCurency(item.harga) }} ({{ item.quantity }} Product)
+							</span>
+						</template>
 					</EasyDataTable>
 				</div>
 			</div>
@@ -131,6 +137,7 @@
 <script>
 	import { ref as vueRef } from "vue";
 	import { MainData } from "@/components/dashboard/seller/cruds/orders/controller";
+	import * as tools from "@/controller/tools";
 
 	const main = new MainData();
 
@@ -140,12 +147,10 @@
 				table: vueRef({
 					search: vueRef(""),
 					th: [
-						{ text: "Label", value: "label" },
-						{ text: "Harga", value: "harga" },
-						{ text: "Stock", value: "stock" },						
-						{ text: "Deskripsi", value: "deskripsi" },						
-						{ text: "Created", value: "created_at" },
-						{ text: "Updated", value: "updated_at" },
+						{ text: "Pemesan", value: "pelanggan.user.nama" },
+						{ text: "Product", value: "label" },
+						{ text: "Jasa Kirim", value: "jasa_kirim" },					
+						{ text: "Jumlah Pesanan", value: "total_price" },
 						{ text: "Operation", value: "operation" },
 					],
 					isUpdate: false,
@@ -166,7 +171,9 @@
 				return main.data.load;
 			},
 		},
-		methods: {},
+		methods: {
+			...tools,
+		},
 		async mounted() {
 			if (!main.data.run) await main.init();
 		},

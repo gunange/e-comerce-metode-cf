@@ -13,4 +13,21 @@ export class Order {
    static collection(db: KeranjangItem[]) {
       return db.map(this.resource);
    }
+
+   static get includeSeller() {
+      return {
+         product : true,
+         pelanggan: {
+            select: {
+               alamat: true,
+               no_hp: true,
+               user: {
+                  select: {
+                     nama: true,
+                  },
+               },
+            },
+         },
+      };
+   }
 }

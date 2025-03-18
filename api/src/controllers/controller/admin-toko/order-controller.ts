@@ -12,19 +12,17 @@ export class OrderController {
       return c.json({
          data: Resource.collection(
             (await util.dbClient.orders.findMany({
-               where :{
-                  product :{
-                     seller_id : Number(c.get("seller").id),
-                  }
+               where: {
+                  product: {
+                     seller_id: Number(c.get("seller").id),
+                  },
                },
-               include :{
-                  pelanggan : true,
-               }
+               include: Resource.includeSeller
             })) as any
          ),
       });
    }
-   
+
    static async update(c: util.Context): Promise<any> {
       const db = await ProductUpRequest(c);
       return c.json({
