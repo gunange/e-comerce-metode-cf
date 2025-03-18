@@ -17,14 +17,20 @@ export class StatusOrderModel {
    static async setDibatalkan({
       order_id,
       pelanggan_id,
+      keterangan,
    }: {
       order_id: number;
       pelanggan_id: number;
+      keterangan: string;
    }) {
-      await this.setStatus({
-         order_id: order_id,
-         pelanggan_id: pelanggan_id,
-         status: "DIBATALKAN",
+     
+      await util.dbClient.statusOrder.create({
+         data: {
+            status: "DIBATALKAN",
+            order_id: order_id,
+            pelanggan_id: pelanggan_id,
+            keterangan :keterangan
+         },
       });
    }
    static async setDiantar({

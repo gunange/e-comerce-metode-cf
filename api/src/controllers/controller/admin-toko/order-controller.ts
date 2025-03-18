@@ -55,18 +55,49 @@ export class OrderController {
          ),
       });
    }
-   static async del(c: util.Context): Promise<any> {
-      const db = await util.dbClient.product.delete({
+   static async dibatalkan(c: util.Context): Promise<any> {
+      const body = await HRequest.batalkanPesananOnSeller(c);
+      const db = await util.dbClient.orders.update({
+         data: {
+            estimasi : null,
+         },
          where: {
             id: Number(c.req.param("id")),
          },
+         include: {
+            status_order: true,
+            product: true,
+         },
       });
 
-      await StorageController.del(c, db.foto);
+      await util.dbClient.product.update({
+         where : {
+            id : db.product_id,
+         },
+         data : {
+            stock : {
+               increment : db.quantity,
+            }
+         }
+      })
 
-      StorageController.del(c);
+      await StatusOrderModel.setStatusCode(db.status_order);
+
+      await StatusOrderModel.setDibatalkan({
+         order_id: db.id,
+         pelanggan_id: db.pelanggan_id,
+         keterangan : body.keterangan
+      });
+
       return c.json({
-         data: db,
+         data: Resource.resource(
+            (await util.dbClient.orders.findFirst({
+               where: {
+                  id: db.id,
+               },
+               include: Resource.includeSeller,
+            })) as any
+         ),
       });
    }
 }

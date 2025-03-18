@@ -48,4 +48,26 @@ describe("GET /api/admin-toko/order", () => {
          expect(response.status).toBe(200);
       }
    });
+   it("should if batalkan", async () => {
+      const response = await app.request(
+         "http://localhost:3000/api/admin-toko/order/batalkan/26",
+         {
+            method: "POST",
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+               keterangan: "Order dibatalkan karena jasa kirim tidak sesuai",
+            }),
+         }
+      );
+      const body = await response.json();
+
+      if (debug) {
+         console.log(body);
+         console.log("status : ", response.status);
+      } else {
+         expect(response.status).toBe(200);
+      }
+   });
 });

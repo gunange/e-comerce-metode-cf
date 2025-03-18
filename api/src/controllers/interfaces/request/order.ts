@@ -31,6 +31,15 @@ export class Order {
 
       return data;
    }
+   static async batalkanPesananOnSeller(c: util.Context): Promise<any> {
+      const validate: util.ZodType = util.zod.object({
+         keterangan: util.zod.string().max(250),
+      });
+
+      let data = await validate.parse(await util.HeandleRequest.parse(c));
+
+      return data;
+   }
 
 
 }
