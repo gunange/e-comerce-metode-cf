@@ -80,6 +80,29 @@
 						</VeeField>
 						
 					</div>
+					<div class="form">
+						<VeeField
+							v-slot="{ field }"
+							name="resi"
+							rules="required"
+							v-model="form.resi"
+						>
+							<label>
+								<span>Resi Pengiriman</span>
+								<span class="text-red-500">
+									* <VeeErrorMessage name="resi" />
+								</span>
+							</label>
+
+							<InputText
+								v-bind="field"
+								placeholder="Masukan Input Sesuai Field.."
+								class="text-xs"
+								autocomplete="off"
+							/>
+						</VeeField>
+						
+					</div>
 				</div>
 
 				<button type="submit" class="hidden" ref="refBtnAddAndUp">submit</button>
