@@ -52,3 +52,8 @@
  .home .pesanan-saya .p-tablist-content > .p-tablist-tab-list{
    justify-content: space-between;
  }
+
+ .home .vue3-easy-data-table__body .expand {
+   --easy-table-body-row-hover-background-color : transparent;
+  --easy-table-body-row-hover-font-color : #5f5b5b;
+ }

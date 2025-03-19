@@ -20,15 +20,9 @@
 				</TabList>
 				<TabPanels>
 					<TabPanel value="0">
-						<p class="m-0">
-							Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-							accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-							ab illo inventore veritatis et quasi architecto beatae vitae dicta
-							sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-							aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-							eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci
-							velit, sed quia non numquam eius modi.
-						</p>
+						<div class="">
+							<Selesai />
+						</div>
 					</TabPanel>
 					<TabPanel value="1">
 						<div class="">
@@ -55,6 +49,8 @@
 	import DiProses from "@/components/home/components/pesanan/diproses.vue";
 	import Dikirim from "@/components/home/components/pesanan/dikirim.vue";
 	import Dibatalkan from "@/components/home/components/pesanan/dibatalkan.vue";
+	import Selesai from "@/components/home/components/pesanan/selesai.vue";
+
 	import {MainData} from "@/components/home/components/pesanan/controller.ts"
 
 	const __c = new MainData();
@@ -66,6 +62,7 @@
 			DiProses,
 			Dikirim,
 			Dibatalkan,
+			Selesai,
 		},
 
 		async beforeRouteEnter (to, from, next) {
