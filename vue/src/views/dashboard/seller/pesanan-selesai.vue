@@ -17,7 +17,7 @@
 			<div class="card">
 				<div class="card-header flex justify-between">
 					<div class="flex-none flex items-center">
-						<h6><i class="pi pi-sparkles" /> <span>Pesanan Proses</span></h6>
+						<h6><i class="pi pi-sparkles" /> <span>Pesanan Selesai</span></h6>
 					</div>
 
 					<div class="flex items-center justify-end">
@@ -77,6 +77,12 @@
 							</span>
 						</template>
 
+						<template #item-ranting="item">
+							<div class="">
+								<Rating v-model="item.ranting" readonly  />
+							</div>
+						</template>
+						
 						<template #expand="item">
 							<div>
 								<div v-for="(e, i) in item.status_order" :key="i" class="mb-2">
@@ -84,6 +90,10 @@
 										Status : {{e.status}}
 									</p>
 									<p><i class="pi pi-calendar text-blue-300 " /> : {{time.formatDate(e.created_at, true)}}</p>
+								</div>
+								<div class="mt-5 flex items-center underline decoration-wavy">
+									<span class="pi pi-envelope me-2"/>
+									<p>{{ item.komentar }}</p>
 								</div>
 							</div>
 						</template>
@@ -113,6 +123,7 @@
 						{ text: "Product", value: "label" },
 						{ text: "Jasa Kirim", value: "jasa_kirim" },					
 						{ text: "Jumlah Pesanan", value: "total_price" },
+						{ text: "Rating", value: "ranting" },
 						{ text: "Operation", value: "operation" },
 					],
 					isUpdate: false,
@@ -127,7 +138,7 @@
 
 		computed: {
 			items() {
-				return main.itemsDikirim;
+				return main.itemsSelesai;
 			},
 			loadItems() {
 				return main.data.load;

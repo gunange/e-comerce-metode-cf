@@ -1,6 +1,5 @@
-import { routerStore } from "@/stores/services/router-store"
+import { routerStore } from "@/stores/services/router-store";
 import { AuthController } from "@/controller/controllers/AuthController";
-
 
 const path = "seller";
 const route = routerStore();
@@ -21,28 +20,28 @@ const menu = [
       icon: "pi pi-palette",
       route: `/${path}/product`,
    },
-   {
-      label: "Priode",
-      icon: "pi pi-palette",
-      route: `/${path}/priode`,
-   },
+
    {
       label: "Pesanan Diproses",
       icon: "pi pi-palette",
       route: `/${path}/pesanan-proses`,
    },
-   
-   
+
+   {
+      label: "Pesanan Selesai",
+      icon: "pi pi-palette",
+      route: `/${path}/pesanan-selesai`,
+   },
 ];
 
 const profilMenu = [
    {
       label: "Logout",
       icon: "pi pi-power-off text-red-500",
-      command: () => {         
+      command: () => {
          const auth = new AuthController();
-         auth.signOut(()=>{
-            route.router.replace('/login');
+         auth.signOut(() => {
+            route.router.replace("/login");
          });
       },
    },

@@ -26,6 +26,11 @@ const routes = [
       name: `${moduleName}-pesanan-proses`,
       component: () => import("@/views/dashboard/seller/pesanan-proses.vue"),
    },
+   {
+      path: "pesanan-selesai",
+      name: `${moduleName}-pesanan-selesai`,
+      component: () => import("@/views/dashboard/seller/pesanan-selesai.vue"),
+   },
 
    // not-found
    {
