@@ -49,10 +49,12 @@ export class MainData extends Controller {
    }
 
    async init(): Promise<void> {
-      if (this.data.load && this.user) return;
+      const userId = this.user?.id ?? null;
+      if (this.data.load || !userId ) return;
       this.data.load = true;
 
-      const { data, status } = await get(`${this.collection}/${this.user.id}`);
+
+      const { data, status } = await get(`${this.collection}/${userId}`);
       this.data.data = data;
       this.data.run = status === 200;
       this.data.load = false;
