@@ -4,7 +4,7 @@ import { describe, it, expect } from "bun:test";
 import { Env } from "@/app/env";
 
 const debug = Env.debug;
-const token = "1742293147836abf1c54014f4ec98f43f6f0ee5a047d";
+const token = "1742481930114738578372484da9801058f22630174f";
 
 describe("GET /api/admin-toko/order", () => {
    it("should if get", async () => {

@@ -20,3 +20,5 @@ pelanggan.post("/order", Controller.OrderController.add);
 
 pelanggan.get("/pesanan", Controller.PesananController.index);
 pelanggan.patch("/pesanan/terima/:id", Controller.PesananController.terima);
+
+pelanggan.get("/rekomendasi/:pelanggan_id", Controller.RekomendasiController.index);
