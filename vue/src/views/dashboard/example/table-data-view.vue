@@ -66,7 +66,7 @@
 						show-index
 					>
 						<template #header-operation>
-							<div class="text-center w-100">
+							<div class="text-center">
 								<i class="pi pi-spin pi-cog"></i>
 							</div>
 						</template>
