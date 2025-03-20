@@ -10,7 +10,7 @@
 		<MainDashboard
 			:sidebar="sidebar"
 			title="Seller"
-			:sub-title="'@' + user.user?.username"
+			:sub-title="'@' + user?.user?.username ?? null"
 			:nama="user.nama"
 			:navbar="navbar"
 		>
@@ -32,6 +32,7 @@
 			},
 		},
 		async beforeRouteEnter(to, from, next) {
+			await auth.reset();
 			await auth.init();
 			if (auth.store.isAuth && auth.store.user.role === "4dm1n-t0kO") {
 				auth.setToken();

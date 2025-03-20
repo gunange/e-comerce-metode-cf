@@ -48,7 +48,6 @@
 
 		mounted(){
 			const __header = new HeaderLandingPage(document.getElementById("header"));
-
 			__header.init();
 		}
 	};
