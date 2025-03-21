@@ -11,6 +11,9 @@ export class StaffController {
       return c.json({
          data: (
             await util.dbClient.pegawaiSeller.findMany({
+               where : {
+                  seller_id : Number(c.get("seller").id)
+               },
                include: {
                   user: true,
                },

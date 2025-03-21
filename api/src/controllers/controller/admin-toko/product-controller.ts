@@ -8,8 +8,13 @@ import { StorageController } from "../main/storage-controller";
 
 export class ProductController {
    static async index(c: util.Context): Promise<any> {
+      
       return c.json({
-         data: await util.dbClient.product.findMany(),
+         data: await util.dbClient.product.findMany({
+            where : {
+               seller_id : Number(c.get("seller").id)
+            }
+         }),
       });
    }
    static async create(c: util.Context): Promise<any> {

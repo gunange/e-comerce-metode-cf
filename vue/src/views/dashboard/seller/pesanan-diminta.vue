@@ -1,6 +1,6 @@
 <script setup>
 	import BradcumpWidget from "@/widgets/others/bardcump-widget.vue";
-	import Cruds from "@/components/dashboard/seller/cruds/product/views/index.vue";
+	import Cruds from "@/components/dashboard/seller/cruds/orders/views/index.vue";
 </script>
 <template>
 	<div>
@@ -17,7 +17,7 @@
 			<div class="card">
 				<div class="card-header flex justify-between">
 					<div class="flex-none flex items-center">
-						<h6><i class="pi pi-sparkles" /> <span>Stock Hampir Habis</span></h6>
+						<h6><i class="pi pi-sparkles" /> <span>Pesanan Belum Diproses</span></h6>
 					</div>
 
 					<div class="flex items-center justify-end">
@@ -63,12 +63,60 @@
 							</div>
 						</template>
 						<template #item-operation="item">
-							<Button icon="pi pi-plus" @click="$refs.ref_cruds.open('stock', item.id)" size="small" v-tooltip.left="'Tambah Stock'" />
-							
+							<div class="" style="position: relative">
+								<SpeedDial
+									direction="left"
+									style="position: absolute; top: -8px; right: 48%"
+									:model="[
+										{
+											label: 'Proses',
+											icon: 'pi pi-check',
+											severity: 'success',
+											command: () => $refs.ref_cruds.open('terima', item.id),
+										},
+										{
+											label: 'Tolak',
+											icon: 'pi pi-times',
+											severity: 'danger',
+											command: () => $refs.ref_cruds.open('tolak', item.id),
+										},
+										{
+											label: 'Image View',
+											icon: 'pi pi-image',
+											severity: 'info',
+											command: () =>
+												$refs.ref_cruds.open('image-view', item.id),
+										},
+									]"
+								>
+									<template #button="{ toggleCallback }">
+										<Button
+											class=""
+											@click="toggleCallback"
+											icon="pi pi-align-right"
+										/>
+									</template>
+									<template #item="{ item, toggleCallback }">
+										<Button
+											:icon="item.icon"
+											:title="item.label"
+											rounded
+											:severity="item.severity ?? 'secondary'"
+											@click="toggleCallback"
+										/>
+									</template>
+								</SpeedDial>
+							</div>
 						</template>
 
 						<template #loading>
 							<img src="/assets/gif/bola.gif" style="width: 100px; height: 80px" />
+						</template>
+
+						<template #item-total_price="item">
+							<span>
+								{{ convertCurency(item.harga) }} ({{ item.quantity }} Product)
+							</span>
 						</template>
 					</EasyDataTable>
 				</div>
@@ -80,7 +128,8 @@
 
 <script>
 	import { ref as vueRef } from "vue";
-	import { MainData } from "@/components/dashboard/seller/cruds/product/controller";
+	import { MainData } from "@/components/dashboard/seller/cruds/orders/controller";
+	import * as tools from "@/controller/tools";
 
 	const main = new MainData();
 
@@ -90,15 +139,16 @@
 				table: vueRef({
 					search: vueRef(""),
 					th: [
-						{ text: "Label", value: "label" },
-						{ text: "Harga", value: "harga" },
-						{ text: "Stock", value: "stock" },
+						{ text: "Pemesan", value: "pelanggan.user.nama" },
+						{ text: "Product", value: "label" },
+						{ text: "Jasa Kirim", value: "jasa_kirim" },					
+						{ text: "Jumlah Pesanan", value: "total_price" },
 						{ text: "Operation", value: "operation" },
 					],
 					isUpdate: false,
 					itemsSelected: [],
-					sort: ["created_at",],
-					sortType: ["desc", ],
+					sort: ["tanggal", "waktu"],
+					sortType: ["desc", "desc"],
 					rowsItems: [15, 25, 50],
 					rowsPerPage: 15,
 				}),
@@ -107,13 +157,15 @@
 
 		computed: {
 			items() {
-				return main.itemsHampirHabis;
+				return main.itemsProses;
 			},
 			loadItems() {
 				return main.data.load;
 			},
 		},
-		methods: {},
+		methods: {
+			...tools,
+		},
 		async mounted() {
 			if (!main.data.run) await main.init();
 		},

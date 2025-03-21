@@ -135,6 +135,21 @@ export class Cruds extends Controller {
       this.up_item(data, this.uid, status);
       this.modal.proses_form = false;
    }
+   async upStock(body: any): Promise<void> {
+      const { data, status } = await patch(
+         `${this.collection}/stock/${this.uid}`,
+         body,
+         {
+            alert: {
+               summary: "Sukses",
+               detail: "Memperbahrui data",
+            },
+         }
+      );
+
+      this.up_item(data, this.uid, status);
+      this.modal.proses_form = false;
+   }
 
    async del() {
       const { data, status } = await del(`${this.collection}/${this.uid}`, {
@@ -147,21 +162,7 @@ export class Cruds extends Controller {
       this.modal.proses_form = false;
    }
 
-   async resetPassword(body: any): Promise<void> {
-      const { data, status } = await patch(
-         `${this.collection}/reset-password/${this.uid}`,
-         body,
-         {
-            alert: {
-               summary: "Sukses",
-               detail: `Memperbahrui Passwrod ${this.data.nama}`,
-            },
-         }
-      );
-
-      if (status === 201 || status === 200) this.close();
-      this.modal.proses_form = false;
-   }
+   
 }
 export class MainData extends Controller {
    get data() {
@@ -178,6 +179,10 @@ export class MainData extends Controller {
               };
            })
          : [];
+   }
+
+   get itemsHampirHabis(){
+      return this.items.filter((e) => e.stock < 6)
    }
 
    async init(): Promise<void> {

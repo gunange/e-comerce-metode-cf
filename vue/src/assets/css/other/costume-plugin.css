@@ -211,6 +211,10 @@
    border-color: var(--form-border-color-active);
 }
 
+.p-inputtext:disabled {
+   --p-inputtext-disabled-background : var(--p-primary-50)
+ }
+
 /* calender */
 
 .form .p-datepicker .p-inputtext {
@@ -239,9 +243,9 @@
 }
 
 .p-datepicker-calendar-container
-   .p-datepicker-header
-   .p-button-text.p-button-secondary
-   .p-icon {
+.p-datepicker-header
+.p-button-text.p-button-secondary
+.p-icon {
    position: absolute;
    --p-icon-size: 0.8rem;
 }
@@ -256,6 +260,14 @@
    height: 1rem;
    left: -0.25rem;
    margin-top: -0.52rem;
+}
+/* input number */
+.form .p-inputnumber {
+   margin-top: 10px;
+   --p-inputnumber-button-width : 2rem;
+}
+.form .p-inputnumber .p-inputtext {
+   margin: 0;
 }
 
 /* button */

@@ -17,7 +17,7 @@
 			<div class="card">
 				<div class="card-header flex justify-between">
 					<div class="flex-none flex items-center">
-						<h6><i class="pi pi-sparkles" /> <span>Stock Hampir Habis</span></h6>
+						<h6><i class="pi pi-sparkles" /> <span>Stock Product</span></h6>
 					</div>
 
 					<div class="flex items-center justify-end">
@@ -107,7 +107,7 @@
 
 		computed: {
 			items() {
-				return main.itemsHampirHabis;
+				return main.items;
 			},
 			loadItems() {
 				return main.data.load;

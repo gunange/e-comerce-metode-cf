@@ -22,6 +22,11 @@ const routes = [
       component: () => import("@/views/dashboard/seller/product.vue"),
    },
    {
+      path: "pesanan-diminta",
+      name: `${moduleName}-pesanan-diminta`,
+      component: () => import("@/views/dashboard/seller/pesanan-diminta.vue"),
+   },
+   {
       path: "pesanan-proses",
       name: `${moduleName}-pesanan-proses`,
       component: () => import("@/views/dashboard/seller/pesanan-proses.vue"),
@@ -30,6 +35,11 @@ const routes = [
       path: "pesanan-selesai",
       name: `${moduleName}-pesanan-selesai`,
       component: () => import("@/views/dashboard/seller/pesanan-selesai.vue"),
+   },
+   {
+      path: "stock-product",
+      name: `${moduleName}-stock-product`,
+      component: () => import("@/views/dashboard/seller/stock-product.vue"),
    },
 
    // not-found

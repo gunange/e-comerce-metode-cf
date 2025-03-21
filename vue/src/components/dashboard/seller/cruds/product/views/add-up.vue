@@ -172,7 +172,7 @@
 						</VeeField>
 					</div>
 
-					<div class="form">
+					<div class="form" v-if="modal.act == 'add'">
 						<VeeField
 							v-slot="{ field }"
 							name="stock"

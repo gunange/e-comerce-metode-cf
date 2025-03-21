@@ -20,7 +20,17 @@ const menu = [
       icon: "pi pi-palette",
       route: `/${path}/product`,
    },
+   {
+      label: "Stock Product",
+      icon: "pi pi-palette",
+      route: `/${path}/stock-product`,
+   },
 
+   {
+      label: "Permintaan Pesanan",
+      icon: "pi pi-palette",
+      route: `/${path}/pesanan-diminta`,
+   },
    {
       label: "Pesanan Diproses",
       icon: "pi pi-palette",
