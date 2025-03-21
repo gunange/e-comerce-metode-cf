@@ -73,6 +73,8 @@ export class Controller {
          routeTo = "/admin";
       } else if (data && data.role === "4dm1n-t0kO") {
          routeTo = "/seller";
+      } else if (data && data.role === "p3gaw4i-t0kO") {
+         routeTo = "/staff";
       } else if (data && data.role === "p3lAnGg4n") {
          routeTo = "/";
       }

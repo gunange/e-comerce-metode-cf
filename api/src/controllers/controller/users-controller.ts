@@ -9,6 +9,7 @@ import {
 } from "../services/models/user/login";
 import { ErrorHeandler } from "@/middleware/ErrorHeandler";
 import { adminTokoResponse, pelangganResponse } from "../interfaces/resource";
+import { StaffResource } from "../interfaces/resource/staff";
 
 export class UsersController {
    static async Register(c: util.Context, role_id: number): Promise<User> {
@@ -91,6 +92,15 @@ export class UsersController {
             },
          });
          db = await adminTokoResponse(db);
+      } else if (user.role_id == 3) {
+         db = StaffResource.resource(
+            (await util.dbClient.pegawaiSeller.findFirst({
+               where: {
+                  user_id: user.id,
+               },
+               include: StaffResource.includeStaff,
+            })) as any
+         );
       }
 
       return c.json(

@@ -3,6 +3,7 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
 import SellerChildren from "./children/seller.js";
+import StaffChildren from "./children/staff.js";
 import HomeChildren from "./children/home.js";
 
 const router = createRouter({
@@ -34,6 +35,12 @@ const router = createRouter({
          name: "seller",
          component: () => import("@/layouts/seller-layout.vue"),
          children: SellerChildren,
+      },
+      {
+         path: "/staff",
+         name: "staff",
+         component: () => import("@/layouts/staff-layout.vue"),
+         children: StaffChildren,
       },
 
       // not-found
