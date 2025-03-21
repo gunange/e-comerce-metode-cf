@@ -89,11 +89,11 @@
 											command: () => $refs.ref_cruds.open('del', item.id),
 										},
 										{
-											label: 'Swtich Status',
+											label: 'Resset Password',
 											icon: 'pi pi-sync',
 											severity: 'info',
 											command: () =>
-												$refs.ref_cruds.open('switch-status', item.id),
+												$refs.ref_cruds.open('reset-password', item.id),
 										},
 									]"
 								>

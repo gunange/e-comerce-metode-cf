@@ -135,7 +135,7 @@ export class Cruds extends Controller {
    }
 
    async resetPassword(body: any): Promise<void> {
-      const { data, status } = await patch(
+      const { status } = await patch(
          `${this.collection}/reset-password/${this.uid}`,
          body,
          {

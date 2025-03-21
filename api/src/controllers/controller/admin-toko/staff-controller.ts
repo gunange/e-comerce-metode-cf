@@ -5,14 +5,15 @@ import {
 } from "@/controllers/services/models/pegawai_seller/register";
 import { UsersController } from "../users-controller";
 import { staffSellerResponse } from "@/controllers/interfaces/resource/seller";
+import { StaffRequest } from "@/controllers/interfaces/request/staff";
 
 export class StaffController {
    static async index(c: util.Context): Promise<any> {
       return c.json({
          data: (
             await util.dbClient.pegawaiSeller.findMany({
-               where : {
-                  seller_id : Number(c.get("seller").id)
+               where: {
+                  seller_id: Number(c.get("seller").id),
                },
                include: {
                   user: true,
@@ -89,6 +90,34 @@ export class StaffController {
                id: db?.user_id,
             },
          }),
+      });
+   }
+
+   static async resetPassword(c: util.Context): Promise<any> {
+      const req = await StaffRequest.resetPassword(c);
+      const db = await util.dbClient.pegawaiSeller.findFirstOrThrow({
+         where: {
+            id: Number(c.req.param("id")),
+         },
+         include: {
+            user: true,
+         },
+      });
+
+      await util.dbClient.user.update({
+         where: {
+            id: db.user.id,
+         },
+         data: {
+            password: await Bun.password.hash(`${req.password}`, {
+               algorithm: "bcrypt",
+               cost: 10,
+            }),
+         },
+      });
+
+      return c.json({
+         data: staffSellerResponse(db as any),
       });
    }
 }

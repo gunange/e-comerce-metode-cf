@@ -15,6 +15,7 @@ adminTokoRoute.get("/staff", Controller.StaffController.index);
 adminTokoRoute.post("/staff", Controller.StaffController.insert);
 adminTokoRoute.patch("/staff/:id", Controller.StaffController.update);
 adminTokoRoute.delete("/staff/:id", Controller.StaffController.del);
+adminTokoRoute.patch("/staff/reset-password/:id", Controller.StaffController.resetPassword);
 
 adminTokoRoute.get("/product", Controller.ProductController.index);
 adminTokoRoute.post("/product", Controller.ProductController.create);
