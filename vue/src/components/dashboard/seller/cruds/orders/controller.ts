@@ -19,7 +19,7 @@ export class Controller {
       return new TimeApp();
    }
    get storage() {
-      return userStorage().product;
+      return userStorage().pesanan;
    }
 }
 export class Cruds extends Controller {

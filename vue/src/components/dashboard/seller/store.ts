@@ -8,8 +8,10 @@ export const userStorage = defineStore(storeId, {
    state: (): {
       seller: StoreDataFormApi;
       product: StoreDataFormApi;
+      pesanan: StoreDataFormApi;
    } => ({
       seller: { ...storeDefault },
       product: { ...storeDefault },
+      pesanan: { ...storeDefault },
    }),
 });
