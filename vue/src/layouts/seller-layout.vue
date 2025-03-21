@@ -11,7 +11,7 @@
 			:sidebar="sidebar"
 			title="Seller"
 			:sub-title="'@' + user?.user?.username ?? null"
-			:nama="user.nama"
+			:nama="user?.nama ?? 'Unknow'"
 			:navbar="navbar"
 		>
 			<router-view />
