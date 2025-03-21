@@ -20,6 +20,7 @@ adminTokoRoute.get("/product", Controller.ProductController.index);
 adminTokoRoute.post("/product", Controller.ProductController.create);
 adminTokoRoute.patch("/product/:id", Controller.ProductController.update);
 adminTokoRoute.delete("/product/:id", Controller.ProductController.del);
+adminTokoRoute.patch("/product/stock/:id", Controller.ProductController.upStock);
 
 adminTokoRoute.get("/order", Controller.OrderController.index);
 adminTokoRoute.patch("/order/terima/:id", Controller.OrderController.terima);

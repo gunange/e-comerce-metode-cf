@@ -50,11 +50,22 @@ export async function ProductUpRequest(
       label: util.zod.string().min(1).max(255),
       deskripsi: util.zod.string().min(1).max(255),
       kategori: util.zod.string().min(1).max(100),
-      stock: util.zod.number().min(1),
       harga: util.zod.number().min(1),
       foto: util.zod.string().min(1).max(255).optional(),
    });
 
    let data = await validate.parse(convertTypes(jsonBody));
    return data;
+}
+
+export class ProductRequest {
+   static async stock(c: util.Context): Promise<any> {
+      const validate: util.ZodType = util.zod.object({
+         stock: util.zod.number().min(1),
+      });
+
+      let data = await validate.parse(await util.HeandleRequest.parse(c));
+
+      return data;
+   }
 }
